@@ -1,0 +1,128 @@
+{
+  "san_cau": [
+    {
+      "id": 1,
+      "vi_tri": "Số 10, Đường Láng, Hà Nội",
+      "danh_gia": 4.5,
+      "con_trong_khong": true,
+      "gio_mo_cua": "06:00 - 22:00",
+      "gia_ca": "100,000 VND/giờ",
+      "mo_ta_them": "Sân cầu chất lượng cao, có trang bị đèn chiếu sáng",
+      "ca_sap_toi": "18:00 - 20:00",
+      "nguoi_dang_tin": 1
+    },
+    {
+      "id": 2,
+      "vi_tri": "Số 20, Đường Nguyễn Trãi, TP. HCM",
+      "danh_gia": 4.0,
+      "con_trong_khong": false,
+      "gio_mo_cua": "07:00 - 21:00",
+      "gia_ca": "80,000 VND/giờ",
+      "mo_ta_them": "Sân rộng rãi, thoáng mát",
+      "ca_sap_toi": "20:00 - 22:00",
+      "nguoi_dang_tin": 2
+    }
+  ],
+  "chu_san_cau": [
+    {
+      "id": 1,
+      "id_san_cau_quan_li": 1,
+      "ho_va_ten": "Nguyễn Văn A",
+      "id_dang_nhap": "nguyenvana",
+      "gioi_thieu": "Chủ sân cầu với nhiều năm kinh nghiệm",
+      "lien_he": "0123456789",
+      "gioi_tinh": "Nam",
+      "vi_tri_thuong_tru": "Hà Nội",
+      "danh_gia": 4.7
+    },
+    {
+      "id": 2,
+      "id_san_cau_quan_li": 2,
+      "ho_va_ten": "Trần Thị B",
+      "id_dang_nhap": "tranthib",
+      "gioi_thieu": "Quản lý sân cầu uy tín",
+      "lien_he": "0987654321",
+      "gioi_tinh": "Nữ",
+      "vi_tri_thuong_tru": "TP. HCM",
+      "danh_gia": 4.3
+    }
+  ],
+  "nguoi_choi": [
+    {
+      "id": 1,
+      "ho_va_ten": "Lê Văn C",
+      "id_dang_nhap": "levanc",
+      "gioi_thieu": "Người chơi cầu lông đam mê",
+      "lien_he": "0111222333",
+      "gioi_tinh": "Nam",
+      "vi_tri_thuong_tru": "Đà Nẵng",
+      "danh_gia": 4.6,
+      "trinh_do": "Trung bình"
+    },
+    {
+      "id": 2,
+      "ho_va_ten": "Phạm Thị D",
+      "id_dang_nhap": "phamthid",
+      "gioi_thieu": "Người chơi cầu lông nhiệt tình",
+      "lien_he": "0222333444",
+      "gioi_tinh": "Nữ",
+      "vi_tri_thuong_tru": "Hải Phòng",
+      "danh_gia": 4.2,
+      "trinh_do": "Khá"
+    }
+  ],
+  "admin": [
+    {
+      "id": 1,
+      "ho_va_ten": "Nguyễn Quang E",
+      "id_dang_nhap": "nguyenquange",
+      "gioi_thieu": "Quản trị viên trang web",
+      "lien_he": "0333444555",
+      "gioi_tinh": "Nam",
+      "vi_tri_thuong_tru": "Hà Nội"
+    }
+  ],
+  "account": [
+    {
+      "ten_dang_nhap": "nguyenvana",
+      "mat_khau": "password123",
+      "id": 1
+    },
+    {
+      "ten_dang_nhap": "tranthib",
+      "mat_khau": "password456",
+      "id": 2
+    },
+    {
+      "ten_dang_nhap": "levanc",
+      "mat_khau": "password789",
+      "id": 3
+    },
+    {
+      "ten_dang_nhap": "phamthid",
+      "mat_khau": "password101112",
+      "id": 4
+    },
+    {
+      "ten_dang_nhap": "nguyenquange",
+      "mat_khau": "password131415",
+      "id": 5
+    }
+  ],
+  "giao_luu": [
+    {
+      "id": 1,
+      "id_san_cau": 1,
+      "thoi_gian": "2024-06-01T18:00:00",
+      "danh_gia": 4.5,
+      "trinh_do": "Trung bình"
+    },
+    {
+      "id": 2,
+      "id_san_cau": 2,
+      "thoi_gian": "2024-06-02T20:00:00",
+      "danh_gia": 4.2,
+      "trinh_do": "Khá"
+    }
+  ]
+}
