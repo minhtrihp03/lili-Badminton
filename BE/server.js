@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors")
 const httpErrors = require("http-errors");
 const bodyParser = require("body-parser");
-const db = require("./models/index");
+const db = require("./Model/index");
 
 
 
