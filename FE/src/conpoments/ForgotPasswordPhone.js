@@ -5,8 +5,8 @@ import './ForgotPassword.css';
 const ForgotPasswordPhone = () => {
   return (
     <div className="container">
-      <div className="form-wrapper">
-        <img src={process.env.PUBLIC_URL + '/assets/images/Register.png'} alt="Forgot Password" className="image" />
+      <div className="form-wrapper reverse">
+        {/* <img src={process.env.PUBLIC_URL + '/assets/images/Register.png'} alt="Forgot Password" className="image" /> */}
         <div className="form">
           <button className="back-button">
             <FaArrowLeft />
@@ -21,6 +21,7 @@ const ForgotPasswordPhone = () => {
           </div>
           <button className="button-green">Nhận mã OTP</button>
         </div>
+        <img src={process.env.PUBLIC_URL + '/assets/images/Register.png'} alt="Change Password" className="image" />
       </div>
     </div>
   );
