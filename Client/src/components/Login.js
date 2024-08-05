@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaFacebook, FaUser, FaLock, FaArrowLeft } from 'react-icons/fa';
-import './Login.css'; // Import the CSS file
+import '../styles/screens/Login.css'; // Import the CSS file
 
 const Login = () => {
   const [showAlert, setShowAlert] = useState(false);
