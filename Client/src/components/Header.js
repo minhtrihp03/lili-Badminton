@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Header.css';
+import '../styles/screens/Header.css';
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
