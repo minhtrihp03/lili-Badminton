@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaArrowLeft, FaPhone } from 'react-icons/fa';
-import './ForgotPassword.css';
+import '../styles/screens/ForgotPassword.css';
 
 const ForgotPasswordPhone = () => {
   return (
