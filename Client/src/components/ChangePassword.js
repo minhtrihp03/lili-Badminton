@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaArrowLeft, FaLock } from 'react-icons/fa';
-import './ChangePassword.css';
+import '../styles/screens/ChangePassword.css';
 
 const ChangePassword = () => {
   const [showAlert, setShowAlert] = useState(false);
