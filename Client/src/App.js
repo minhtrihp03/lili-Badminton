@@ -7,23 +7,22 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import AuthLayout from './layouts/AuthLayout';
+import MainLayout from './layouts/MainLayout';
 
 function App() {
   return (
     <div className='App'>
-      <Header />
       <Router>
         <Routes>
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgot-password" element={<ForgotPasswordPhone />} />
-          <Route path="/forgot-password/otp" element={<ForgotPasswordOTP />} />
-          <Route path="/change-password" element={<ChangePassword />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<AuthLayout><Register /></AuthLayout>} />
+          <Route path="/forgot-password" element={<AuthLayout><ForgotPasswordPhone /></AuthLayout>} />
+          <Route path="/forgot-password/otp" element={<AuthLayout><ForgotPasswordOTP /></AuthLayout>} />
+          <Route path="/change-password" element={<AuthLayout><ChangePassword /></AuthLayout>} />
+          <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
+          <Route path="/" element={<MainLayout></MainLayout>} />
         </Routes>
       </Router>
-      <Footer />
     </div>
 
   );
