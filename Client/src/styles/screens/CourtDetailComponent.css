@@ -1,0 +1,75 @@
+/* CourtDetailComponent.css */
+
+.court-detail-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  .court-detail-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .court-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .image-gallery {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .gallery-thumbnail {
+    width: 75px;
+    height: 50px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .view-more-btn {
+    align-self: center;
+  }
+  
+  .court-details {
+    padding-left: 20px;
+  }
+  
+  .badge-container {
+    margin-bottom: 10px;
+  }
+  
+  .court-badge {
+    margin-right: 10px;
+  }
+  
+  .icon {
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  
+  .price-text {
+    color: #28a745;
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+  
+  .slot-selection button {
+    margin: 5px;
+  }
+  
+  .register-btn {
+    width: 100%;
+    margin-top: 15px;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .register-btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
