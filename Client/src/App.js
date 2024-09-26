@@ -37,14 +37,14 @@ function App() {
       </Router> */}
 
       <HomeComponent />
-      <CourtComponent name="Sân 286 Nguyễn Xiên" price="100.000" slots="6/8" location="Hà Nội" />
+      <CourtComponent name="Sân 286 Nguyễn Xiên" price="100.000" slots="6" location="Hà Nội" />
       <BookingComponent />
-      <CoachComponent name="Minh Trí" price="100.000" level="5.5" contact="Facebook" />
+      <CoachComponent name="Minh Trí" price="100.000" level="5.5" contact="Facebook" phone="0123456789"/>
       <CoachListComponent />
-      <CourtDetailComponent court={{ name: "Sân 286 Nguyễn Xiên", price: "100.000", slots: "6/8", location: "Hà Nội" }} />
+      <CourtDetailComponent court={{ name: "Sân 286 Nguyễn Xiên", price: "100.000", slots: "6", location: "Hà Nội" }} />
       <CourtListComponent />
       <DetailedFilterComponent />
-      <ParticipationComponent />
+      <ParticipationComponent />  {/*đang phát triển */}
       <PostFormComponent />
       <RelatedPostsComponent />
       <SearchFilterComponent />

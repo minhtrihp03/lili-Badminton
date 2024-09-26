@@ -44,6 +44,7 @@
   
   .court-badge {
     margin-right: 10px;
+    border-radius: 100px;
   }
   
   .icon {
@@ -66,6 +67,7 @@
     margin-top: 15px;
     background-color: #007bff;
     border-color: #007bff;
+    border-radius: 100px;
   }
   
   .register-btn:hover {

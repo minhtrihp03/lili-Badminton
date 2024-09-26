@@ -4,13 +4,14 @@ import { FaMapMarkerAlt, FaRulerCombined, FaUserFriends, FaCheckCircle, FaTimesC
 import '../styles/screens/CourtDetailComponent.css';
 
 const CourtDetailComponent = ({ court }) => {
+  const imgSrc = process.env.PUBLIC_URL + '/assets/images/Register.png';
     return (
       <div className="court-detail-container">
         <Card className="court-detail-card">
           <Row>
             {/* Court Image */}
-            <Col md={8}>
-              <img src={court.image} alt="Court" className="court-image" />
+            <Col md={7} className="me-5">
+              <img src={process.env.PUBLIC_URL + '/assets/images/Register.png'} />
               {/* Image Gallery */}
               <div className="image-gallery">
                 {(court.gallery && court.gallery.length > 0) ? (
@@ -24,11 +25,11 @@ const CourtDetailComponent = ({ court }) => {
               </div>
             </Col>
             {/* Court Details */}
-            <Col md={4} className="court-details">
+            <Col md={5} className="court-details">
               <Card.Body>
                 <div className="badge-container">
                   <Button variant="outline-primary" className="court-badge">Sân có mái che</Button>
-                  <Button variant="outline-secondary" className="court-badge">Nhóm xe về</Button>
+                  <Button variant="outline-primary" className="court-badge">Nhóm xé vé</Button>
                 </div>
   
                 <Card.Title>{court.name}</Card.Title>

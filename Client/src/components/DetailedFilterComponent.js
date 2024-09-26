@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 
 const DetailedFilterComponent = () => {
   const [filters, setFilters] = useState({
@@ -21,66 +21,137 @@ const DetailedFilterComponent = () => {
     console.log(filters);
   };
 
+  const handleReset = () => {
+    setFilters({
+      location: '',
+      startTime: '',
+      level: '',
+      courtType: '',
+      groupType: '',
+      numPeople: ''
+    });
+  };
+
   return (
     <div className="detailed-filter">
-      <h2>Bộ lọc chi tiết</h2>
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="formLocation">
-          <Form.Label>Địa điểm</Form.Label>
-          <Form.Control
-            type="text"
-            name="location"
-            placeholder="Nhập địa điểm"
-            value={filters.location}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
+        <Row className="g-2">
+          {/* Địa điểm */}
+          <Col xs="auto" className="me-3">
+            <Form.Group controlId="formLocation">
+              <Form.Control
+                as="select"
+                name="location"
+                value={filters.location}
+                onChange={handleInputChange}
+                className="form-control-sm"
+              >
+                <option value="">Địa điểm</option>
+                <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                <option value="Hà Nội">Hà Nội</option>
+                <option value="Hải Phòng">Hải Phòng</option>
+                <option value="Other">Other</option>
+              </Form.Control>
+            </Form.Group>
+          </Col>
 
-        <Form.Group controlId="formStartTime">
-          <Form.Label>Giờ bắt đầu</Form.Label>
-          <Form.Control
-            type="time"
-            name="startTime"
-            value={filters.startTime}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
+          {/* Giờ bắt đầu */}
+          <Col xs="auto" className="me-3">
+            <Form.Group controlId="formStartTime">
+              <Form.Control
+                type="time"
+                name="startTime"
+                value={filters.startTime}
+                onChange={handleInputChange}
+                className="form-control-sm"
+              />
+            </Form.Group>
+          </Col>
 
-        <Form.Group controlId="formLevel">
-          <Form.Label>Trình độ</Form.Label>
-          <Form.Control as="select" name="level" value={filters.level} onChange={handleInputChange}>
-            <option value="1.0-2.0">1.0 - 2.0</option>
-            <option value="2.5">2.5</option>
-            <option value="3.0">3.0</option>
-            <option value="4.0">4.0</option>
-            <option value="5.5">5.5+</option>
-          </Form.Control>
-        </Form.Group>
+          {/* Trình độ */}
+          <Col xs="auto" className="me-3">
+            <Form.Group controlId="formLevel">
+              <Form.Control
+                as="select"
+                name="level"
+                value={filters.level}
+                onChange={handleInputChange}
+                className="form-control-sm"
+              >
+                <option value="">Trình độ</option>
+                {Array.from({ length: 11 }, (_, i) => (i * 0.5).toFixed(1)).map((level) => (
+                  <option key={level} value={level}>{level}</option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+          </Col>
 
-        <Form.Group controlId="formCourtType">
-          <Form.Label>Loại sân</Form.Label>
-          <Form.Control as="select" name="courtType" value={filters.courtType} onChange={handleInputChange}>
-            <option value="Có mái che">Có mái che</option>
-            <option value="Không có mái che">Không có mái che</option>
-          </Form.Control>
-        </Form.Group>
+          {/* Loại nhóm */}
+          <Col xs="auto" className="me-3">
+            <Form.Group controlId="formGroupType">
+              <Form.Control
+                as="select"
+                name="groupType"
+                value={filters.groupType}
+                onChange={handleInputChange}
+                className="form-control-sm"
+              >
+                <option value="">Loại nhóm</option>
+                <option value="Nhóm xé vé">Nhóm xé vé</option>
+                <option value="Nhóm cố định">Nhóm cố định</option>
+              </Form.Control>
+            </Form.Group>
+          </Col>
 
-        <Form.Group controlId="formGroupType">
-          <Form.Label>Loại nhóm</Form.Label>
-          <Form.Control as="select" name="groupType" value={filters.groupType} onChange={handleInputChange}>
-            <option value="Nhóm xé vé">Nhóm xé vé</option>
-            <option value="Nhóm cố định">Nhóm cố định</option>
-          </Form.Control>
-        </Form.Group>
+          {/* Loại sân */}
+          <Col xs="auto" className="me-3">
+            <Form.Group controlId="formCourtType">
+              <Form.Control
+                as="select"
+                name="courtType"
+                value={filters.courtType}
+                onChange={handleInputChange}
+                className="form-control-sm"
+              >
+                <option value="">Loại sân</option>
+                <option value="Có mái che">Có mái che</option>
+                <option value="Không có mái che">Không có mái che</option>
+              </Form.Control>
+            </Form.Group>
+          </Col>
 
-        <Form.Group controlId="formNumPeople">
-          <Form.Label>Số người</Form.Label>
-          <Form.Control type="number" name="numPeople" placeholder="Số người trên sân" value={filters.numPeople} onChange={handleInputChange} />
-        </Form.Group>
+          {/* Số người */}
+          <Col xs="auto" className="me-3">
+            <Form.Group controlId="formNumPeople">
+              <Form.Control
+                as="select"
+                name="numPeople"
+                value={filters.numPeople}
+                onChange={handleInputChange}
+                className="form-control-sm"
+              >
+                <option value="">Số người trên sân</option>
+                {Array.from({ length: 9 }, (_, i) => i + 1).map((num) => (
+                  <option key={num} value={num}>{num}</option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+          </Col>
 
-        <Button variant="primary" type="submit">
-          Lọc
-        </Button>
+          {/* Tìm kiếm button */}
+          <Col xs="auto" className="me-3">
+            <Button variant="primary" type="submit" className="btn-sm">
+              Tìm kiếm
+            </Button>
+          </Col>
+
+          {/* Xóa lọc link */}
+          <Col xs="auto" className="me-3">
+            <Button variant="link" className="btn-sm" onClick={handleReset}>
+              Xóa lọc
+            </Button>
+          </Col>
+        </Row>
       </Form>
     </div>
   );

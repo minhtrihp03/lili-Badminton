@@ -1,0 +1,62 @@
+.court-card {
+    position: relative;
+    width: 18rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-image {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .top-left-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+  }
+  
+  .top-right-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+  }
+  
+  .court-name {
+    font-weight: bold;
+  }
+  
+  .price-text {
+    color: green;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .location, .slots-text {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: gray;
+  }
+  
+  .slots-text {
+    color: red;
+  }
+  
+  .book-btn {
+    margin-top: 10px;
+    width: 100%;
+  }
+  

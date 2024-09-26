@@ -1,29 +1,68 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
-import { FaExternalLinkAlt } from 'react-icons/fa';
+import { Row, Col } from 'react-bootstrap';
+import CourtComponent from './CourtComponent';
+import '../styles/screens/CourtListComponent.css'; // Import custom CSS
 
-const RelatedPostsComponent = () => {
-  const posts = [
-    { title: "Review sân Pickleball tại đường 286 Nguyễn Xiển", date: "03/08/2024", link: "#" },
-    { title: "Thử sức với môn thể thao Pickleball", date: "05/08/2024", link: "#" },
-  ];
+const courts = [
+  {
+    name: 'Sân Pickleball 286 Nguyễn Xiển',
+    price: '100.000',
+    slots: 6,
+    location: '286 Nguyễn Xiển',
+    type: 'không có mái che',
+    level: 2.0,
+    image: process.env.PUBLIC_URL + '/assets/images/court1.png',
+  },
+  {
+    name: 'Sân Pickleball 286 Nguyễn Xiển',
+    price: '100.000',
+    slots: 7,
+    location: '286 Nguyễn Xiển',
+    type: 'có mái che',
+    level: 2.5,
+    image: process.env.PUBLIC_URL + '/assets/images/court2.png',
+  },
+  {
+    name: 'Sân Pickleball 286 Nguyễn Xiển',
+    price: '120.000',
+    slots: 2,
+    location: '286 Nguyễn Xiển',
+    type: 'không có mái che',
+    level: 3.0,
+    image: process.env.PUBLIC_URL + '/assets/images/court3.png',
+  },
+  {
+    name: 'Sân Pickleball 286 Nguyễn Xiển',
+    price: '100.000',
+    slots: 0,
+    location: '286 Nguyễn Xiển',
+    type: 'có mái che',
+    level: 4.0,
+    image: process.env.PUBLIC_URL + '/assets/images/court4.png',
+  },
+];
 
+const CourtListComponent = () => {
   return (
-    <div className="related-posts">
-      <h2>Bài viết liên quan</h2>
-      {posts.map((post, index) => (
-        <Card key={index} style={{ width: '18rem', marginBottom: '10px' }}>
-          <Card.Body>
-            <Card.Title>{post.title}</Card.Title>
-            <Card.Text>Ngày đăng: {post.date}</Card.Text>
-            <Button variant="primary" href={post.link}>
-              <FaExternalLinkAlt /> Xem thêm
-            </Button>
-          </Card.Body>
-        </Card>
-      ))}
+    <div className="court-list-container">
+      <h2>Các bài tương tự</h2>
+      <Row className="justify-content-center">
+        {courts.map((court, index) => (
+          <Col key={index} sm={6} md={4} lg={3} className="me-3">
+            <CourtComponent
+              name={court.name}
+              price={court.price}
+              slots={court.slots}
+              location={court.location}
+              type={court.type}
+              level={court.level}
+              image={court.image}
+            />
+          </Col>
+        ))}
+      </Row>
     </div>
   );
 }
 
-export default RelatedPostsComponent;
+export default CourtListComponent;
