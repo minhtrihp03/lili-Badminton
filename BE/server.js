@@ -5,7 +5,8 @@ const cors = require("cors")
 const httpErrors = require("http-errors");
 const bodyParser = require("body-parser");
 const db = require("./Model/index");
-
+const userRoutes = require("./Routers/userRoutes"); 
+const mailRoutes = require("./Routers/mailRoutes"); 
 
 
 // khoi tao express webserver
@@ -19,7 +20,9 @@ app.use(cors({
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization'
 }));
-
+// Đăng ký các route cho các chức năng
+app.use("/api/users", userRoutes);
+app.use("/api/mail", mailRoutes);
 
 // route toi web root
 app.get('/', (req, res) => {
