@@ -11,6 +11,7 @@ const CoachListComponent = () => {
 
   return (
     <div className="coach-list">
+      <h2>Huấn Luyện Viên</h2>
       <Row>
       {coaches.map((coach, index) => (
         <Col key={index} sm={6} md={4} lg={3}>

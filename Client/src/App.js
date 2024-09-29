@@ -21,22 +21,34 @@ import ParticipationComponent from './components/ParticipationComponent';
 import PostFormComponent from './components/PostFormComponent';
 import RelatedPostsComponent from './components/RelatedPostsComponent';
 import SearchFilterComponent from './components/SearchFilterComponent';
+import HomeLayout from './layouts/HomeLayout';
+import NewDetailComponent from './components/NewDetailComponent';
+import CourtLayout from './layouts/CourtLayout';
+import CourtDetailLayout from './layouts/CourtDetailLayout';
+import PostFormLayout from './layouts/PostFormLayout';
+import CoachLayout from './layouts/CoachLayout';
 
 function App() {
   return (
     <div className='App'>
-      {/* <Router>
+      <Router>
         <Routes>
           <Route path="/register" element={<AuthLayout><Register /></AuthLayout>} />
           <Route path="/forgot-password" element={<AuthLayout><ForgotPasswordPhone /></AuthLayout>} />
           <Route path="/forgot-password/otp" element={<AuthLayout><ForgotPasswordOTP /></AuthLayout>} />
           <Route path="/change-password" element={<AuthLayout><ChangePassword /></AuthLayout>} />
           <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
-          <Route path="/" element={<MainLayout></MainLayout>} />
+          <Route path="/news/:id" element={<NewDetailComponent />} />
+          {/* <Route path="/" element={<MainLayout></MainLayout>} /> */}
+          <Route path="/court" element={<CourtLayout></CourtLayout>} />
+          <Route path="/court/court-detail" element={<CourtDetailLayout />} />
+          <Route path="/post-form" element={<PostFormLayout />} />
+          <Route path="/coach" element={<CoachLayout />} />
+          <Route path="/" element={<HomeLayout></HomeLayout>} />
         </Routes>
-      </Router> */}
+      </Router>
 
-      <HomeComponent />
+      {/* <HomeComponent />
       <CourtComponent name="Sân 286 Nguyễn Xiên" price="100.000" slots="6" location="Hà Nội" />
       <BookingComponent />
       <CoachComponent name="Minh Trí" price="100.000" level="5.5" contact="Facebook" phone="0123456789"/>
@@ -45,9 +57,10 @@ function App() {
       <CourtListComponent />
       <DetailedFilterComponent />
       <ParticipationComponent />  {/*đang phát triển */}
+      {/*
       <PostFormComponent />
       <RelatedPostsComponent />
-      <SearchFilterComponent />
+      <SearchFilterComponent /> */}
     </div>
 
   );

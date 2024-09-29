@@ -45,7 +45,6 @@ const courts = [
 const CourtListComponent = () => {
   return (
     <div className="court-list-container">
-      <h2>Các bài tương tự</h2>
       <Row>
         {courts.map((court, index) => (
           <Col key={index} sm={6} md={4} lg={3}>
@@ -63,6 +62,6 @@ const CourtListComponent = () => {
       </Row>
     </div>
   );
-}
+};
 
 export default CourtListComponent;

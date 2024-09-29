@@ -3,6 +3,7 @@ import { Card, Button, Row, Col } from 'react-bootstrap';
 import { FaMapMarkerAlt, FaRulerCombined, FaUserFriends, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import '../styles/screens/CourtDetailComponent.css';
 
+const court=[{ name: "Sân 286 Nguyễn Xiên", price: "100.000", slots: "6", location: "Hà Nội" }];
 const CourtDetailComponent = ({ court }) => {
   const imgSrc = process.env.PUBLIC_URL + '/assets/images/Register.png';
     return (
