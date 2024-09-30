@@ -7,10 +7,10 @@ const ParticipationComponent = () => {
   return (
     <div className="participation-section">
       <h2 className="text-center">Tham gia giao lưu</h2>
-      <Row className="participation-content">
+      <div className="participation-content">
         {/* Left Section */}
-        <Col xs={12} md={6} className="left-section">
-          <h4>Đến với chúng tôi bạn sẽ được <span className="highlight">trải nghiệm</span>!</h4>
+        <div className="left-section w-60">
+          <h4>Đến với chúng tôi bạn sẽ được <span className="highlight">trải nghiệm!</span></h4>
           <div className="feature-list">
             <Row>
               <Col xs={12} sm={6} className="left-section">
@@ -53,24 +53,25 @@ const ParticipationComponent = () => {
             </Col>
             </Row>
           </div>
-        </Col>
+        </div>
 
         {/* Right Section */}
-        <Col xs={12} md={6} className="right-section">
+        <div className="right-section w-40">
           <div className="image-container">
             <img
               src={process.env.PUBLIC_URL + '/assets/images/Register.png'}
               alt="Pickleball Experience"
-              className="img-fluid participation-image"
+              className="img-fluid participation-image w-100"
             />
             <div className="image-content">
               <h5>Đừng bỏ lỡ cơ hội thử sức với môn thể thao đang được yêu thích này!</h5>
               <Button className="white-button">Nhóm xe vé</Button>
               <Button className="white-button">Nhóm cố định</Button>
+
             </div>
           </div>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </div>
   );
 };

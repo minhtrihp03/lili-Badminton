@@ -8,11 +8,13 @@ const CoachListComponent = () => {
     { name: "Thái Sơn", price: "150.000", level: "5.5", contact: "Zalo", phone: "0756456789" },
     { name: "Minh Quân", price: "150.000", level: "5.5", contact: "Facebook", phone: "034256789" },
     { name: "Minh Quân", price: "150.000", level: "5.5", contact: "Facebook", phone: "034256789" },
+
   ];
 
   return (
-    <div className="coach-list">
+    <div className="coach-list" style={{backgroundColor: "#f0f0f0"}}>
       <h2>Huấn Luyện Viên</h2>
+
       <Row>
       {coaches.map((coach, index) => (
         <Col key={index} sm={6} md={4} lg={3} style={{ padding: 0 }}>
@@ -27,6 +29,7 @@ const CoachListComponent = () => {
         </Col>
       ))}
       </Row>
+
     </div>
   );
 }

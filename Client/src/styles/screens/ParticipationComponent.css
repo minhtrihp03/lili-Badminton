@@ -10,12 +10,14 @@
   .participation-content {
     display: flex;
     align-items: center;
+    width: 100%;
   }
   
   .left-section {
     padding: 0px;
     margin: 0%;
     border: 0%;
+
   }
   
   .highlight {
@@ -24,11 +26,17 @@
   
   .feature-list {
     margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
   
   .feature-item {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    width: 300px;
+    align-items: left;
+    text-align: left;
     margin-bottom: 20px;
   }
   
@@ -46,6 +54,7 @@
   
   .image-container {
     position: relative;
+    
   }
   
   .participation-image {
