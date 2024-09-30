@@ -1,40 +1,56 @@
+.coach-list {
+  background-color: #f0f0f0;
+}
+
+.coach-list h2 {
+  padding-top: 50px;
+}
+
+.coach-list-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  align-items: center;
+  padding: 10px;
+  gap: 20px;
+}
+
 .coach-card {
-    position: relative;
-    width: 18rem;
-    margin-bottom: 2rem;
-    border-radius: 10px;
-  }
-  
-  .card-image {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .zalo-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 14px;
-    z-index: 2;
-    background-color: #ffffff;
-    border: none;
-    color: #007bff;
-    padding: 5px 10px;
-    border-radius: 20px;
-  }
-  
-  .price-text {
-    color: green;
-    font-weight: bold;
-  }
-  
-  .contact-buttons .contact-btn {
-    width: 100%;
-  }
-  
-  .contact-buttons {
-    margin-top: 10px;
-  }
-  
+  position: relative;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.card-image {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.zalo-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 14px;
+  z-index: 2;
+  background-color: #ffffff;
+  border: none;
+  color: #007bff;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.price-text {
+  color: green;
+  font-weight: bold;
+}
+
+.contact-buttons .contact-btn {
+  width: 100%;
+}
+
+.contact-buttons {
+  margin-top: 10px;
+}
