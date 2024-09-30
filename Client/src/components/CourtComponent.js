@@ -56,9 +56,9 @@ const CourtComponent = ({ name, price, slots, location, type, level }) => {
             <FaUsers /> {slots}/9 người
           </Col>
         </Row>
-        <Button variant="primary" className="book-btn">
+        {/* <Button variant="primary" className="book-btn">
           Đặt sân
-        </Button>
+        </Button> */}
       </Card.Body>
     </Card>
   );

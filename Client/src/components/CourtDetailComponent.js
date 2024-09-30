@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import { Card, Button, Row, Col, Badge } from 'react-bootstrap';
 import { FaMapMarkerAlt, FaRulerCombined, FaUserFriends, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import '../styles/screens/CourtDetailComponent.css';
 
@@ -9,10 +9,10 @@ const CourtDetailComponent = ({ court }) => {
     return (
       <div className="court-detail-container">
         <Card className="court-detail-card">
-          <Row>
+          <Row style={{ margin: 0 }}>
             {/* Court Image */}
-            <Col md={7} className="me-5">
-              <img src={process.env.PUBLIC_URL + '/assets/images/Register.png'} />
+            <Col md={6} style={{ padding: 0 }}>
+              <img src={process.env.PUBLIC_URL + '/assets/images/Register.png'} style={{ height: '80%', width: '80%' }}/>
               {/* Image Gallery */}
               <div className="image-gallery">
                 {(court.gallery && court.gallery.length > 0) ? (
@@ -26,26 +26,24 @@ const CourtDetailComponent = ({ court }) => {
               </div>
             </Col>
             {/* Court Details */}
-            <Col md={5} className="court-details">
-              <Card.Body>
+            <Col md={6} className="court-details" style={{ padding: 0 }}>
+              <Card.Body style={{ textAlign: 'left' }}>
                 <div className="badge-container">
                   <Button variant="outline-primary" className="court-badge">Sân có mái che</Button>
                   <Button variant="outline-primary" className="court-badge">Nhóm xé vé</Button>
                 </div>
   
                 <Card.Title>{court.name}</Card.Title>
-                <Card.Text><FaMapMarkerAlt className="icon" /> {court.location}</Card.Text>
-                <Card.Text className="price-text">{court.price} VND/người</Card.Text>
-                <Card.Text><FaUserFriends className="icon" /> Slot còn tuyển: {court.slots}</Card.Text>
+                <Card.Text><FaMapMarkerAlt className="icon" style={{ color: "#828282" }}/> {court.location} <Badge bg="transparent" text="dark">Trình độ: 4.0</Badge></Card.Text>
+                <Card.Text className="price-text" style={{ color: "#828282" }}>{court.price} VND/người</Card.Text>
+                <Card.Text><FaUserFriends className="icon" style={{ color: "#828282" }}/> Slot còn tuyển: {court.slots}</Card.Text>
                 <Card.Text>
-                  <FaCheckCircle className="icon" /> Ghi chú: Có
-                </Card.Text>
-                <Card.Text>
-                  <FaTimesCircle className="icon" /> Chỉ dành cho tuyển
+                  <FaCheckCircle className="icon" style={{ color: "#828282" }}/> Ghi chú: Có
                 </Card.Text>
   
                 {/* Slot Selection */}
                 <div className="slot-selection">
+                  <h7>số slot muốn đặt</h7>
                   {court.availableSlots && court.availableSlots.length > 0 ? (
                     court.availableSlots.map((slot, idx) => (
                       <Button variant={slot.isAvailable ? 'outline-primary' : 'outline-secondary'} key={idx}>
