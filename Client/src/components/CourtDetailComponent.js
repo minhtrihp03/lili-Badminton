@@ -35,7 +35,7 @@ const CourtDetailComponent = ({ court }) => {
   
                 <Card.Title>{court.name}</Card.Title>
                 <Card.Text><FaMapMarkerAlt className="icon" style={{ color: "#828282" }}/> {court.location} <Badge bg="transparent" text="dark">Trình độ: 4.0</Badge></Card.Text>
-                <Card.Text className="price-text" style={{ color: "#828282" }}>{court.price} VND/người</Card.Text>
+                <Card.Text className="price-text">{court.price} VND/người</Card.Text>
                 <Card.Text><FaUserFriends className="icon" style={{ color: "#828282" }}/> Slot còn tuyển: {court.slots}</Card.Text>
                 <Card.Text>
                   <FaCheckCircle className="icon" style={{ color: "#828282" }}/> Ghi chú: Có

@@ -9,7 +9,8 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    setUsername('Minh Trí'); // Set username here or fetch from a form or API
+    // setUsername('Minh Trí'); // Set username here or fetch from a form or API
+    navigate('/login');
     setIsLoggedIn(true);
   };
 

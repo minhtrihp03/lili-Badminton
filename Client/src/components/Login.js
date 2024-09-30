@@ -18,7 +18,7 @@ const Login = () => {
       <div className="form-wrapper">
         <div className="form">
           <button className="back-button">
-            <FaArrowLeft />
+          <a href="/"><FaArrowLeft /></a> 
           </button>
           <h2>Đăng nhập</h2>
           <button className="facebook-button">
@@ -45,7 +45,7 @@ const Login = () => {
             <a href="#" className="link">Quên mật khẩu?</a>
           </div>
           <button className="button" onClick={handleLoginClick}>Đăng nhập</button>
-          <p>Chưa có tài khoản? <a href="#" className="link">Đăng ký</a></p>
+          <p>Chưa có tài khoản? <a href="/register" className="link">Đăng ký</a></p>
         </div>
         <img src={process.env.PUBLIC_URL + '/assets/images/Register.png'} alt="Login" className="image" />
       </div>
