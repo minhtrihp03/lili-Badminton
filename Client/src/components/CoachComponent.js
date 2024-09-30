@@ -12,7 +12,7 @@ const CoachComponent = ({ name, price, level, phone }) => {
 
       {/* Image at the top */}
       <img
-        src={process.env.PUBLIC_URL + '/assets/images/Register.png'}
+        src={process.env.PUBLIC_URL + '/assets/images/coach1.png'}
         alt={`Coach ${name}`}
         className="card-img-top card-image"
       />

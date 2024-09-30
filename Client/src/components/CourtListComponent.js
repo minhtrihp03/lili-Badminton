@@ -47,7 +47,7 @@ const CourtListComponent = () => {
     <div className="court-list-container">
       <Row>
         {courts.map((court, index) => (
-          <Col key={index} sm={6} md={4} lg={3}>
+          <Col key={index} >
             <CourtComponent
               name={court.name}
               price={court.price}

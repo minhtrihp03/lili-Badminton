@@ -17,6 +17,7 @@
 
 .coach-card {
   position: relative;
+  width: 85%;
   margin-bottom: 2rem;
   border-radius: 10px;
   box-sizing: border-box;

@@ -6,7 +6,7 @@ import '../styles/screens/ParticipationComponent.css'; // Add necessary styles h
 const ParticipationComponent = () => {
   return (
     <div className="participation-section">
-      <h2 className="text-center">Tham gia giao lưu</h2>
+      <h2 className="text-center" style={{fontWeight: "bold"}}>Tham gia giao lưu</h2>
       <div className="participation-content">
         {/* Left Section */}
         <div className="left-section w-60">
@@ -47,7 +47,7 @@ const ParticipationComponent = () => {
         <div className="right-section w-40">
           <div className="image-container">
             <img
-              src={process.env.PUBLIC_URL + '/assets/images/Register.png'}
+              src={process.env.PUBLIC_URL + '/assets/images/banner.png'}
               alt="Pickleball Experience"
               className="img-fluid participation-image w-100"
             />
