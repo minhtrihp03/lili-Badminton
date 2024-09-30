@@ -1,52 +1,50 @@
 import React from 'react';
+import { Card, Button, Row, Col } from 'react-bootstrap';
 import { FaFacebook, FaPhoneAlt, FaUserTie } from 'react-icons/fa';
 import '../styles/screens/CoachComponent.css'; // Custom CSS for card styling
 
 const CoachComponent = ({ name, price, level, phone }) => {
   return (
-    <div className="card coach-card">
-      {/* Zalo Button at the top right */}
-      <button className="btn btn-light zalo-btn">
-        Zalo
-      </button>
+    <Card className="coach-card">
 
       {/* Image at the top */}
-      <img
+      <Card.Img
+        variant="top"
         src={process.env.PUBLIC_URL + '/assets/images/Register.png'}
         alt={`Coach ${name}`}
-        className="card-img-top card-image"
+        className="card-image"
       />
 
-      <div className="card-body">
-        <h5 className="card-title">{name}</h5>
+<Card.Body>
+<Card.Title>{name}</Card.Title>
 
-        <p className="card-text">
+<Card.Text>
           <FaUserTie /> Trình độ: {level}
-        </p>
+          </Card.Text>
 
-        <p className="card-text price-text">
+          <Card.Text className="price-text">
           {price} VND/buổi
-        </p>
+          </Card.Text>
 
-        <p className="card-text">
+          <Card.Text>
           <FaPhoneAlt /> SĐT: {phone}
-        </p>
+          </Card.Text>
 
         {/* Contact buttons: Facebook and Zalo */}
-        <div className="row contact-buttons">
-          <div className="col">
-            <button className="btn btn-outline-primary contact-btn">
+        <Row className="contact-buttons">
+          <Col>
+            <Button variant="outline-primary" className="contact-btn">
               <FaFacebook /> Facebook
-            </button>
-          </div>
-          <div className="col">
-            <button className="btn btn-outline-primary contact-btn">
+              </Button>
+          </Col>
+          <Col>
+            <Button variant="outline-primary" className="contact-btn">
               <FaPhoneAlt /> Zalo
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+              </Button>
+          </Col>
+        </Row>
+      </Card.Body>
+    </Card>
   );
 };
 

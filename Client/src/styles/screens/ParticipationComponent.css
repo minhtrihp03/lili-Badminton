@@ -10,7 +10,6 @@
   .participation-content {
     display: flex;
     align-items: center;
-    width: 100%;
   }
   
   .left-section {
@@ -26,18 +25,11 @@
   
   .feature-list {
     margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
   }
   
   .feature-item {
     display: flex;
-    flex-direction: column;
-    width: 300px;
-    align-items: left;
-    text-align: left;
-    margin-bottom: 20px;
+    align-items: flex-start;
   }
   
   .icon {

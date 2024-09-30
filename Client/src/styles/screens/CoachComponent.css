@@ -1,19 +1,4 @@
-.coach-list {
-  background-color: #f0f0f0;
-}
 
-.coach-list h2 {
-  padding-top: 50px;
-}
-
-.coach-list-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  justify-items: center;
-  align-items: center;
-  padding: 10px;
-  gap: 20px;
-}
 
 .coach-card {
     position: relative;
