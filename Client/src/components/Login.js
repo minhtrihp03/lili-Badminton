@@ -92,7 +92,6 @@ const Login = () => {
           </div>
           <button className="button" onClick={handleLoginClick}>Đăng nhập</button>
           <p>Chưa có tài khoản? <a href="/register" className="link">Đăng ký</a></p>
-          <p>Chưa có tài khoản? <a href="/register" className="link">Đăng ký</a></p>
         </div>
         <img src={process.env.PUBLIC_URL + '/assets/images/Register.png'} alt="Login" className="image" />
       </div>

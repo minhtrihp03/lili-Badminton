@@ -62,40 +62,7 @@ button {
 
 
 .card {
-  border-radius: 10px;
-}
-
-
-.participation-section {
-  margin: 0 auto;
-  max-width: 1200px; /* Optional: to control the width */
-}
-
-.left-section, .right-section {
   padding: 20px;
-}
-
-.feature-item {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 20px;
-}
-
-.feature-item .icon {
-  font-size: 24px;
-  margin-right: 10px;
-}
-
-.image-container {
-  position: relative;
-  text-align: center;
-}
-
-.image-content {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  color: white;
+  border-radius: 10px;
 }
 

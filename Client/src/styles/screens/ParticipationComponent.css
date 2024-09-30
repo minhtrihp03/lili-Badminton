@@ -10,13 +10,18 @@
   .participation-content {
     display: flex;
     align-items: center;
+    width: 100%;
   }
   
   .left-section {
-    padding: 0px;
-    margin: 0%;
-    border: 0%;
+    box-sizing: border-box;
+    padding: 20px 0 20px 100px;
+    text-align: left;
+  }
 
+  .left-section h4 {
+    margin-bottom: 100px;
+    font-weight: bold;
   }
   
   .highlight {
@@ -25,23 +30,28 @@
   
   .feature-list {
     margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
   
   .feature-item {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    width: 300px;
+    align-items: left;
+    text-align: left;
+    margin-bottom: 20px;
   }
   
   .icon {
-    font-size: 35px;
+    font-size: 24px;
     color: #00bfa5;
     margin-right: 15px;
   }
   
   .right-section {
-    padding: 0px;
-    margin: 0%;
-    border: 0%;
+    position: relative;
   }
   
   .image-container {
@@ -50,8 +60,6 @@
   }
   
   .participation-image {
-    height: 80%;
-    width: 80%;
     border-radius: 10px;
   }
   
@@ -60,18 +68,9 @@
     bottom: 20px;
     left: 20px;
     color: white;
-    margin: 10%;
   }
   
   .participation-button {
-    margin-top: 10px;
-    margin-right: 10px;
-  }
-
-  .white-button {
-    background-color: transparent;
-    color: rgb(255, 255, 255);
-    border: 1px solid rgb(255, 255, 255); /* Tạo viền đen hoặc màu bạn muốn */
     margin-top: 10px;
     margin-right: 10px;
   }

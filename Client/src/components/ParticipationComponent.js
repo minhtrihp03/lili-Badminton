@@ -9,11 +9,9 @@ const ParticipationComponent = () => {
       <h2 className="text-center" style={{fontWeight: "bold"}}>Tham gia giao lưu</h2>
       <div className="participation-content">
         {/* Left Section */}
-        <Col xs={12} md={6} className="left-section">
-          <h4>Đến với chúng tôi bạn sẽ được <span className="highlight">trải nghiệm</span>!</h4>
+        <div className="left-section w-60">
+          <h4>Đến với chúng tôi bạn sẽ được <span className="highlight">trải nghiệm!</span></h4>
           <div className="feature-list">
-            <Row>
-              <Col xs={12} sm={6} className="left-section">
             <div className="feature-item">
               <FaMapMarkerAlt className="icon" />
               <div>
@@ -21,8 +19,6 @@ const ParticipationComponent = () => {
                 <p>Thông qua các buổi giao lưu, các bạn sẽ đăng ký sân Pickleball phù hợp nhất với vị trí của mình.</p>
               </div>
             </div>
-            </Col>
-            <Col xs={12} sm={6} className="right-section">
             <div className="feature-item">
               <FaUserFriends className="icon" />
               <div>
@@ -30,10 +26,6 @@ const ParticipationComponent = () => {
                 <p>Giúp bạn có cơ hội gặp gỡ những người có cùng sở thích và cùng đam mê Pickleball.</p>
               </div>
             </div>
-            </Col>
-            </Row>
-            <Row>
-            <Col xs={12} sm={6} className="left-section">
             <div className="feature-item">
               <FaClipboardList className="icon" />
               <div>
@@ -41,8 +33,6 @@ const ParticipationComponent = () => {
                 <p>Nếu bạn là người mới tham gia, chúng tôi sẽ giúp bạn làm quen với bộ môn Pickleball qua các hoạt động giao lưu.</p>
               </div>
             </div>
-            </Col>
-            <Col xs={12} sm={6} className="right-section">
             <div className="feature-item">
               <FaUsers className="icon" />
               <div>
@@ -50,28 +40,25 @@ const ParticipationComponent = () => {
                 <p>Tham gia nhóm với những người chơi Pickleball từ nhiều nơi để học hỏi và vui chơi.</p>
               </div>
             </div>
-            </Col>
-            </Row>
           </div>
-          </Col>
+        </div>
 
         {/* Right Section */}
-        <Col xs={12} md={6} className="right-section">
+        <div className="right-section w-40">
           <div className="image-container">
             <img
               src={process.env.PUBLIC_URL + '/assets/images/banner.png'}
               alt="Pickleball Experience"
-              className="img-fluid participation-image"
+              className="img-fluid participation-image w-100"
             />
             <div className="image-content">
               <h5>Đừng bỏ lỡ cơ hội thử sức với môn thể thao đang được yêu thích này!</h5>
-              <Button className="white-button">Nhóm xe vé</Button>
-              <Button className="white-button">Nhóm cố định</Button>
-
+              <button className="participation-button button">Nhóm xe vé</button>
+              <button className="participation-button button">Nhóm cố định</button>
             </div>
           </div>
-          </Col>
-          </Row>
+        </div>
+      </div>
     </div>
   );
 };

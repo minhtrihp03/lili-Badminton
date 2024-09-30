@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
+import React from 'react';
+import { Row, Col } from 'react-bootstrap';
 import CourtComponent from './CourtComponent';
 import '../styles/screens/CourtListComponent.css'; // Import custom CSS
 
@@ -43,22 +43,12 @@ const courts = [
 ];
 
 const CourtListComponent = () => {
-  // State to track the current index for the displayed group of cards
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const itemsPerPage = 4;
-
-  // Slicing courts array to show 3 cards starting from currentIndex
-  const displayedCourts = courts.slice(currentIndex, currentIndex + itemsPerPage);
-
-  // Check if there's a next group of cards
-  const hasNext = currentIndex + itemsPerPage < courts.length;
-
   return (
     <div className="court-list-container">
       <h2>Các bài tương tự</h2>
       <Row className="justify-content-center">
-        {displayedCourts.map((court, index) => (
-          <Col key={index} sm={6} md={4} lg={3} style={{ padding: 0 }}>
+        {courts.map((court, index) => (
+          <Col key={index} sm={6} md={4} lg={3} className="me-3">
             <CourtComponent
               name={court.name}
               price={court.price}
@@ -73,6 +63,6 @@ const CourtListComponent = () => {
       </Row>
     </div>
   );
-};
+}
 
 export default CourtListComponent;

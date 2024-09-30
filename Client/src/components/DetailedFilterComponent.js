@@ -34,7 +34,7 @@ const DetailedFilterComponent = () => {
 
   return (
     <div className="detailed-filter">
-      <Form onSubmit={handleSubmit} >
+      <Form onSubmit={handleSubmit}>
         <Row className="g-2">
           {/* Địa điểm */}
           <Col xs="auto" className="me-3">
