@@ -30,7 +30,7 @@ const Header = () => {
       </ul>
       {isLoggedIn ? (
         <div className="user-section">
-          <button className="post-button">Đăng Bài Tìm Giao Lưu</button>
+          <button className="post-button" >Đăng Bài Tìm Giao Lưu</button>
           <div className="user-info">
           <img src={process.env.PUBLIC_URL + '/assets/images/Register.png'} alt="Login" className="image" />
             <span>{username}</span>
