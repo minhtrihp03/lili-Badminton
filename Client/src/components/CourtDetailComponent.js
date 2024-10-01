@@ -5,14 +5,14 @@ import '../styles/screens/CourtDetailComponent.css';
 
 const court=[{ name: "Sân 286 Nguyễn Xiên", price: "100.000", slots: "6", location: "Hà Nội" }];
 const CourtDetailComponent = ({ court }) => {
-  const imgSrc = process.env.PUBLIC_URL + '/assets/images/Register.png';
+  const imgSrc = process.env.PUBLIC_URL + '/assets/images/new1.png';
     return (
       <div className="court-detail-container">
         <Card className="court-detail-card">
           <Row>
             {/* Court Image */}
             <Col md={7} className="me-5">
-              <img src={process.env.PUBLIC_URL + '/assets/images/Register.png'} />
+              <img style={{width: "80%"}} src={process.env.PUBLIC_URL + '/assets/images/new1.png'} />
               {/* Image Gallery */}
               <div className="image-gallery">
                 {(court.gallery && court.gallery.length > 0) ? (

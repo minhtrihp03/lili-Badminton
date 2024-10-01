@@ -139,105 +139,112 @@
             "price": "150.000",
             "level": "5",
             "contact": "Zalo",
-            "phone": "0756456789"
+            "phone": "0756456789",
+            "image": "/assets/images/coach2.png"
         },
         {
             "name": "Minh Quân",
             "price": "150.000",
             "level": "5.5",
             "contact": "Facebook",
-            "phone": "034256789"
+            "phone": "034256789",
+            "image": "/assets/images/coach3.png"
         },
         {
             "name": "Minh Quân",
             "price": "150.000",
             "level": "5.5",
             "contact": "Facebook",
-            "phone": "034256789"
+            "phone": "034256789",
+            "image": "/assets/images/coach4.png"
         },
         {
             "name": "Minh Quân",
             "price": "150.000",
             "level": "5.5",
             "contact": "Facebook",
-            "phone": "034256789"
+            "phone": "034256789",
+            "image": "/assets/images/coach1.png"
         },
         {
             "name": "Minh Quân",
             "price": "150.000",
             "level": "5.5",
             "contact": "Facebook",
-            "phone": "034256789"
+            "phone": "034256789",
+            "image": "/assets/images/coach2.png"
         },
         {
             "name": "Minh Quân",
             "price": "150.000",
             "level": "5.5",
             "contact": "Facebook",
-            "phone": "034256789"
+            "phone": "034256789",
+            "image": "/assets/images/coach3.png"
+        },
+        {
+            "name": "Nguyễn Văn Anh",
+            "price": "120.000",
+            "level": "5.0",
+            "contact": "Facebook",
+            "phone": "0987654321",
+            "image": "/assets/images/coach4.png"
+        },
+        {
+            "name": "Phạm Thành Sơn",
+            "price": "180.000",
+            "level": "5.8",
+            "contact": "Facebook",
+            "phone": "0912345678",
+            "image": "/assets/images/coach2.png"
         },
         {
             "name": "Minh Quân",
             "price": "150.000",
             "level": "5.5",
             "contact": "Facebook",
-            "phone": "034256789"
+            "phone": "034256789",
+            "image": "/assets/images/coach2.png"
         },
         {
             "name": "Minh Quân",
             "price": "150.000",
             "level": "5.5",
             "contact": "Facebook",
-            "phone": "034256789"
+            "phone": "034256789",
+            "image": "/assets/images/coach2.png"
         },
         {
             "name": "Minh Quân",
             "price": "150.000",
             "level": "5.5",
             "contact": "Facebook",
-            "phone": "034256789"
+            "phone": "034256789",
+            "image": "/assets/images/coach2.png"
         },
         {
             "name": "Minh Quân",
             "price": "150.000",
             "level": "5.5",
             "contact": "Facebook",
-            "phone": "034256789"
+            "phone": "034256789",
+            "image": "/assets/images/coach2.png"
         },
         {
             "name": "Minh Quân",
             "price": "150.000",
             "level": "5.5",
             "contact": "Facebook",
-            "phone": "034256789"
+            "phone": "034256789",
+            "image": "/assets/images/coach2.png"
         },
         {
             "name": "Minh Quân",
             "price": "150.000",
             "level": "5.5",
             "contact": "Facebook",
-            "phone": "034256789"
-        },
-        {
-            "name": "Minh Quân",
-            "price": "150.000",
-            "level": "5.5",
-            "contact": "Facebook",
-            "phone": "034256789"
-        },
-        {
-            "name": "Minh Quân",
-            "price": "150.000",
-            "level": "5.5",
-            "contact": "Facebook",
-            "phone": "034256789"
-        },
-        {
-            "name": "Minh Quân",
-            "price": "150.000",
-            "level": "5.5",
-            "contact": "Facebook",
-            "phone": "034256789"
+            "phone": "034256789",
+            "image": "/assets/images/coach2.png"
         }
     ],
     "bookings": [
@@ -299,5 +306,30 @@
             "read": false,
             "created_at": "2024-09-29T00:00:00Z"
         }
+    ],
+    "news": [
+        [
+            {
+              "id": 1,
+              "title": "Review sân Pickleball tại đường 286 Nguyễn Xiển xem thực hư...",
+              "date": "03 tháng 08 năm 2024",
+              "imageUrl": "path/to/image1.png",
+              "description": "Sân chơi Pickleball Nguyễn Xiển...."
+            },
+            {
+              "id": 2,
+              "title": "Review sân Pickleball tại đường 286 Nguyễn Xiển xem thực hư...",
+              "date": "03 tháng 08 năm 2024",
+              "imageUrl": "path/to/image2.png",
+              "description": "Sân chơi Pickleball Nguyễn Xiển...."
+            },
+            {
+              "id": 3,
+              "title": "Review sân Pickleball tại đường 286 Nguyễn Xiển xem thực hư...",
+              "date": "03 tháng 08 năm 2024",
+              "imageUrl": "path/to/image3.png",
+              "description": "Sân chơi Pickleball Nguyễn Xiển...."
+            }
+          ]
     ]
 }

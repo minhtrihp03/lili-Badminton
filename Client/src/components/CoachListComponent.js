@@ -46,6 +46,7 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
                 level={coach.level}
                 contact={coach.contact}
                 phone={coach.phone}
+                image={coach.image}
               />
             </Col>
           ))

@@ -2,7 +2,7 @@ import React from 'react';
 import { FaFacebook, FaPhoneAlt, FaUserTie } from 'react-icons/fa';
 import '../styles/screens/CoachComponent.css'; // Custom CSS for card styling
 
-const CoachComponent = ({ name, price, level, phone }) => {
+const CoachComponent = ({ name, price, level, phone, image }) => {
   return (
     <div className="card coach-card">
       {/* Zalo Button at the top right */}
@@ -12,7 +12,7 @@ const CoachComponent = ({ name, price, level, phone }) => {
 
       {/* Image at the top */}
       <img
-        src={process.env.PUBLIC_URL + '/assets/images/coach1.png'}
+        src={image}
         alt={`Coach ${name}`}
         className="card-img-top card-image"
       />

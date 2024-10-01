@@ -4,7 +4,7 @@ import { FaMapMarkerAlt, FaUsers } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import '../styles/screens/CourtComponent.css'; // Import custom CSS
 
-const CourtComponent = ({ name, price, slots, location, type, level }) => {
+const CourtComponent = ({ name, price, slots, location, type, level, image }) => {
   const navigate = useNavigate();
 
   // Fallback level if it's undefined
@@ -19,7 +19,8 @@ const CourtComponent = ({ name, price, slots, location, type, level }) => {
         slots,
         location,
         type,
-        level
+        level,
+        image
       }
     });
   };
@@ -36,7 +37,7 @@ const CourtComponent = ({ name, price, slots, location, type, level }) => {
 
       <Card.Img
         variant="top"
-        src={process.env.PUBLIC_URL + '/assets/images/Register.png'}
+        src={image}
         alt={`Court ${name}`}
         className="card-image"
       />

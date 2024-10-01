@@ -11,7 +11,7 @@ const courts = [
     location: '286 Nguyễn Xiển',
     type: 'không có mái che',
     level: 2.0,
-    image: process.env.PUBLIC_URL + '/assets/images/court1.png',
+    image: process.env.PUBLIC_URL + '/assets/images/new1.png',
   },
   {
     name: 'Sân Pickleball 286 Nguyễn Xiển',
@@ -20,7 +20,7 @@ const courts = [
     location: '286 Nguyễn Xiển',
     type: 'có mái che',
     level: 2.5,
-    image: process.env.PUBLIC_URL + '/assets/images/court2.png',
+    image: process.env.PUBLIC_URL + '/assets/images/new2.png',
   },
   {
     name: 'Sân Pickleball 286 Nguyễn Xiển',
@@ -29,7 +29,7 @@ const courts = [
     location: '286 Nguyễn Xiển',
     type: 'không có mái che',
     level: 3.0,
-    image: process.env.PUBLIC_URL + '/assets/images/court3.png',
+    image: process.env.PUBLIC_URL + '/assets/images/new3.png',
   },
   {
     name: 'Sân Pickleball 286 Nguyễn Xiển',
@@ -38,7 +38,7 @@ const courts = [
     location: '286 Nguyễn Xiển',
     type: 'có mái che',
     level: 4.0,
-    image: process.env.PUBLIC_URL + '/assets/images/court4.png',
+    image: process.env.PUBLIC_URL + '/assets/images/new2.png',
   },
 ];
 
