@@ -9,7 +9,7 @@ const TrainerSearchFilter = ({ onSearch }) => {
   const experienceLevels = Array.from({ length: 10 }, (_, index) => index + 1);
 
   const handleSearch = () => {
-    // Gửi thông tin tìm kiếm về cho thành phần cha
+    // Gửi thông tin tìm kiếm về cho thành phần cha (CoachLayout)
     onSearch({ trainerName, experienceLevel });
   };
 

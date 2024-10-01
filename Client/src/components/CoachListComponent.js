@@ -1,39 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import TrainerSearchFilter from './TrainerSearchFilter';
 import CoachComponent from './CoachComponent';
 
-const CoachListComponent = () => {
+const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel: '' } }) => {
   const [coaches, setCoaches] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(8); // Bắt đầu với 8 huấn luyện viên
-  const [searchFilters, setSearchFilters] = useState({
-    trainerName: '',
-    experienceLevel: '',
-  });
+  const [visibleCount, setVisibleCount] = useState(8);
 
   // Fetch dữ liệu từ file JSON
   useEffect(() => {
     fetch('http://localhost:9999/coaches')
       .then((response) => response.json())
       .then((data) => {
-        setCoaches(data); // Lưu dữ liệu vào state
+        setCoaches(data);
       })
       .catch((error) => {
         console.error('Lỗi khi fetch dữ liệu:', error);
       });
   }, []);
-
-  // Xác định số lượng huấn luyện viên sẽ được hiển thị
-  const displayedCoaches = coaches.slice(0, visibleCount); // Hiển thị dựa trên visibleCount
-
-  const handleShowMore = () => {
-    setVisibleCount((prevCount) => Math.min(prevCount + 4, coaches.length)); // Thêm 4 huấn luyện viên mỗi lần nhấn nút
-  };
-
-  // Hàm để nhận thông tin tìm kiếm từ TrainerSearchFilter
-  const handleSearch = (filters) => {
-    setSearchFilters(filters);
-  };
 
   // Lọc danh sách huấn luyện viên dựa trên tên và trình độ
   const filteredCoaches = coaches.filter((coach) => {
@@ -42,16 +25,20 @@ const CoachListComponent = () => {
     return matchesName && matchesLevel;
   });
 
+  // Xác định số lượng huấn luyện viên sẽ được hiển thị
+  const displayedCoaches = filteredCoaches.slice(0, visibleCount);
+
+  const handleShowMore = () => {
+    setVisibleCount((prevCount) => Math.min(prevCount + 4, filteredCoaches.length));
+  };
+
   return (
     <div className="coach-list">
-      <h2 style={{ fontWeight: "bold" }}>Huấn Luyện Viên</h2>
-
-      {/* Truyền hàm handleSearch cho TrainerSearchFilter */}
-      <TrainerSearchFilter onSearch={handleSearch} />
+      <h2 style={{ fontWeight: 'bold' }}>Huấn Luyện Viên</h2>
 
       <Row className="coach-list-row">
-        {filteredCoaches.length > 0 ? (
-          filteredCoaches.map((coach, index) => (
+        {displayedCoaches.length > 0 ? (
+          displayedCoaches.map((coach, index) => (
             <Col key={index} md={3} className="coach-card">
               <CoachComponent
                 name={coach.name}
@@ -67,7 +54,7 @@ const CoachListComponent = () => {
         )}
       </Row>
 
-      {visibleCount < coaches.length && (
+      {visibleCount < filteredCoaches.length && (
         <button className="btn btn-primary" onClick={handleShowMore}>
           Xem thêm
         </button>

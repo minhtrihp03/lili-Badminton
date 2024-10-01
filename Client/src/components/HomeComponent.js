@@ -7,10 +7,10 @@ import { useLocation } from 'react-router-dom';
 const HomeComponent = () => {
   const location = useLocation();
 
-  const isCoachPage = location.pathname.includes('coach');
+  const isNotHomePage = location.pathname !== '/';
 
   return (
-    <div className={`home-component ${isCoachPage ? 'coach-home' : ''}`}>
+    <div className={`home-component ${isNotHomePage ? 'coach-home' : ''}`}>
       <h1>Trang đặt sân Pickleball uy tín ở Việt Nam</h1>
       <p>Chọn sân nhanh chóng và dễ dàng, với sự hỗ trợ từ cộng đồng.</p>
       <button className='button btn-primary'>
