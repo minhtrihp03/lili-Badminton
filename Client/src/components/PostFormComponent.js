@@ -27,12 +27,12 @@ const PostFormComponent = () => {
   };
 
   return (
-    <div className="post-form-container">
+    <div style={{ margin: "110px"}}>
       <Row>
         {/* Left Side: Thông tin chung */}
-        <Col md={6}>
+        <Col md={5} style={{ padding: 0}}  className='me-3'>
           <Card className="mb-4">
-            <Card.Body>
+            <Card.Body style={{ padding: 0}}>
               <Card.Title>Thông tin chung</Card.Title>
 
               <Form onSubmit={handleSubmit}>
@@ -44,18 +44,19 @@ const PostFormComponent = () => {
                     placeholder="Nhập địa điểm"
                     value={post.location}
                     onChange={handleInputChange}
+                    style={{ width: '90%' }}
                   />
                 </Form.Group>
 
                 <Form.Group controlId="formGroupType">
                   <Form.Label><FaUsers /> Loại nhóm (bắt buộc)</Form.Label>
-                  <Form.Control as="select" name="groupType" value={post.groupType} onChange={handleInputChange}>
+                  <Form.Control as="select" name="groupType" value={post.groupType} onChange={handleInputChange} style={{ width: '90%' }}>
                     <option value="Nhóm xé vé">Nhóm xé vé</option>
                     <option value="Nhóm cố định">Nhóm cố định</option>
                   </Form.Control>
                 </Form.Group>
 
-                <Form.Group controlId="formSlots">
+                <Form.Group controlId="formSlots" style={{ width: '90%', textAlign: 'center' }}>
                   <Form.Label><FaUsers /> Số người trên sân (bắt buộc)</Form.Label>
                   <Form.Control type="number" name="slots" value={post.slots} onChange={handleInputChange} />
                 </Form.Group>
@@ -83,36 +84,37 @@ const PostFormComponent = () => {
                 </Form.Group>
 
                 {/* Image and video upload */}
-                <Form.Group controlId="formImage">
+                <Form.Group controlId="formImage" style={{ width: '90%', textAlign: 'center' }}>
                   <Form.Label>Thêm ảnh/Video (bắt buộc)</Form.Label>
                   <Form.Control type="file" multiple />
                 </Form.Group>
 
                 {/* Additional notes */}
-                <Form.Group controlId="formNotes">
+                <Form.Group controlId="formNotes" style={{ width: '90%', textAlign: 'center' }}>
                   <Form.Label>Ghi chú thêm (nếu cần)</Form.Label>
                   <Form.Control as="textarea" rows={3} name="notes" onChange={handleInputChange} />
                 </Form.Group>
               </Form>
+              <br></br>
             </Card.Body>
           </Card>
         </Col>
 
         {/* Right Side: Other information in 3 cards */}
-        <Col md={6}>
-          <Row>
+        <Col md={5} style={{ padding: 0}} className='me-3'>
+          <Row style={{ margin: 0}}>
             {/* Yêu cầu về thành viên */}
-            <Col md={12}>
+            <Col md={12} style={{ padding: 0}}>
               <Card className="mb-3">
-                <Card.Body>
+                <Card.Body style={{ padding: 0}}>
                   <Card.Title>Yêu cầu về thành viên</Card.Title>
 
-                  <Form.Group controlId="formSlots">
+                  <Form.Group controlId="formSlots" style={{ width: '90%', textAlign: 'center' }}>
                     <Form.Label><FaUsers /> Số người cần tuyển (bắt buộc)</Form.Label>
                     <Form.Control type="number" name="slots" value={post.slots} onChange={handleInputChange} />
                   </Form.Group>
 
-                  <Form.Group controlId="formLevel">
+                  <Form.Group controlId="formLevel" style={{ width: '90%', textAlign: 'center' }}>
                     <Form.Label>Trình độ (bắt buộc)</Form.Label>
                     <Form.Control as="select" name="level" onChange={handleInputChange}>
                       <option value="Beginner">Beginner</option>
@@ -120,44 +122,47 @@ const PostFormComponent = () => {
                       <option value="Advanced">Advanced</option>
                     </Form.Control>
                   </Form.Group>
+                  <br></br>
                 </Card.Body>
               </Card>
             </Col>
 
             {/* Thời gian và chi phí */}
-            <Col md={12}>
+            <Col md={12} style={{ padding: 0}}>
               <Card className="mb-3">
-                <Card.Body>
+                <Card.Body style={{ padding: 0}}>
                   <Card.Title>Thời gian và chi phí</Card.Title>
 
-                  <Form.Group controlId="formDate">
+                  <Form.Group controlId="formDate" style={{ width: '90%', textAlign: 'center' }}>
                     <Form.Label><FaCalendarAlt /> Ngày (bắt buộc)</Form.Label>
                     <Form.Control type="date" name="date" value={post.date} onChange={handleInputChange} />
                   </Form.Group>
 
-                  <Form.Group controlId="formPrice">
+                  <Form.Group controlId="formPrice" style={{ width: '90%', textAlign: 'center' }}>
                     <Form.Label><FaDollarSign /> Giá/người (bắt buộc)</Form.Label>
                     <Form.Control type="number" name="price" placeholder="Nhập giá" value={post.price} onChange={handleInputChange} />
                   </Form.Group>
+                  <br></br>
                 </Card.Body>
               </Card>
             </Col>
 
             {/* Thông tin liên hệ */}
-            <Col md={12}>
+            <Col md={12} style={{ padding: 0}}>
               <Card className="mb-3">
-                <Card.Body>
+                <Card.Body style={{ padding: 0}}>
                   <Card.Title>Thông tin liên hệ</Card.Title>
 
-                  <Form.Group controlId="formPhone">
+                  <Form.Group controlId="formPhone" style={{ width: '90%', textAlign: 'center' }}>
                     <Form.Label><FaPhoneAlt /> Số điện thoại (bắt buộc)</Form.Label>
                     <Form.Control type="text" name="phone" placeholder="Nhập số điện thoại" value={post.phone} onChange={handleInputChange} />
                   </Form.Group>
 
-                  <Form.Group controlId="formFacebook">
+                  <Form.Group controlId="formFacebook" style={{ width: '90%', textAlign: 'center' }}>
                     <Form.Label><FaFacebook /> Link Facebook (nếu cần)</Form.Label>
                     <Form.Control type="text" name="facebook" placeholder="Nhập link Facebook" value={post.facebook} onChange={handleInputChange} />
                   </Form.Group>
+                  <br></br>
                 </Card.Body>
               </Card>
             </Col>
