@@ -1,27 +1,22 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const TrainerSearchFilter = () => {
+const TrainerSearchFilter = ({ onSearch }) => {
   const [trainerName, setTrainerName] = useState('');
   const [experienceLevel, setExperienceLevel] = useState('');
-  const [filters, setFilters] = useState({
-    trainerName: '',
-    experienceLevel: '',
-  });
 
   // Experience levels from 1 to 10
   const experienceLevels = Array.from({ length: 10 }, (_, index) => index + 1);
 
   const handleSearch = () => {
-    // Handle the search logic here
-    console.log('Searching for:', trainerName, 'Experience Level:', experienceLevel);
+    // Gửi thông tin tìm kiếm về cho thành phần cha
+    onSearch({ trainerName, experienceLevel });
   };
 
   const handleReset = () => {
-    setFilters({
-        experienceLevel: '',
-        trainerName: '',
-    });
+    setTrainerName('');
+    setExperienceLevel('');
+    onSearch({ trainerName: '', experienceLevel: '' }); // Reset dữ liệu tìm kiếm
   };
 
   return (
@@ -50,10 +45,9 @@ const TrainerSearchFilter = () => {
         Tìm Kiếm
       </button>
       <button
-        className="btn-sm" onClick={handleReset}
-        variant="link"
+        className="btn-sm btn-link" onClick={handleReset}
       >
-        xoá
+        Xóa
       </button>
     </div>
   );

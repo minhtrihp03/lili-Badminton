@@ -7,5 +7,10 @@
     height: 100vh;
     background-color: #f0f0f0;
     background-image: url("../../../public/assets/images/slide.png");
+    background-size: cover;
     background-position: center;
 }
+
+.home-component.coach-home {
+    height: 60vh; 
+  }
