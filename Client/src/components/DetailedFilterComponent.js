@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import '../styles/screens/DetailedFilterComponent.css';
 
 const DetailedFilterComponent = () => {
   const [filters, setFilters] = useState({

@@ -11,7 +11,7 @@ const CourtDetailComponent = ({ court }) => {
         <Card className="court-detail-card">
           <Row>
             {/* Court Image */}
-            <Col md={7} className="me-5">
+            <Col md={7} style={{ padding: 0}}>
               <img style={{width: "80%"}} src={process.env.PUBLIC_URL + '/assets/images/new1.png'} />
               {/* Image Gallery */}
               <div className="image-gallery">
@@ -26,7 +26,7 @@ const CourtDetailComponent = ({ court }) => {
               </div>
             </Col>
             {/* Court Details */}
-            <Col md={5} className="court-details">
+            <Col md={5} className="court-details" style={{ padding: 0 }}>
               <Card.Body>
                 <div className="badge-container">
                   <Button variant="outline-primary" className="court-badge">Sân có mái che</Button>
