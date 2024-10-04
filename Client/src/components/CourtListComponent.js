@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import CourtComponent from './CourtComponent';
 import '../styles/screens/CourtListComponent.css'; // Import custom CSS
+import { SiZebpay } from 'react-icons/si';
 
 const courts = [
   {
@@ -45,9 +46,9 @@ const courts = [
 const CourtListComponent = () => {
   return (
     <div className="court-list-container">
-      <Row>
+      <Row style={{padding: "20px"}}>
         {courts.map((court, index) => (
-          <Col key={index} >
+          <Col key={index} md={3} style={{ padding: 0}}>
             <CourtComponent
               name={court.name}
               price={court.price}
@@ -56,6 +57,7 @@ const CourtListComponent = () => {
               type={court.type}
               level={court.level}
               image={court.image}
+              style={{width: "100%", alignItems: 'center', justifyContent: 'center', textAlign: "center"}}
             />
           </Col>
         ))}

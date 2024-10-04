@@ -5,11 +5,6 @@ import '../styles/screens/CoachComponent.css'; // Custom CSS for card styling
 const CoachComponent = ({ name, price, level, phone, image }) => {
   return (
     <div className="card coach-card">
-      {/* Zalo Button at the top right */}
-      <button className="btn btn-light zalo-btn">
-        Zalo
-      </button>
-
       {/* Image at the top */}
       <img
         src={image}
@@ -20,13 +15,15 @@ const CoachComponent = ({ name, price, level, phone, image }) => {
       <div className="card-body">
         <h5 className="card-title">{name}</h5>
 
-        <p className="card-text">
-          <FaUserTie /> Trình độ: {level}
-        </p>
-
         <p className="card-text price-text">
           {price} VND/buổi
         </p>
+
+        <p className="card-text level-text" style={{marginBottom: 0}}>
+          <FaUserTie /> Trình độ: {level}
+        </p>
+
+        
 
         <p className="card-text">
           <FaPhoneAlt /> SĐT: {phone}
@@ -35,13 +32,13 @@ const CoachComponent = ({ name, price, level, phone, image }) => {
         {/* Contact buttons: Facebook and Zalo */}
         <div className="row contact-buttons">
           <div className="col">
-            <button className="btn btn-outline-primary contact-btn">
-              <FaFacebook /> Facebook
+            <button className="btn btn-outline-primary contact-btn" style={{color: "#3b5998" , backgroundColor: "white", borderColor: "#3b5998"}}>
+              <FaFacebook /> <a style={{ color: "black"}}>Facebook</a>
             </button>
           </div>
           <div className="col">
-            <button className="btn btn-outline-primary contact-btn">
-              <FaPhoneAlt /> Zalo
+            <button className="btn btn-outline-primary contact-btn" style={{color: "white", backgroundColor: "#3b5998", borderColor: "#3b5998"}}>
+              <FaPhoneAlt /> <a style={{ color: "white"}}>Zalo</a>
             </button>
           </div>
         </div>

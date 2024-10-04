@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import CourtComponent from './CourtComponent';
 import '../styles/screens/CourtListComponent.css'; // Import custom CSS
+import { SiZebpay } from 'react-icons/si';
 
 const courts = [
   {
@@ -38,17 +39,17 @@ const courts = [
     location: '286 Nguyễn Xiển',
     type: 'có mái che',
     level: 4.0,
-    image: process.env.PUBLIC_URL + '/assets/images/new1.png',
+    image: process.env.PUBLIC_URL + '/assets/images/new2.png',
   },
 ];
 
 const CourtListComponent = () => {
   return (
     <div className="court-list-container">
-      <h2>Các bài tương tự</h2>
-      <Row className="justify-content-center">
+      <h2>Các bài tương tự</h2>
+      <Row>
         {courts.map((court, index) => (
-          <Col key={index} sm={6} md={4} lg={3} className="me-3">
+          <Col key={index} md={3} style={{ padding: 0 }}>
             <CourtComponent
               name={court.name}
               price={court.price}
@@ -57,12 +58,13 @@ const CourtListComponent = () => {
               type={court.type}
               level={court.level}
               image={court.image}
+              
             />
           </Col>
         ))}
       </Row>
     </div>
   );
-}
+};
 
 export default CourtListComponent;

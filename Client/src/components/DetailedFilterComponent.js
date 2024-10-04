@@ -38,7 +38,7 @@ const DetailedFilterComponent = () => {
       <Form onSubmit={handleSubmit}>
         <Row className="g-2">
           {/* Địa điểm */}
-          <Col xs="auto" className="me-3">
+          <Col xs="auto" className="me-1">
             <Form.Group controlId="formLocation">
               <Form.Control
                 as="select"
@@ -57,7 +57,7 @@ const DetailedFilterComponent = () => {
           </Col>
 
           {/* Giờ bắt đầu */}
-          <Col xs="auto" className="me-3">
+          <Col xs="auto" className="me-1">
             <Form.Group controlId="formStartTime">
               <Form.Control
                 type="time"
@@ -70,7 +70,7 @@ const DetailedFilterComponent = () => {
           </Col>
 
           {/* Trình độ */}
-          <Col xs="auto" className="me-3">
+          <Col xs="auto" className="me-1">
             <Form.Group controlId="formLevel">
               <Form.Control
                 as="select"
@@ -88,7 +88,7 @@ const DetailedFilterComponent = () => {
           </Col>
 
           {/* Loại nhóm */}
-          <Col xs="auto" className="me-3">
+          <Col xs="auto" className="me-1">
             <Form.Group controlId="formGroupType">
               <Form.Control
                 as="select"
@@ -105,7 +105,7 @@ const DetailedFilterComponent = () => {
           </Col>
 
           {/* Loại sân */}
-          <Col xs="auto" className="me-3">
+          <Col xs="auto" className="me-1">
             <Form.Group controlId="formCourtType">
               <Form.Control
                 as="select"
@@ -122,7 +122,7 @@ const DetailedFilterComponent = () => {
           </Col>
 
           {/* Số người */}
-          <Col xs="auto" className="me-3">
+          <Col xs="auto" className="me-1">
             <Form.Group controlId="formNumPeople">
               <Form.Control
                 as="select"
@@ -140,14 +140,14 @@ const DetailedFilterComponent = () => {
           </Col>
 
           {/* Tìm kiếm button */}
-          <Col xs="auto" className="me-3">
+          <Col xs="auto" className="me-1">
             <Button variant="primary" type="submit" className="btn-sm">
               Tìm kiếm
             </Button>
           </Col>
 
           {/* Xóa lọc link */}
-          <Col xs="auto" className="me-3">
+          <Col xs="auto" className="me-1">
             <Button variant="link" className="btn-sm" onClick={handleReset}>
               Xóa lọc
             </Button>

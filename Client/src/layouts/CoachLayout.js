@@ -17,7 +17,7 @@ const CoachLayout = () => {
   };
 
   return (
-    <div>
+    <div style={{backgroundColor: "#F0F0F0"}}>
       <Header />
       <HomeComponent />
       {/* Truyền hàm handleSearch cho TrainerSearchFilter */}

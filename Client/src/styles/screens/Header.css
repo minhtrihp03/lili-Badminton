@@ -12,13 +12,14 @@
   }
   
   .logo img {
-    width: 80px;
-    height: 80px;
+    width: 55px;
+    height: 55px;
   }
   
   .nav-links {
     display: flex;
     list-style: none;
+    margin: 0;
   }
   
   .nav-links li {

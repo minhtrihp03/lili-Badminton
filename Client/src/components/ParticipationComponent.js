@@ -52,9 +52,8 @@ const ParticipationComponent = () => {
               className="img-fluid participation-image w-100"
             />
             <div className="image-content">
-              <h5>Đừng bỏ lỡ cơ hội thử sức với môn thể thao đang được yêu thích này!</h5>
-              <button className="participation-button button">Nhóm xe vé</button>
-              <button className="participation-button button">Nhóm cố định</button>
+              <h2 style={{textAlign: "left"}}>Đừng bỏ lỡ cơ hội thử sức với môn thể thao đang được yêu thích này!</h2>
+              <button className="participation-button button">Tham gia giao lưu ngay</button>
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@ import NewsComponent from '../components/NewsComponent';
 
 const HomeLayout = () => {
   return (
-    <div className="home-layout">
+    <div className="home-layout" style={{backgroundColor: "#F0F0F0"}}>
       {/* Header Section */}
       <Header />
 

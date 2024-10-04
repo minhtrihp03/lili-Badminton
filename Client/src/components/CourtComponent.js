@@ -26,7 +26,7 @@ const CourtComponent = ({ name, price, slots, location, type, level, image }) =>
   };
 
   return (
-    <Card className="court-card" onClick={handleCardClick}>
+    <Card className="court-card" onClick={handleCardClick}  style={{textAlign: "center"}}>
       <div className="top-left-badge">
         {type === 'có mái che' ? 'Sân có mái che' : 'Sân không có mái che'}
       </div>
@@ -42,24 +42,21 @@ const CourtComponent = ({ name, price, slots, location, type, level, image }) =>
         className="card-image"
       />
 
-      <Card.Body>
+      <Card.Body style={{ padding: "0px", margin: "8px" }} >
         <Card.Title className="court-name">{name}</Card.Title>
 
         <Card.Text className="price-text">
           {price} VND/người
         </Card.Text>
 
-        <Row>
-          <Col className="location">
+        <Row style={{ padding: "0px", margin: "0", marginBottom: "10px" }}>
+          <Col className="location" md={7} style={{padding: "0px"}}>
             <FaMapMarkerAlt /> {location}
           </Col>
-          <Col className="slots-text">
+          <Col className="slots-text" md={5} style={{padding: "0px", alignItems: "right", fontWeight:"10px"}}>
             <FaUsers /> {slots}/9 người
           </Col>
         </Row>
-        <Button variant="primary" className="book-btn">
-          Đặt sân
-        </Button>
       </Card.Body>
     </Card>
   );

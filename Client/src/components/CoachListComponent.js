@@ -33,13 +33,13 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
   };
 
   return (
-    <div className="coach-list">
+    <div className="coach-list ms-3" style={{textAlign: 'center'}} >
       <h2 style={{ fontWeight: 'bold' }}>Huấn Luyện Viên</h2>
 
-      <Row className="coach-list-row">
+      <Row className="coach-list-row" style={{ justifyContent: 'center' }} >
         {displayedCoaches.length > 0 ? (
           displayedCoaches.map((coach, index) => (
-            <Col key={index} md={3} className="coach-card">
+            <Col key={index} style={{ padding: 0 }}>
               <CoachComponent
                 name={coach.name}
                 price={coach.price}
@@ -56,7 +56,7 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
       </Row>
 
       {visibleCount < filteredCoaches.length && (
-        <button className="btn btn-primary" onClick={handleShowMore}>
+        <button className="btn btn-primary" onClick={handleShowMore} style={{marginBottom: '20px'}}>
           Xem thêm
         </button>
       )}
