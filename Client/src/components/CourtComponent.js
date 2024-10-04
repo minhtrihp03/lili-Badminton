@@ -24,7 +24,6 @@ const CourtComponent = ({ name, price, slots, location, type, level, image }) =>
       }
     });
   };
-
   return (
     <Card className="court-card" onClick={handleCardClick}  style={{textAlign: "center"}}>
       <div className="top-left-badge">
@@ -54,7 +53,7 @@ const CourtComponent = ({ name, price, slots, location, type, level, image }) =>
             <FaMapMarkerAlt /> {location}
           </Col>
           <Col className="slots-text" md={5} style={{padding: "0px", alignItems: "right", fontWeight:"10px"}}>
-            <FaUsers /> {slots}/9 người
+            <FaUsers /> {slots}/8 người
           </Col>
         </Row>
       </Card.Body>

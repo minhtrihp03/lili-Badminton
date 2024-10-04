@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const Register = () => {
   const [formData, setFormData] = useState({
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -21,21 +21,20 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password, confirmPassword, phone } = formData;
-    // console.log(formData);
+    const { username, email, password, confirmPassword, phone } = formData;
 
     // Kiểm tra xem các trường bắt buộc đã được điền đầy đủ hay không
-    if (!email || !password || !confirmPassword || !phone) {
-      toast.error("Vui lòng điền đầy đủ thông tin!");
-      return;
-    }
+    // if (!username || !email || !password || !confirmPassword || !phone) {
+    //   toast.error("Vui lòng điền đầy đủ thông tin!");
+    //   return;
+    // }
 
-    // Kiểm tra tính hợp lệ email
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if (!emailRegex.test(email)) {
-      toast.error("Email không hợp lệ!");
-      return;
-    }
+    // // Kiểm tra tính hợp lệ email
+    // const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    // if (!emailRegex.test(email)) {
+    //   toast.error("Email không hợp lệ!");
+    //   return;
+    // }
 
     // Kiểm tra tính hợp lệ của số điện thoại (ví dụ: độ dài tối thiểu là 10)
     if (phone.length !== 10) {
@@ -56,21 +55,26 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:9999/api/auth/signup", {
+      const response = await fetch("http://localhost:8383/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          username,
+          phone,
+          email,
+          password,
+        }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        toast.error(data.error.message || "Đã xảy ra lỗi, vui lòng thử lại sau!");
+        toast.error(data.error || "Đã xảy ra lỗi, vui lòng thử lại sau!");
         return;
       }
-  
+
       console.log(data);
       toast.success("Đăng ký thành công!");
 
@@ -84,7 +88,7 @@ const Register = () => {
 
   const handleBackButton = () => {
     navigate('/');
-  }
+  };
 
   return (
     <div className="register-container-fluid">
@@ -112,12 +116,12 @@ const Register = () => {
                 </div>
                 <input
                   type="text"
-                  placeholder="Nhập email của bạn"
+                  placeholder="Nhập tên người dùng"
                   className="input"
-                  name='email'
-                  id='email'
+                  name='username'
+                  id='username'
                   onChange={handleChange}
-                  value={formData.email} />
+                  value={formData.username} />
               </div>
               <div className="input-group">
                 <div className="icon-wrapper">

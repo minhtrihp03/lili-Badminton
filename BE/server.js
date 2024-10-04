@@ -51,6 +51,11 @@ app.use((err, req, res) => {
 
 // Kết nối đến database và khởi động server
 db.connectDB(); // Kết nối database
-app.listen(process.env.PORT || 3000, () => {
-    console.log(`Server is running on port ${process.env.PORT || 3000}`);
+// app.listen(process.env.PORT || 3000, () => {
+//     console.log(`Server is running on port ${process.env.PORT || 3000}`);
+// });
+
+app.listen(process.env.PORT, process.env.HOST_NAME, () => {
+    console.log(`Server is running at: http://${process.env.HOST_NAME}:${process.env.PORT}`);
+    db.connectDB(); // Corrected function call
 });

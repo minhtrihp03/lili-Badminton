@@ -12,31 +12,19 @@ const Login = () => {
 
   const handleLoginClick = async () => {
     try {
-      const response = await axios.get('http://localhost:9999/users', {
-        params: { username: username },
+      const response = await axios.post('http://localhost:8383/api/auth/login', {
+        phone: username,
+        password: password,
       });
 
-      const user = response.data.find((user) => user.username === username);
-
-      if (user) {
-        if (user.password === password) {
-          // Lưu trạng thái đăng nhập vào LocalStorage
-          localStorage.setItem('isLoggedIn', true);
-          localStorage.setItem('name', user?.profile?.name);
-          console.log(user.profile.name);
-          
-          
-          alert('Đăng nhập thành công!');
-          navigate('/');  // Điều hướng đến trang chủ sau khi đăng nhập
-        } else {
-          setError('Mật khẩu không đúng');
-        }
+      if (response.status === 200) {
+        // Điều hướng tới trang khác nếu đăng nhập thành công
+        navigate('/');
       } else {
-        setError('Tên đăng nhập không tồn tại');
+        setError('Đăng nhập thất bại. Vui lòng thử lại.');
       }
-    } catch (error) {
-      console.error('Lỗi khi đăng nhập:', error);
-      setError('Có lỗi xảy ra. Vui lòng thử lại sau.');
+    } catch (err) {
+      setError('Lỗi: ' + (err.response?.data?.message || 'Không thể kết nối đến máy chủ.'));
     }
   };
 
@@ -56,14 +44,14 @@ const Login = () => {
             <FaFacebook /> Đăng nhập bằng Facebook
           </button>
           <p className="subtitle1">Hoặc</p>
-          <div className="input-group">
+          <div className="input-group" style={{borderRadius: "20px"}}>
             <div className="icon-wrapper">
               <FaUser />
             </div>
             <input
               type="text"
               className="input"
-              placeholder="Tên đăng nhập"
+              placeholder="Số điện thoại"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required

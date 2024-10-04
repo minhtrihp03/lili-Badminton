@@ -11,15 +11,46 @@ const DetailedFilterComponent = () => {
     groupType: '',
     numPeople: ''
   });
+  const [results, setResults] = useState([]); // State để lưu trữ kết quả từ API
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFilters({ ...filters, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(filters);
+
+    // Gửi yêu cầu đến API với các bộ lọc
+    try {
+      const response = await fetch('http://localhost:8383/api/post', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch');
+      }
+
+      const data = await response.json();
+      // Áp dụng các bộ lọc lên dữ liệu nhận được từ API
+      const filteredResults = data.filter(court => {
+        return (
+          (filters.location ? court.court_address.includes(filters.location) : true) &&
+          (filters.startTime ? new Date(court.time).getHours() === new Date(filters.startTime).getHours() : true) &&
+          (filters.level ? parseFloat(court.skill_level) === parseFloat(filters.level) : true) &&
+          (filters.courtType ? court.court_type.includes(filters.courtType) : true) &&
+          (filters.groupType ? court.group_type === filters.groupType : true) &&
+          (filters.numPeople ? court.total_players >= parseInt(filters.numPeople) : true)
+        );
+      });
+
+      setResults(filteredResults); // Cập nhật kết quả
+    } catch (error) {
+      console.error('Error fetching courts:', error);
+    }
   };
 
   const handleReset = () => {
@@ -31,6 +62,7 @@ const DetailedFilterComponent = () => {
       groupType: '',
       numPeople: ''
     });
+    setResults([]); // Xóa kết quả khi reset
   };
 
   return (
@@ -115,8 +147,8 @@ const DetailedFilterComponent = () => {
                 className="form-control-sm"
               >
                 <option value="">Loại sân</option>
-                <option value="Có mái che">Có mái che</option>
-                <option value="Không có mái che">Không có mái che</option>
+                <option value="covered">Có mái che</option>
+                <option value="uncovered">Không có mái che</option>
               </Form.Control>
             </Form.Group>
           </Col>
@@ -154,6 +186,24 @@ const DetailedFilterComponent = () => {
           </Col>
         </Row>
       </Form>
+
+      {/* Hiển thị kết quả */}
+      <div className="search-results">
+        {results.length > 0 ? (
+          results.map(court => (
+            <div key={court._id}>
+              <h4>{court.court_address}</h4>
+              <p>Giá: {court.cost} VND</p>
+              <p>Trình độ: {court.skill_level}</p>
+              <p>Loại sân: {court.court_type}</p>
+              <p>Số người hiện tại: {court.total_players}</p>
+              <img src={court.images[0]} alt={court.court_address} style={{ width: '100%' }} />
+            </div>
+          ))
+        ) : (
+          <p>Không tìm thấy sân nào phù hợp với bộ lọc của bạn.</p>
+        )}
+      </div>
     </div>
   );
 }
