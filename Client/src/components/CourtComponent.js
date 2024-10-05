@@ -4,7 +4,7 @@ import { FaMapMarkerAlt, FaUsers } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import '../styles/screens/CourtComponent.css'; // Import custom CSS
 
-const CourtComponent = ({ name, price, slots, location, type, level, image }) => {
+const CourtComponent = ({ name, price, slots, location, type, level, image, applied_players, players_needed, time }) => { // Added time here
   const navigate = useNavigate();
 
   // Fallback level if it's undefined
@@ -20,12 +20,16 @@ const CourtComponent = ({ name, price, slots, location, type, level, image }) =>
         location,
         type,
         level,
-        image
+        image,
+        applied_players,
+        players_needed,
+        time // time is now defined
       }
     });
   };
+
   return (
-    <Card className="court-card" onClick={handleCardClick}  style={{textAlign: "center"}}>
+    <Card className="court-card" onClick={handleCardClick} style={{ textAlign: "center" }}>
       <div className="top-left-badge">
         {type === 'có mái che' ? 'Sân có mái che' : 'Sân không có mái che'}
       </div>
@@ -41,18 +45,18 @@ const CourtComponent = ({ name, price, slots, location, type, level, image }) =>
         className="card-image"
       />
 
-      <Card.Body style={{ padding: "0px", margin: "8px" }} >
+      <Card.Body style={{ padding: "0px", margin: "8px", marginBottom: "0px", marginRight: "0px" }}>
         <Card.Title className="court-name">{name}</Card.Title>
 
-        <Card.Text className="price-text">
+        <Card.Text className="price-text" style={{ marginTop: "10px" }}>
           {price} VND/người
         </Card.Text>
 
-        <Row style={{ padding: "0px", margin: "0", marginBottom: "10px" }}>
-          <Col className="location" md={7} style={{padding: "0px"}}>
+        <Row style={{ padding: "0px", margin: "0px", marginBottom: "10px" }}>
+          <Col className="location" md={7} style={{ padding: "0px", textAlign: "left" }}>
             <FaMapMarkerAlt /> {location}
           </Col>
-          <Col className="slots-text" md={5} style={{padding: "0px", alignItems: "right", fontWeight:"10px"}}>
+          <Col className="slots-text" md={5} style={{ padding: "0px ", textAlign: "right", fontWeight: "10px" }}>
             <FaUsers /> {slots}/8 người
           </Col>
         </Row>

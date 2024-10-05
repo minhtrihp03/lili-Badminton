@@ -51,11 +51,12 @@ const Header = () => {
       </div>
       <ul className="nav-links">
         <li><a href="/">Trang chủ</a></li>
-        <li><a href="#">Giới thiệu</a></li>
+        <li><a href="#">Cửa Hàng</a></li>
         <li><a href="/court">Giao lưu</a></li>
         <li><a href="/coach">Huấn luyện viên</a></li>
-        <li><a href="#">Hướng dẫn</a></li>
-        <li><a href="#">Liên hệ</a></li>
+        {/* <li><a href="#">Hướng dẫn</a></li>
+        <li><a href="#">Liên hệ</a></li> */}
+        <li> <button className="post-button" onClick={handlePost}>Đăng Bài Tìm Giao Lưu</button></li>
       </ul>
       {isLoggedIn ? (
         <div className="user-section">

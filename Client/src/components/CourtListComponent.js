@@ -4,44 +4,6 @@ import CourtComponent from './CourtComponent';
 import '../styles/screens/CourtListComponent.css'; // Import custom CSS
 import { SiZebpay } from 'react-icons/si';
 
-const courts = [
-  {
-    name: 'Sân Pickleball 286 Nguyễn Xiển',
-    price: '100.000',
-    slots: 6,
-    location: '286 Nguyễn Xiển',
-    type: 'không có mái che',
-    level: 2.0,
-    image: process.env.PUBLIC_URL + '/assets/images/new1.png',
-  },
-  {
-    name: 'Sân Pickleball 286 Nguyễn Xiển',
-    price: '100.000',
-    slots: 7,
-    location: '286 Nguyễn Xiển',
-    type: 'có mái che',
-    level: 2.5,
-    image: process.env.PUBLIC_URL + '/assets/images/new2.png',
-  },
-  {
-    name: 'Sân Pickleball 286 Nguyễn Xiển',
-    price: '120.000',
-    slots: 2,
-    location: '286 Nguyễn Xiển',
-    type: 'không có mái che',
-    level: 3.0,
-    image: process.env.PUBLIC_URL + '/assets/images/new3.png',
-  },
-  {
-    name: 'Sân Pickleball 286 Nguyễn Xiển',
-    price: '100.000',
-    slots: 0,
-    location: '286 Nguyễn Xiển',
-    type: 'có mái che',
-    level: 4.0,
-    image: process.env.PUBLIC_URL + '/assets/images/new2.png',
-  },
-];
 
 const CourtListComponent = () => {
   const [courts, setCourts] = useState([]); // State để lưu trữ danh sách sân
@@ -65,6 +27,9 @@ const CourtListComponent = () => {
 
     fetchCourts(); // Gọi hàm fetch
   }, []);
+  console.log(courts);
+  
+  
   return (
     <div className="court-list-container">
       <Row style={{padding: "20px"}}>
@@ -79,6 +44,9 @@ const CourtListComponent = () => {
               type={court.court_type}
               level={parseFloat(court.skill_level)} // Chuyển đổi skill level thành float
               image={court.images[0]}
+              players_needed = {court.players_needed}
+              applied_players = {court.applied_players}
+              time={court.time}
               style={{width: "100%", alignItems: 'center', justifyContent: 'center', textAlign: "center"}}
             />
           </Col>
