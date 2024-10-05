@@ -51,7 +51,7 @@ const Header = () => {
       </div>
       <ul className="nav-links">
         <li><a href="/">Trang chủ</a></li>
-        <li><a href="#">Cửa Hàng</a></li>
+        <li><a href="https://shop-jijiball.netlify.app/">Cửa Hàng</a></li>
         <li><a href="/court">Giao lưu</a></li>
         <li><a href="/coach">Huấn luyện viên</a></li>
         {/* <li><a href="#">Hướng dẫn</a></li>

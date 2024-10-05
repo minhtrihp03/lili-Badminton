@@ -23,7 +23,7 @@ const DetailedFilterComponent = () => {
 
     // Gửi yêu cầu đến API với các bộ lọc
     try {
-      const response = await fetch('http://localhost:8383/api/post', {
+      const response = await fetch('https://bepickleball.vercel.app/api/post', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

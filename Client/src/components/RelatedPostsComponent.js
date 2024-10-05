@@ -11,7 +11,7 @@ const CourtListComponent = () => {
   useEffect(() => {
     const fetchCourts = async () => {
       try {
-        const response = await fetch('http://localhost:8383/api/post'); // Địa chỉ API của bạn
+        const response = await fetch('https://bepickleball.vercel.app/api/post'); // Địa chỉ API của bạn
         if (!response.ok) {
           throw new Error('Failed to fetch');
         }

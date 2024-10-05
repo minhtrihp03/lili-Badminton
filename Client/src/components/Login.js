@@ -12,7 +12,7 @@ const Login = () => {
 
   const handleLoginClick = async () => {
     try {
-      const response = await axios.post('http://localhost:8383/api/auth/login', {
+      const response = await axios.post('https://bepickleball.vercel.app/api/auth/login', {
         phone: username,
         password: password,
       });
