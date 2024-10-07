@@ -5,24 +5,34 @@ import { useNavigate } from 'react-router-dom';
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [name, setName] = useState('');
+  const [avatar, setAvatar] = useState('');
 
   const navigate = useNavigate();
 
-  // const handleLogin = () => {
-  //   setUsername('Minh Trí'); // Set username here or fetch from a form or API
-  //   setIsLoggedIn(true);
-  // };
-
   useEffect(() => {
-    // Kiểm tra trạng thái đăng nhập từ LocalStorage
+    // Get login status and user info from localStorage
     const loggedInStatus = localStorage.getItem('isLoggedIn');
-    const storedName = localStorage.getItem('name'); // Lấy name từ LocalStorage
+    const storedName = localStorage.getItem('name');
+    const storedAvatar = localStorage.getItem('avatar');
 
     if (loggedInStatus === 'true') {
       setIsLoggedIn(true);
-      setName(storedName || ''); // Hiển thị tên người dùng (name) đã lưu
+      setName(storedName || ''); // Display the saved name
+      setAvatar(storedAvatar || ''); // Set avatar or blank if not available
     }
   }, []);
+
+  const handleLogout = () => {
+    // Clear localStorage on logout
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('name');
+    localStorage.removeItem('avatar');
+    localStorage.removeItem('token'); // Remove token
+    setIsLoggedIn(false);
+    setName('');
+    setAvatar('');
+    navigate('/');
+  };
 
   const handleLogin = () => {
     navigate('/login');
@@ -31,18 +41,6 @@ const Header = () => {
   const handleRegister = () => {
     navigate('/register');
   }
-
-  const handlePost = () => {
-    navigate('/post-form');
-  }
-
-  const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('name');
-    setIsLoggedIn(false);
-    setName('');
-    navigate('/');
-  };
 
   return (
     <header className="header">
@@ -54,15 +52,16 @@ const Header = () => {
         <li><a href="https://shop-jijiball.netlify.app/">Cửa Hàng</a></li>
         <li><a href="/court">Giao lưu</a></li>
         <li><a href="/coach">Huấn luyện viên</a></li>
-        {/* <li><a href="#">Hướng dẫn</a></li>
-        <li><a href="#">Liên hệ</a></li> */}
-        <li> <button className="post-button" onClick={handlePost}>Đăng Bài Tìm Giao Lưu</button></li>
+        <li><button className="post-button">Đăng Bài Tìm Giao Lưu</button></li>
       </ul>
       {isLoggedIn ? (
         <div className="user-section">
-          <button className="post-button" onClick={handlePost}>Đăng Bài Tìm Giao Lưu</button>
           <div className="user-info">
-            <img src={process.env.PUBLIC_URL + '/assets/images/user1.png'} alt="User Avatar" className="image" />
+            <img 
+              src={avatar ? avatar : process.env.PUBLIC_URL + '/assets/images/blank-avatar.png'} 
+              alt="User Avatar" 
+              className="image" 
+            />
             <span>{name}</span>
           </div>
           <button className="login-button" onClick={handleLogout}>Đăng xuất</button>

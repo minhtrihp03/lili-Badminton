@@ -16,9 +16,17 @@ const Login = () => {
         phone: username,
         password: password,
       });
-
+  
       if (response.status === 200) {
-        // Điều hướng tới trang khác nếu đăng nhập thành công
+        const { token, user } = response.data;
+  
+        // Save token and user information to localStorage
+        localStorage.setItem('token', token);
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('name', user.username); // You can also save email or any other details
+        localStorage.setItem('avatar', user.avatar || ''); // Handle case where avatar might be missing
+  
+        // Redirect to home page after login
         navigate('/');
       } else {
         setError('Đăng nhập thất bại. Vui lòng thử lại.');
