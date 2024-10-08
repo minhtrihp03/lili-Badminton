@@ -34,6 +34,32 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
+
+  @media (max-width: 576px) {
+    .feature-list {
+      display: flex;
+      flex-direction: column; /* Stack items vertically */
+      align-items: flex-start;
+    }
+  
+    .feature-item {
+      width: 100%; /* Make each feature item take full width on mobile */
+      margin-bottom: 20px;
+    }
+  
+    .left-section {
+      padding: 0 20px; /* Adjust padding for mobile view */
+      text-align: left;
+    }
+  
+    .right-section {
+      margin-top: 20px; /* Add margin to separate sections on mobile */
+    }
+  
+    .participation-button {
+      width: 100%; /* Full width button on mobile */
+    }
+  }
   
   .feature-item {
     display: flex;

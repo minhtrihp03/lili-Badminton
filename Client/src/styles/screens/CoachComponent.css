@@ -90,3 +90,31 @@
   margin: 0;
 }
 
+
+
+.coach-list-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row on large screens */
+  justify-items: center;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+/* Responsive layout for tablets and smaller screens */
+@media (max-width: 768px) {
+  .coach-list-row {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on tablets */
+  }
+}
+
+/* Responsive layout for mobile phones */
+@media (max-width: 576px) {
+  .coach-list-row {
+    grid-template-columns: 1fr; /* 1 card per row on mobile */
+  }
+
+  .coach-card {
+    width: 100%; /* Full width card on mobile */
+  }
+}

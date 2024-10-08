@@ -81,3 +81,37 @@
     margin-right: 0.5rem;
   }
   
+
+  .menu-toggle {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+      margin-right: 1rem;
+    }
+  
+    /* Hide navigation links by default on mobile */
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      right: 0;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 200px;
+      padding: 1rem;
+    }
+  
+    .nav-links.show {
+      display: flex;
+    }
+  
+    .logo {
+      margin-left: 20px; /* Adjust logo margin for mobile */
+    }
+  }

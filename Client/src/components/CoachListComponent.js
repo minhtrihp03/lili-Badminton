@@ -70,7 +70,7 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
       <Row className="coach-list-row" style={{ justifyContent: 'center'}}>
         {displayedCoaches.length > 0 ? (
           displayedCoaches.map((coach, index) => (
-            <Col key={index} style={{ padding: 0 }}>
+            <Col key={index} style={{ padding: 0 }} >
               <CoachComponent
                 name={coach.name}
                 price={coach.price}
