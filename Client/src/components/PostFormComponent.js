@@ -28,10 +28,10 @@ const PostFormComponent = () => {
 
   return (
     <div style={{ margin: "110px"}}>
-      <Row>
+      <Row className="g-3">
         {/* Left Side: Thông tin chung */}
-        <Col md={5} style={{ padding: 0}}  className='me-3'>
-          <Card className="mb-4">
+        <Col md={6} style={{ padding: 0}} className="g-3">
+          <Card className="mb-4" style={{width: '90%'}}>
             <Card.Body style={{ padding: 0}}>
               <Card.Title>Thông tin chung</Card.Title>
 
@@ -86,13 +86,13 @@ const PostFormComponent = () => {
                 {/* Image and video upload */}
                 <Form.Group controlId="formImage" style={{ width: '90%', textAlign: 'center' }}>
                   <Form.Label>Thêm ảnh/Video (bắt buộc)</Form.Label>
-                  <Form.Control type="file" multiple />
+                  <Form.Control type="file" multiple style={{ height: '210px', borderRadius: '10px'}}/>
                 </Form.Group>
 
                 {/* Additional notes */}
                 <Form.Group controlId="formNotes" style={{ width: '90%', textAlign: 'center' }}>
                   <Form.Label>Ghi chú thêm (nếu cần)</Form.Label>
-                  <Form.Control as="textarea" rows={3} name="notes" onChange={handleInputChange} />
+                  <Form.Control as="textarea" rows={3} name="notes" onChange={handleInputChange} style={{height: '120px',borderRadius: '10px'}}/>
                 </Form.Group>
               </Form>
               <br></br>
@@ -101,7 +101,7 @@ const PostFormComponent = () => {
         </Col>
 
         {/* Right Side: Other information in 3 cards */}
-        <Col md={5} style={{ padding: 0}} className='me-3'>
+        <Col md={6} style={{ padding: 0}} className="g-3">
           <Row style={{ margin: 0}}>
             {/* Yêu cầu về thành viên */}
             <Col md={12} style={{ padding: 0}}>
@@ -172,8 +172,8 @@ const PostFormComponent = () => {
 
       {/* Checkbox and Buttons */}
       <div className="form-actions">
-        <Form.Check type="checkbox" label="Lưu lựa chọn của bạn cho lần sau" />
-        <div className="d-flex justify-content-end">
+        <Form.Check type="checkbox" label="Lưu lựa chọn của bạn cho lần sau"  className="d-flex justify-content-center"/>
+        <div className="d-flex justify-content-center">
           <Button variant="secondary" className="me-2">Hủy Bỏ</Button>
           <Button variant="primary" type="submit">Đăng Bài</Button>
         </div>

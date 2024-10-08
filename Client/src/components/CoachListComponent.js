@@ -1,22 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import CoachComponent from './CoachComponent';
 
 const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel: '' } }) => {
-  const [coaches, setCoaches] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(8);
+  const [coaches] = useState([
+    {
+      name: "Minh Trí",
+      price: "100.000",
+      level: "5.5",
+      contact: "Facebook",
+      phone: "0123456789",
+      image: "/assets/images/coach1.png"
+    },
+    {
+      name: "Thái Sơn",
+      price: "150.000",
+      level: "5",
+      contact: "Zalo",
+      phone: "0756456789",
+      image: "/assets/images/coach2.png"
+    },
+    {
+      name: "Minh Quân",
+      price: "150.000",
+      level: "5.5",
+      contact: "Facebook",
+      phone: "034256789",
+      image: "/assets/images/coach3.png"
+    },
+    {
+      name: "Nguyễn Văn Anh",
+      price: "120.000",
+      level: "5.0",
+      contact: "Facebook",
+      phone: "0987654321",
+      image: "/assets/images/coach4.png"
+    },
+    {
+      name: "Phạm Thành Sơn",
+      price: "180.000",
+      level: "5.8",
+      contact: "Facebook",
+      phone: "0912345678",
+      image: "/assets/images/coach2.png"
+    }
+  ]);
 
-  // Fetch dữ liệu từ file JSON
-  useEffect(() => {
-    fetch('http://localhost:9999/coaches')
-      .then((response) => response.json())
-      .then((data) => {
-        setCoaches(data);
-      })
-      .catch((error) => {
-        console.error('Lỗi khi fetch dữ liệu:', error);
-      });
-  }, []);
+  const [visibleCount, setVisibleCount] = useState(8);
 
   // Lọc danh sách huấn luyện viên dựa trên tên và trình độ
   const filteredCoaches = coaches.filter((coach) => {
@@ -33,7 +63,7 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
   };
 
   return (
-    <div className="coach-list ms-3" style={{textAlign: 'center'}} >
+    <div className="coach-list ms-3" style={{ textAlign: 'center' }} >
       <h2 style={{ fontWeight: 'bold' }}>Huấn Luyện Viên</h2>
 
       <Row className="coach-list-row" style={{ justifyContent: 'center' }} >
@@ -56,7 +86,7 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
       </Row>
 
       {visibleCount < filteredCoaches.length && (
-        <button className="btn btn-primary" onClick={handleShowMore} style={{marginBottom: '20px'}}>
+        <button className="btn btn-primary" onClick={handleShowMore} style={{ marginBottom: '20px' }}>
           Xem thêm
         </button>
       )}

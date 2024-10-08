@@ -52,7 +52,7 @@ const Header = () => {
         <li><a href="https://shop-jijiball.netlify.app/">Cửa Hàng</a></li>
         <li><a href="/court">Giao lưu</a></li>
         <li><a href="/coach">Huấn luyện viên</a></li>
-        <li><button className="post-button">Đăng Bài Tìm Giao Lưu</button></li>
+        <li><button className="post-button" > <a href="/post-form"> Đăng Bài Tìm Giao Lưu </a> </button></li>
       </ul>
       {isLoggedIn ? (
         <div className="user-section">
