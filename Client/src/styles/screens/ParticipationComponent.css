@@ -82,5 +82,24 @@
     font-size: larger;
   }
 
-
+  @media (max-width: 768px) {
+    .feature-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .left-section, .right-section {
+      width: 100%;
+    }
+  
+    .image-content {
+      text-align: center;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  .feature-list{
+    flex-direction: column;
+    align-items: flex-start;
+  }
   

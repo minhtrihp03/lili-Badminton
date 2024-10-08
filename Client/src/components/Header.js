@@ -47,12 +47,12 @@ const Header = () => {
       <div className="logo">
         <img src={process.env.PUBLIC_URL + '/assets/images/logo.png'} alt="Logo" />
       </div>
-      <ul className="nav-links">
+      <ul className="nav-links d-flex justify-content-center">
         <li><a href="/">Trang chủ</a></li>
         <li><a href="https://shop-jijiball.netlify.app/">Cửa Hàng</a></li>
         <li><a href="/court">Giao lưu</a></li>
         <li><a href="/coach">Huấn luyện viên</a></li>
-        <li><button className="post-button" > <a href="/post-form"> Đăng Bài Tìm Giao Lưu </a> </button></li>
+        <li><button className="post-button" > <a href="/post-form" style={{color: "white", backgroundColor: "#064D7E"}}> Đăng Bài Tìm Giao Lưu </a> </button></li>
       </ul>
       {isLoggedIn ? (
         <div className="user-section">
@@ -64,11 +64,11 @@ const Header = () => {
             />
             <span>{name}</span>
           </div>
-          <button className="login-button" onClick={handleLogout}>Đăng xuất</button>
+          <button className="login-button" onClick={handleLogout} style={{backgroundColor: "#064D7E"}}>Đăng xuất</button>
         </div>
       ) : (
         <div className="auth-buttons">
-          <button className="login-button" onClick={handleLogin}>Đăng Nhập</button>
+          <button className="login-button" onClick={handleLogin} style={{backgroundColor: "#064D7E"}}>Đăng Nhập</button>
           <button className="register-button" onClick={handleRegister}>Đăng Ký</button>
         </div>
       )}

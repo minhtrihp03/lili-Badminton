@@ -66,7 +66,8 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
     <div className="coach-list ms-3" style={{ textAlign: 'center' }} >
       <h2 style={{ fontWeight: 'bold' }}>Huấn Luyện Viên</h2>
 
-      <Row className="coach-list-row" style={{ justifyContent: 'center' }} >
+      {/* Responsive grid for coach list */}
+      <Row className="coach-list-row" style={{ justifyContent: 'center'}}>
         {displayedCoaches.length > 0 ? (
           displayedCoaches.map((coach, index) => (
             <Col key={index} style={{ padding: 0 }}>
@@ -77,6 +78,7 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
                 contact={coach.contact}
                 phone={coach.phone}
                 image={coach.image}
+                style={{width: "100%", alignItems: 'center', justifyContent: 'center', textAlign: "center"}}
               />
             </Col>
           ))

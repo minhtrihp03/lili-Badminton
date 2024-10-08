@@ -10,7 +10,7 @@ const Footer = () => {
       <div>
         <div className="head-footer">
           <div className="logo">
-            <h1>LOGO</h1>
+            <img src={process.env.PUBLIC_URL + '/assets/images/logo.png'} alt="Logo" />
             <p>Trang đặt sân Pickleball uy tín ở Việt Nam</p>
           </div>
           <div className="contact">

@@ -20,7 +20,7 @@ const TrainerSearchFilter = ({ onSearch }) => {
   };
 
   return (
-    <div className="d-flex align-items-center justify-content-between p-3 filter-container">
+    <div className="d-flex align-items-center justify-content-between p-3 filter-container" md={3}>
       <input
         type="text"
         placeholder="Huấn luyện viên gần bạn"

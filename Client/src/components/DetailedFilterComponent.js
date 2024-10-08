@@ -46,7 +46,7 @@ const DetailedFilterComponent = () => {
           (filters.numPeople ? court.total_players >= parseInt(filters.numPeople) : true)
         );
       });
-
+      console.log(court.skill_level);
       setResults(filteredResults); // Cập nhật kết quả
     } catch (error) {
       console.error('Error fetching courts:', error);
@@ -115,6 +115,7 @@ const DetailedFilterComponent = () => {
                 {Array.from({ length: 11 }, (_, i) => (i * 0.5).toFixed(1)).map((level) => (
                   <option key={level} value={level}>{level}</option>
                 ))}
+                <option value="5.5+">5.5+</option>
               </Form.Control>
             </Form.Group>
           </Col>
