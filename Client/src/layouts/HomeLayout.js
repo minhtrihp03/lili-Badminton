@@ -5,6 +5,7 @@ import ParticipationComponent from '../components/ParticipationComponent'; // Im
 import CoachListComponent from '../components/CoachListComponent'; // Import CoachListComponent
 import Footer from '../components/Footer'; // Import Footer component
 import NewsComponent from '../components/NewsComponent';
+import { Link } from 'react-router-dom';
 
 const HomeLayout = () => {
   return (
@@ -27,6 +28,18 @@ const HomeLayout = () => {
             {/* Coach List Section */}
             <CoachListComponent />
 
+            <Link
+              to="/coach"
+              style={{
+                textDecoration: 'none',
+                color: "#828282",
+                display: window.innerWidth <= 430 ? 'none' : 'block' // Kiểm tra kích thước màn hình
+              }}
+            >
+              Xem thêm
+            </Link>
+
+            {/* News Section */}
             <NewsComponent />
           </div>
         </div>

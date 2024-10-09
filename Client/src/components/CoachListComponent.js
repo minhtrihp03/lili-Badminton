@@ -1,50 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import CoachComponent from './CoachComponent';
 
 const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel: '' } }) => {
-  const [coaches] = useState([
-    {
-      name: "Minh Trí",
-      price: "100.000",
-      level: "5.5",
-      contact: "Facebook",
-      phone: "0123456789",
-      image: "/assets/images/coach1.png"
-    },
-    {
-      name: "Thái Sơn",
-      price: "150.000",
-      level: "5",
-      contact: "Zalo",
-      phone: "0756456789",
-      image: "/assets/images/coach2.png"
-    },
-    {
-      name: "Minh Quân",
-      price: "150.000",
-      level: "5.5",
-      contact: "Facebook",
-      phone: "034256789",
-      image: "/assets/images/coach3.png"
-    },
-    {
-      name: "Nguyễn Văn Anh",
-      price: "120.000",
-      level: "5.0",
-      contact: "Facebook",
-      phone: "0987654321",
-      image: "/assets/images/coach4.png"
-    },
-    {
-      name: "Phạm Thành Sơn",
-      price: "180.000",
-      level: "5.8",
-      contact: "Facebook",
-      phone: "0912345678",
-      image: "/assets/images/coach2.png"
+  const [coaches, setCoaches] = useState([]);
+
+   // Hàm để lấy dữ liệu từ API
+   const fetchCoaches = async () => {
+    try {
+      const response = await fetch('https://bepickleball.vercel.app/api/coach/list');
+      const data = await response.json();
+      setCoaches(data); // Giả sử dữ liệu trả về là mảng huấn luyện viên
+    } catch (error) {
+      console.error('Error fetching coaches:', error);
     }
-  ]);
+  };
+
+  useEffect(() => {
+    fetchCoaches(); // Gọi hàm fetchCoaches khi component được mount
+  }, []);
 
   const [visibleCount, setVisibleCount] = useState(8);
 
@@ -73,11 +47,11 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
             <Col key={index} style={{ padding: 0 }} >
               <CoachComponent
                 name={coach.name}
-                price={coach.price}
-                level={coach.level}
-                contact={coach.contact}
-                phone={coach.phone}
-                image={coach.image}
+                price={coach.price_per_session.toLocaleString('vi-VN')}
+                level={coach.rating}
+                contact={coach.contact_info}
+                phone={coach?.contact_info.phone}
+                image={coach.profile_image_url}
                 style={{
                   width: "250px", /* Kích thước cố định cho mỗi thẻ coach */
                   alignItems: 'center',

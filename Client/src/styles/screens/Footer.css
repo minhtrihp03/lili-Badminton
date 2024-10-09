@@ -5,6 +5,7 @@
   color: #ffffff;
   padding: 40px 20px;
   font-family: Arial, sans-serif;
+  text-align: left;
 }
 
 .footer p, .footer h4 {
@@ -14,6 +15,7 @@
 .head-footer {
   display: flex;
   justify-content: space-around;
+  justify-content: left;
 }
 
 .container {

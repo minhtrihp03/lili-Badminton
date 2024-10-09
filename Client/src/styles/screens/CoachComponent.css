@@ -2,7 +2,7 @@
   transform: scale(1.05);
 }
 
- .coach-list-row {
+.coach-list-row {
   display: grid;
   grid-template-columns: repeat(4, 0fr);
   justify-items: center;
@@ -84,6 +84,9 @@
   text-align: left;
   font-weight: bold;
   margin: 0px;
+  overflow: hidden; /* Ẩn nội dung thừa */
+  white-space: nowrap; /* Ngăn không cho tên xuống dòng */
+  text-overflow: ellipsis; /* Hiển thị ... nếu tên quá dài */
 }
 
 .card-body .card-text {

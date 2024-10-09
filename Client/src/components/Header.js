@@ -52,9 +52,9 @@ const Header = () => {
     <header className="header">
       <div className="logo">
         <a href="/">
-        <img src={process.env.PUBLIC_URL + '/assets/images/logo.png'} alt="Logo" />
+          <img src={process.env.PUBLIC_URL + '/assets/images/logo.png'} alt="Logo" />
         </a>
-        
+
       </div>
       <span className="menu-toggle" onClick={toggleMenu}>&#9776;</span> {/* Menu toggle button */}
       <ul className={`nav-links ${menuOpen ? 'show' : ''}`}>
@@ -62,17 +62,17 @@ const Header = () => {
         <li><a href="https://shop-jijiball.netlify.app/">Cửa Hàng</a></li>
         <li><a href="/court">Giao lưu</a></li>
         <li><a href="/coach">Huấn luyện viên</a></li>
-        </ul>
+      </ul>
       <ul className='link' style={{ textDecoration: "none" }}>
-      {isLoggedIn && role !== 'player' && (
-        <li><button className="post-button" >
-          <a href="/post-form" style={{ color: "white", backgroundColor: "#064D7E" }}>
-            <span id='icon'><FaRegPenToSquare /></span>
-            <span id='text' >Đăng Bài Tìm Giao Lưu </span>
-          </a>
-        </button>
-        </li>
-              )}
+        {isLoggedIn && role !== 'player' && (
+          <li><button className="post-button" >
+            <a href="/post-form" style={{ color: "white", backgroundColor: "#064D7E" }}>
+              <span id='icon'><FaRegPenToSquare /></span>
+              <span id='text' >Đăng Bài Tìm Giao Lưu </span>
+            </a>
+          </button>
+          </li>
+        )}
       </ul>
       {isLoggedIn ? (
         <div className="user-section">

@@ -194,3 +194,9 @@
     display: block;
   }
 }
+
+@media (min-width: 431px) {
+  .menu-icon {
+    display: none; /* Ẩn menu icon cho màn hình lớn hơn 430px */
+  }
+}
