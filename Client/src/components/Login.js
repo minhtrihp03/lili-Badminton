@@ -13,7 +13,7 @@ const Login = () => {
   const handleLoginClick = async () => {
     try {
       const response = await axios.post('https://bepickleball.vercel.app/api/auth/login', {
-        phone: username,
+        username: username,
         password: password,
       });
   
@@ -67,7 +67,7 @@ const Login = () => {
             <input
               type="text"
               className="input"
-              placeholder="Số điện thoại"
+              placeholder="Tên đăng nhập"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required

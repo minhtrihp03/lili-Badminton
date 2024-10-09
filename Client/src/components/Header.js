@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/screens/Header.css';
 import { useNavigate } from 'react-router-dom';
+import { FaBars, FaRegPenToSquare } from "react-icons/fa6";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [name, setName] = useState('');
   const [avatar, setAvatar] = useState('');
   const [role, setRole] = useState('');
-  const [menuOpen, setMenuOpen] = useState(false); // State for menu toggle
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -42,11 +43,10 @@ const Header = () => {
 
   const handleRegister = () => {
     navigate('/register');
-  };
-
+  }
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen); // Toggle menu state
-  };
+    setMenuOpen(!menuOpen); // Toggle the menu visibility
+  }
 
   return (
     <header className="header">
@@ -62,24 +62,25 @@ const Header = () => {
         <li><a href="https://shop-jijiball.netlify.app/">Cửa Hàng</a></li>
         <li><a href="/court">Giao lưu</a></li>
         <li><a href="/coach">Huấn luyện viên</a></li>
-        {/* <li><button className="post-button"><a href="/post-form" style={{ color: "white", backgroundColor: "#064D7E" }}> Đăng Bài Tìm Giao Lưu </a></button></li> */}
-        {isLoggedIn && role !== 'player' && ( // Check if logged in and role is not player
-          <li>
-            <button className="post-button">
-              <a href="/post-form" style={{ color: "white", backgroundColor: "#064D7E" }}>
-                Đăng Bài Tìm Giao Lưu
-              </a>
-            </button>
-          </li>
-        )}
+        </ul>
+      <ul className='link' style={{ textDecoration: "none" }}>
+      {isLoggedIn && role !== 'player' && (
+        <li><button className="post-button" >
+          <a href="/post-form" style={{ color: "white", backgroundColor: "#064D7E" }}>
+            <span id='icon'><FaRegPenToSquare /></span>
+            <span id='text' >Đăng Bài Tìm Giao Lưu </span>
+          </a>
+        </button>
+        </li>
+              )}
       </ul>
       {isLoggedIn ? (
         <div className="user-section">
           <div className="user-info">
-            <img 
-              src={avatar ? avatar : process.env.PUBLIC_URL + '/assets/images/blank-avatar.png'} 
-              alt="User Avatar" 
-              className="image" 
+            <img
+              src={avatar ? avatar : process.env.PUBLIC_URL + '/assets/images/user1.png'}
+              alt="User Avatar"
+              className="image"
             />
             <span>{name}</span>
           </div>
@@ -89,6 +90,30 @@ const Header = () => {
         <div className="auth-buttons">
           <button className="login-button" onClick={handleLogin} style={{ backgroundColor: "#064D7E" }}>Đăng Nhập</button>
           <button className="register-button" onClick={handleRegister}>Đăng Ký</button>
+        </div>
+      )}
+
+      <button className="menu-icon" onClick={toggleMenu}>
+        <FaBars size={24} />
+      </button>
+      {menuOpen && (
+        <div className={`dropdown-menu ${menuOpen ? 'open' : ''}`}>
+          <ul>
+            <li><a href="/">Trang chủ</a></li>
+            <li><a href="/about">Giới thiệu</a></li>
+            <li><a href="/court">Giao lưu</a></li>
+            <li><a href="/coach">Huấn luyện viên</a></li>
+            {isLoggedIn ? (
+              <>
+                <li><a onClick={handleLogout}>Đăng xuất</a></li>
+              </>
+            ) : (
+              <>
+                <li><a onClick={handleLogin}>Đăng nhập</a></li>
+                <li><a onClick={handleRegister}>Đăng ký</a></li>
+              </>
+            )}
+          </ul>
         </div>
       )}
     </header>

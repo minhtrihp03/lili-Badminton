@@ -8,7 +8,7 @@ import '../styles/screens/CourtListComponent.css';
 
 const CourtLayout = () => {
   return (
-    <div className="court-layout" style={{backgroundColor: "#F0F0F0"}}>
+    <div className="court-layout" style={{ backgroundColor: "#F0F0F0" }}>
       {/* Header */}
       <Header />
 
@@ -16,12 +16,13 @@ const CourtLayout = () => {
       <div className="main-content">
         {/* Home Component */}
         <HomeComponent />
+        <div id='body-court'>
+          {/* Filter Component */}
+          <DetailedFilterComponent />
 
-        {/* Filter Component */}
-        <DetailedFilterComponent />
-
-        {/* Court List Component */}
-        <CourtListComponent />
+          {/* Court List Component */}
+          <CourtListComponent />
+        </div>
       </div>
 
       {/* Footer */}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import '../styles/screens/DetailedFilterComponent.css';
+import { IoIosArrowDown } from "react-icons/io";
 
 const DetailedFilterComponent = () => {
   const [filters, setFilters] = useState({
@@ -46,7 +47,7 @@ const DetailedFilterComponent = () => {
           (filters.numPeople ? court.total_players >= parseInt(filters.numPeople) : true)
         );
       });
-      console.log(court.skill_level);
+      // console.log(court.skill_level);
       setResults(filteredResults); // Cập nhật kết quả
     } catch (error) {
       console.error('Error fetching courts:', error);

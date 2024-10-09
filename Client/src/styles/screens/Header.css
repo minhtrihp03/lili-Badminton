@@ -1,117 +1,196 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  margin-left: 60px;
+}
+
+.logo img {
+  width: 70px;
+  height: 70px;
+}
+
+.link, .nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+}
+
+.link, .nav-links li {
+  margin: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: black;
+}
+
+.link a {
+  text-decoration: none;
+  color: black;
+}
+
+.link a span {
+  text-decoration: none;
+}
+
+.auth-buttons,
+.user-section {
+  display: flex;
+  align-items: center;
+}
+
+.login-button,
+.register-button,
+.post-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.login-button {
+  background-color: #064d7e;
+  color: white;
+}
+
+.register-button {
+  background-color: white;
+  border: 1px solid #064d7e;
+  color: #064d7e;
+}
+
+.post-button {
+  background-color: #064d7e;
+  color: white;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+
+.user-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.profile-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.menu-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none; /* Hidden by default for larger screens */
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 200px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  display: none;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+}
+
+.dropdown-menu.open {
+  display: block;
+  transform: translateX(0);
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu ul li {
+  padding: 10px 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-menu ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu ul li a:hover {
+  color: #064D7E;
+}
+
+@media (max-width: 430px) {
+  .header {
+    height: 5vh;
+    padding: 0.5rem;
   }
 
   .logo {
-    margin-left: 60px;
+    margin-left: 0%;
   }
-  
+
   .logo img {
-    width: 55px;
-    height: 55px;
+    width: 43px;
+    height: 43px;
   }
-  
-  .nav-links {
-    display: flex;
-    list-style: none;
-    margin: 0;
+
+  .nav-links li{
+    display: none;
   }
-  
-  .nav-links li {
-    margin: 1rem;
-    font-weight: bold;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: black;
-  }
-  
-  .auth-buttons, .user-section {
-    display: flex;
-    align-items: center;
-  }
-  
-  .login-button, .register-button, .post-button {
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    margin-left: 0.5rem;
-  }
-  
-  .login-button {
-    background-color: #064D7E;
-    color: white;
-  }
-  
-  .register-button {
-    background-color: white;
-    border: 1px solid #064D7E;
-    color: #064D7E;
-  }
-  
+
   .post-button {
-    background-color: #064D7E;
-    color: white;
+    width: 20%;
+  }
+
+  #text {
+    display: none;
+  }
+
+  #icon {
+    display: flex;
+    font-size: 30px;
+    justify-content: center;
   }
   
   .user-info {
     display: flex;
-    align-items: center;
-    margin-left: 0.5rem;
+    justify-content: space-between;
+    margin-right: 10px;
   }
 
   .user-info img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 0.5rem;
+    width: 43px;
+    height: 43px;
   }
-  
-  .profile-img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 0.5rem;
-  }
-  
 
-  .menu-toggle {
+  .login-button {
     display: none;
-    font-size: 30px;
-    cursor: pointer;
   }
 
-  @media (max-width: 768px) {
-    .menu-toggle {
-      display: block;
-      margin-right: 1rem;
-    }
-  
-    /* Hide navigation links by default on mobile */
-    .nav-links {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 70px;
-      right: 0;
-      background-color: white;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      width: 200px;
-      padding: 1rem;
-    }
-  
-    .nav-links.show {
-      display: flex;
-    }
-  
-    .logo {
-      margin-left: 20px; /* Adjust logo margin for mobile */
-    }
+  .register-button {
+    display: none;
   }
+
+  .menu-icon {
+    display: block;
+  }
+}

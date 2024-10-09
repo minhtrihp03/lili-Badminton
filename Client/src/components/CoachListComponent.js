@@ -64,10 +64,10 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
 
   return (
     <div className="coach-list ms-3" style={{ textAlign: 'center' }} >
-      <h2 style={{ fontWeight: 'bold' }}>Huấn Luyện Viên</h2>
+      <h2 style={{ fontWeight: '600' }}>Huấn Luyện Viên</h2>
 
       {/* Responsive grid for coach list */}
-      <Row className="coach-list-row" style={{ justifyContent: 'center'}}>
+      <Row className="coach-list-row" >
         {displayedCoaches.length > 0 ? (
           displayedCoaches.map((coach, index) => (
             <Col key={index} style={{ padding: 0 }} >
@@ -78,7 +78,12 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
                 contact={coach.contact}
                 phone={coach.phone}
                 image={coach.image}
-                style={{width: "100%", alignItems: 'center', justifyContent: 'center', textAlign: "center"}}
+                style={{
+                  width: "250px", /* Kích thước cố định cho mỗi thẻ coach */
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  textAlign: "center"
+                }}
               />
             </Col>
           ))
@@ -86,6 +91,7 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
           <p>Không tìm thấy huấn luyện viên nào.</p>
         )}
       </Row>
+
 
       {visibleCount < filteredCoaches.length && (
         <button className="btn btn-primary" onClick={handleShowMore} style={{ marginBottom: '20px' }}>
