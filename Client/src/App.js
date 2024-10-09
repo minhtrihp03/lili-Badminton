@@ -27,6 +27,8 @@ import CourtLayout from './layouts/CourtLayout';
 import CourtDetailLayout from './layouts/CourtDetailLayout';
 import PostFormLayout from './layouts/PostFormLayout';
 import CoachLayout from './layouts/CoachLayout';
+import DashboardLayout from './layouts/DashboardLayout';
+import Admin from './layouts/Admin';
 
 function App() {
   return (
@@ -44,6 +46,8 @@ function App() {
           <Route path="/court/court-detail" element={<CourtDetailLayout />} />
           <Route path="/post-form" element={<PostFormLayout />} />
           <Route path="/coach" element={<CoachLayout />} />
+          <Route path="/dashboard" element={<DashboardLayout />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/" element={<HomeLayout></HomeLayout>} />
         </Routes>
       </Router>
