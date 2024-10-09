@@ -31,18 +31,35 @@ const DetailedFilterComponent = ({ setFilteredResults, allCourts }) => {
     e.preventDefault();
 
     const filteredResults = allCourts.filter(court => {
-      const locationFilter = filters.location === 'Other' 
-        ? court.court_address.includes(filters.otherLocation) // Lọc bằng tuỳ chọn "Other"
+      // Lọc theo địa điểm
+      const locationFilter = filters.location === 'Other'
+        ? court.court_address.includes(filters.otherLocation)
         : filters.location
         ? court.court_address.includes(filters.location)
         : true;
 
+      // Lọc theo giờ chơi
+      const startTimeFilter = filters.startTime
+        ? court.play_time.split(' - ')[0] === filters.startTime // So sánh giờ bắt đầu
+        : true;
+
+      // Lọc theo trình độ
+      const levelFilter = filters.level
+        ? parseFloat(court.skill_level) === parseFloat(filters.level)
+        : true;
+
+      // Lọc theo loại sân
+      const courtTypeFilter = filters.courtType
+        ? court.court_type.includes(filters.courtType)
+        : true;
+
+      // Lọc theo số lượng người chơi
+      
       return (
         locationFilter &&
-        (filters.startTime ? new Date(court.time).getHours() === new Date(filters.startTime).getHours() : true) &&
-        (filters.level ? parseFloat(court.skill_level) === parseFloat(filters.level) : true) &&
-        (filters.courtType ? court.court_type.includes(filters.courtType) : true) &&
-        (filters.numPeople ? court.total_players >= parseInt(filters.numPeople) : true)
+        startTimeFilter &&
+        levelFilter &&
+        courtTypeFilter 
       );
     });
 
@@ -126,22 +143,6 @@ const DetailedFilterComponent = ({ setFilteredResults, allCourts }) => {
                   <option key={level} value={level}>{level}</option>
                 ))}
                 <option value="5.5+">5.5+</option>
-              </Form.Control>
-            </Form.Group>
-          </Col>
-
-          <Col xs="auto" className="me-1">
-            <Form.Group controlId="formGroupType">
-              <Form.Control
-                as="select"
-                name="groupType"
-                value={filters.groupType}
-                onChange={handleInputChange}
-                className="form-control-sm"
-              >
-                <option value="">Loại nhóm</option>
-                <option value="Nhóm xé vé">Nhóm xé vé</option>
-                <option value="Nhóm cố định">Nhóm cố định</option>
               </Form.Control>
             </Form.Group>
           </Col>
