@@ -8,7 +8,7 @@ import NewsComponent from '../components/NewsComponent';
 
 const HomeLayout = () => {
   return (
-    <div className="home-layout" style={{backgroundColor: "#F0F0F0"}}>
+    <div className="home-layout" style={{ backgroundColor: "#F0F0F0" }}>
       {/* Header Section */}
       <Header />
 
@@ -16,15 +16,19 @@ const HomeLayout = () => {
       <div className="content-container">
         <div className="main-content">
           {/* Home Component */}
-          <HomeComponent />
+          <div>
+            <HomeComponent />
+          </div>
 
-          {/* Participation Section */}
-          <ParticipationComponent />
+          <div id='body-home'>
+            {/* Participation Section */}
+            <ParticipationComponent />
 
-          {/* Coach List Section */}
-          <CoachListComponent />
+            {/* Coach List Section */}
+            <CoachListComponent />
 
-          <NewsComponent />
+            <NewsComponent />
+          </div>
         </div>
       </div>
 

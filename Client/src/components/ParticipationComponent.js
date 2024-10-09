@@ -2,15 +2,22 @@ import React from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import { FaMapMarkerAlt, FaUserFriends, FaClipboardList, FaUsers } from 'react-icons/fa';
 import '../styles/screens/ParticipationComponent.css'; // Add necessary styles here
+import { useNavigate } from 'react-router-dom';
 
 const ParticipationComponent = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/court');
+  }
+
   return (
     <div className="participation-section">
-      <h2 className="text-center" style={{fontWeight: "bold"}}>Tham gia giao lưu</h2>
+      <h2 className="text-center">Tham gia giao lưu</h2>
       <Row className="participation-content">
         {/* Left Section */}
-        <Col md={7} className="left-section" style={{ padding: 0 }}>
-          <h4>Đến với chúng tôi bạn sẽ được <span className="highlight">trải nghiệm!</span></h4>
+        <Col md={7} className="left-section">
+          <h4>Đến với chúng tôi bạn sẽ được <span className="highlight">trải nghiệm !</span></h4>
           <div className="feature-list">
             <div className="feature-item">
               <FaMapMarkerAlt className="icon" />
@@ -44,7 +51,7 @@ const ParticipationComponent = () => {
         </Col>
 
         {/* Right Section */}
-        <Col md={5} className="right-section" style={{ padding: 0 }}>
+        <Col md={5} className="right-section">
           <div className="image-container">
             <img
               src={process.env.PUBLIC_URL + '/assets/images/banner.png'}
@@ -52,8 +59,8 @@ const ParticipationComponent = () => {
               className="img-fluid participation-image w-100"
             />
             <div className="image-content">
-              <h2 style={{textAlign: "left"}}>Đừng bỏ lỡ cơ hội thử sức với môn thể thao đang được yêu thích này!</h2>
-              <button className="participation-button button">Tham gia giao lưu ngay</button>
+              <h2>Đừng bỏ lỡ cơ hội thử sức với môn thể thao đang được yêu thích này!</h2>
+              <button onClick={handleClick} className="participation-button button">Tham gia ngay</button>
             </div>
           </div>
         </Col>

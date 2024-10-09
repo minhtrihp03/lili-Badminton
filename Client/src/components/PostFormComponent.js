@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Card, Row, Col } from 'react-bootstrap';
 import { FaPen, FaMapMarkerAlt, FaUsers, FaCalendarAlt, FaDollarSign, FaPhoneAlt, FaFacebook } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import  '../styles/screens/PostFormComponent.css';
 
 const PostFormComponent = () => {
   const [post, setPost] = useState({
