@@ -6,6 +6,7 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [name, setName] = useState('');
   const [avatar, setAvatar] = useState('');
+  const [role, setRole] = useState('');
   const [menuOpen, setMenuOpen] = useState(false); // State for menu toggle
 
   const navigate = useNavigate();
@@ -14,11 +15,13 @@ const Header = () => {
     const loggedInStatus = localStorage.getItem('isLoggedIn');
     const storedName = localStorage.getItem('name');
     const storedAvatar = localStorage.getItem('avatar');
+    const storedRole = localStorage.getItem('role');
 
     if (loggedInStatus === 'true') {
       setIsLoggedIn(true);
       setName(storedName || '');
       setAvatar(storedAvatar || '');
+      setRole(storedRole || '');
     }
   }, []);
 
@@ -59,7 +62,16 @@ const Header = () => {
         <li><a href="https://shop-jijiball.netlify.app/">Cửa Hàng</a></li>
         <li><a href="/court">Giao lưu</a></li>
         <li><a href="/coach">Huấn luyện viên</a></li>
-        <li><button className="post-button"><a href="/post-form" style={{ color: "white", backgroundColor: "#064D7E" }}> Đăng Bài Tìm Giao Lưu </a></button></li>
+        {/* <li><button className="post-button"><a href="/post-form" style={{ color: "white", backgroundColor: "#064D7E" }}> Đăng Bài Tìm Giao Lưu </a></button></li> */}
+        {isLoggedIn && role !== 'player' && ( // Check if logged in and role is not player
+          <li>
+            <button className="post-button">
+              <a href="/post-form" style={{ color: "white", backgroundColor: "#064D7E" }}>
+                Đăng Bài Tìm Giao Lưu
+              </a>
+            </button>
+          </li>
+        )}
       </ul>
       {isLoggedIn ? (
         <div className="user-section">

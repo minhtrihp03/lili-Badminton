@@ -53,7 +53,7 @@ const ParticipationComponent = () => {
             />
             <div className="image-content">
               <h2 style={{textAlign: "left"}}>Đừng bỏ lỡ cơ hội thử sức với môn thể thao đang được yêu thích này!</h2>
-              <button className="participation-button button">Tham gia giao lưu ngay</button>
+              <button className="participation-button button" onClick={() => window.location.href = '/court'}>Tham gia giao lưu ngay</button>
             </div>
           </div>
         </Col>
