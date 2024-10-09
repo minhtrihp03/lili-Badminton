@@ -157,8 +157,8 @@ const DetailedFilterComponent = ({ setFilteredResults, allCourts }) => {
                 className="form-control-sm"
               >
                 <option value="">Loại sân</option>
-                <option value="covered">Có mái che</option>
-                <option value="uncovered">Không có mái che</option>
+                <option value="Sân Có Mái Che">Có mái che</option>
+                <option value="Sân không Có Mái Che">Không có mái che</option>
               </Form.Control>
             </Form.Group>
           </Col>
