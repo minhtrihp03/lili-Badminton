@@ -10,7 +10,7 @@ const Footer = () => {
       <div>
         <div className="head-footer">
           <div className="logo">
-            <img src={process.env.PUBLIC_URL + '/assets/images/logo.png'} alt="Logo" />
+            <h3><a style={{color: 'white', fontWeight:'bold', textDecoration: 'none'}} href="/"> Ji Ji Ball </a> </h3>
             <p>Trang đặt sân Pickleball uy tín ở Việt Nam</p>
           </div>
           <div className="contact">

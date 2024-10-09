@@ -48,7 +48,10 @@ const Header = () => {
   return (
     <header className="header">
       <div className="logo">
+        <a href="/">
         <img src={process.env.PUBLIC_URL + '/assets/images/logo.png'} alt="Logo" />
+        </a>
+        
       </div>
       <span className="menu-toggle" onClick={toggleMenu}>&#9776;</span> {/* Menu toggle button */}
       <ul className={`nav-links ${menuOpen ? 'show' : ''}`}>

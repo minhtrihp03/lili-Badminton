@@ -1,8 +1,7 @@
 /* src/Footer.css */
 
 .footer {
-    /* background: linear-gradient(90deg, #05999e, #cbe7e3); */
-    background-color: #fff8dc;
+    background: linear-gradient(90deg, #05999e, #cbe7e3);
     color: white;
     padding: 40px 20px;
     font-family: Arial, sans-serif;
