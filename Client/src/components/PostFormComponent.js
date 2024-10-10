@@ -108,7 +108,7 @@ const PostFormComponent = () => {
       alert('Có lỗi xảy ra khi đăng bài!');
     }
   };
-  };
+
 
   // Utility function to format Date object to DD-MM-YYYY
   const formatDate = (dateObject) => {
@@ -154,7 +154,6 @@ const PostFormComponent = () => {
                     placeholder="Nhập liên kết địa điểm"
                     value={post.location}
                     onChange={handleInputChange}
-                    style={{ width: '90%' }}
                     style={{ width: '90%' }}
                   />
                 </Form.Group>
