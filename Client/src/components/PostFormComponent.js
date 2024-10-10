@@ -4,6 +4,7 @@ import { FaMapMarkerAlt, FaUsers, FaCalendarAlt, FaDollarSign, FaPhoneAlt, FaFac
 import { useNavigate } from 'react-router-dom';
 import '../styles/screens/PostFormComponent.css';
 
+
 const PostFormComponent = () => {
   const navigate = useNavigate();
   const [post, setPost] = useState({
@@ -16,15 +17,14 @@ const PostFormComponent = () => {
     phone: '',
     facebook: '',
     image: '',
+    level: '<2.0', // Added default value for skill level
   });
   
   const [showModal, setShowModal] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    // Check if the field is the date input
     if (name === "date") {
-      // Convert the input string (YYYY-MM-DD) to a Date object
       const dateValue = new Date(value);
       setPost({ ...post, [name]: dateValue });
     } else {
@@ -46,73 +46,64 @@ const PostFormComponent = () => {
     formData.append("players_needed", post.slots);
     formData.append("skill_level", post.level);
     
-    // Ensure date is formatted correctly and exists
     if (post.date) {
-        // Create a Date object from the post.date
-        const dateObject = new Date(post.date);
-        
-        // Check if the date is valid
-        if (isNaN(dateObject)) {
-            alert('Please enter a valid date.');
-            return;
-        }
-
-        // Format date to DD-MM-YYYY
-        const formattedDate = formatDate(dateObject);
-        console.log("Formatted Date:", formattedDate, "typeDate", typeof(formattedDate)); // Log formatted date
-        formData.append("play_date", formattedDate);
-    } else {
+      const dateObject = new Date(post.date);
+      if (isNaN(dateObject)) {
         alert('Please enter a valid date.');
         return;
+      }
+      const formattedDate = formatDate(dateObject);
+      console.log("Formatted Date:", formattedDate, "typeDate", typeof(formattedDate)); // Log formatted date
+      formData.append("play_date", formattedDate);
+    
+    } else {
+      alert('Please enter a valid date.');
+      return;
     }
     
     formData.append("cost", post.price);
     formData.append("contact_info", JSON.stringify({ phone: post.phone, facebook: post.facebook }));
 
-    // Validate required fields
     if (!post.location || post.slots <= 0 || !post.courtType || !post.date || !post.price || !post.phone) {
-        alert('Please fill in all required fields.');
-        return;
+      alert('Please fill in all required fields.');
+      return;
     }
 
-    // Log the form data
     for (const [key, value] of formData.entries()) {
-        console.log(key, value);
+      console.log(key, value);
     }
   
     try {
-        const response = await fetch("https://bepickleball.vercel.app/api/post/create", {
-            method: "POST",
-            headers: {
-                'Authorization': `Bearer ${token}`, // Use the token in the Authorization header
-            },
-            body: formData,
-        });
+      const response = await fetch("https://bepickleball.vercel.app/api/post/create", {
+        method: "POST",
+        headers: {
+          'Authorization': `Bearer ${token}`, // Use the token in the Authorization header
+        },
+        body: formData,
+      });
   
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error('Response Error:', errorData); // Log error response
-            alert(`Error: ${errorData.error}`);
-            return;
-        }
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Response Error:', errorData); // Log error response
+        alert(`Error: ${errorData.error}`);
+        return;
+      }
   
-        const result = await response.json();
-        setShowModal(true); // Show modal on success
+      const result = await response.json();
+      setShowModal(true); // Show modal on success
     } catch (error) {
-        console.log(error);
-        alert('Có lỗi xảy ra khi đăng bài!');
+      console.log(error);
+      alert('Có lỗi xảy ra khi đăng bài!');
     }
-};
+  };
 
-// Utility function to format Date object to DD-MM-YYYY
-const formatDate = (dateObject) => {
+  const formatDate = (dateObject) => {
     const day = String(dateObject.getDate()).padStart(2, '0');
-    const month = String(dateObject.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const month = String(dateObject.getMonth() + 1).padStart(2, '0');
     const year = dateObject.getFullYear();
-    return `${day}-${month}-${year}`; // Return formatted date
-};
+    return `${day}/${month}/${year}`;
+  };
 
-  
   const handleCloseModal = () => {
     setShowModal(false);
     navigate('/');
@@ -126,7 +117,6 @@ const formatDate = (dateObject) => {
           <Card className="mb-4" style={{ width: '90%' }}>
             <Card.Body style={{ padding: 0 }}>
               <Card.Title>Thông tin chung</Card.Title>
-
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formnameName">
                   <Form.Label><FaMapMarkerAlt /> Tên sân</Form.Label>
@@ -141,14 +131,14 @@ const formatDate = (dateObject) => {
                 </Form.Group>
 
                 <Form.Group controlId="formLocation">
-                  <Form.Label><FaMapMarkerAlt /> link địa điểm</Form.Label>
+                  <Form.Label><FaMapMarkerAlt /> Link địa điểm</Form.Label>
                   <Form.Control
                     type="text"
                     name="location"
                     placeholder="Nhập link địa điểm"
                     value={post.location}
                     onChange={handleInputChange}
-                  style={{ width: '90%' }}
+                    style={{ width: '90%' }}
                   />
                 </Form.Group>
 
@@ -179,10 +169,9 @@ const formatDate = (dateObject) => {
                   </div>
                 </Form.Group>
 
-                {/* Image and video upload */}
                 <Form.Group controlId="formImage" style={{ width: '90%', textAlign: 'center' }}>
                   <Form.Label>Thêm ảnh/Video (bắt buộc)</Form.Label>
-                  <Form.Control type="file" multiple style={{ height: '210px', borderRadius: '10px' }} name= "image" onChange={handleInputChange}/>
+                  <Form.Control type="file" multiple style={{ height: '210px', borderRadius: '10px' }} name="image" onChange={handleInputChange}/>
                 </Form.Group>
               </Form>
               <br />
@@ -190,9 +179,7 @@ const formatDate = (dateObject) => {
           </Card>
         </Col>
 
-        {/* Right Side: Other information in 3 cards */}
-        <Col md={6} style={{ padding: 0 }} className="g-3">
-          <Row style={{ margin: 0 }}>
+        {/* Right Side */}
         <Col md={6} style={{ padding: 0 }} className="g-3">
           <Row style={{ margin: 0 }}>
             {/* Yêu cầu về thành viên */}
