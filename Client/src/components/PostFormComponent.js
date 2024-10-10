@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Card, Row, Col } from 'react-bootstrap';
 import { FaPen, FaMapMarkerAlt, FaUsers, FaCalendarAlt, FaDollarSign, FaPhoneAlt, FaFacebook } from 'react-icons/fa';
 import { toast } from 'react-toastify';
-import  '../styles/screens/PostFormComponent.css';
+import '../styles/screens/PostFormComponent.css';
 
 const PostFormComponent = () => {
   const [post, setPost] = useState({
@@ -28,13 +28,13 @@ const PostFormComponent = () => {
   };
 
   return (
-    <div style={{ margin: "110px"}}>
+    <div className='post-back'>
       <Row className="g-3">
         {/* Left Side: Thông tin chung */}
-        <Col md={6} style={{ padding: 0}} className="g-3">
-          <Card className="mb-4" style={{width: '90%'}}>
-            <Card.Body style={{ padding: 0}}>
-              <Card.Title>Thông tin chung</Card.Title>
+        <Col md={6} style={{ padding: 0 }} className="g-3">
+          <Card className="mb-4 card " id='card-1' >
+            <Card.Body style={{ padding: 0 }}>
+              <Card.Title id='post-card-title'>Thông tin chung</Card.Title>
 
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formLocation">
@@ -45,7 +45,7 @@ const PostFormComponent = () => {
                     placeholder="Nhập địa điểm"
                     value={post.location}
                     onChange={handleInputChange}
-                    style={{ width: '90%' }}
+                  style={{ width: '90%' }}
                   />
                 </Form.Group>
 
@@ -87,13 +87,7 @@ const PostFormComponent = () => {
                 {/* Image and video upload */}
                 <Form.Group controlId="formImage" style={{ width: '90%', textAlign: 'center' }}>
                   <Form.Label>Thêm ảnh/Video (bắt buộc)</Form.Label>
-                  <Form.Control type="file" multiple style={{ height: '210px', borderRadius: '10px'}}/>
-                </Form.Group>
-
-                {/* Additional notes */}
-                <Form.Group controlId="formNotes" style={{ width: '90%', textAlign: 'center' }}>
-                  <Form.Label>Ghi chú thêm (nếu cần)</Form.Label>
-                  <Form.Control as="textarea" rows={3} name="notes" onChange={handleInputChange} style={{height: '120px',borderRadius: '10px'}}/>
+                  <Form.Control type="file" multiple style={{ height: '210px', borderRadius: '10px' }} />
                 </Form.Group>
               </Form>
               <br></br>
@@ -102,13 +96,13 @@ const PostFormComponent = () => {
         </Col>
 
         {/* Right Side: Other information in 3 cards */}
-        <Col md={6} style={{ padding: 0}} className="g-3">
-          <Row style={{ margin: 0}}>
+        <Col md={6} style={{ padding: 0 }} className="g-3">
+          <Row style={{ margin: 0 }}>
             {/* Yêu cầu về thành viên */}
-            <Col md={12} style={{ padding: 0}}>
-              <Card className="mb-3">
-                <Card.Body style={{ padding: 0}}>
-                  <Card.Title>Yêu cầu về thành viên</Card.Title>
+            <Col md={12} style={{ padding: 0 }}>
+              <Card className="mb-3 card" id='card-2'>
+                <Card.Body style={{ padding: 0 }}>
+                  <Card.Title id='post-card-title'>Yêu cầu về thành viên</Card.Title>
 
                   <Form.Group controlId="formSlots" style={{ width: '90%', textAlign: 'center' }}>
                     <Form.Label><FaUsers /> Số người cần tuyển (bắt buộc)</Form.Label>
@@ -118,9 +112,14 @@ const PostFormComponent = () => {
                   <Form.Group controlId="formLevel" style={{ width: '90%', textAlign: 'center' }}>
                     <Form.Label>Trình độ (bắt buộc)</Form.Label>
                     <Form.Control as="select" name="level" onChange={handleInputChange}>
-                      <option value="Beginner">Beginner</option>
-                      <option value="Intermediate">Intermediate</option>
-                      <option value="Advanced">Advanced</option>
+                      <option value="1.0">1.0-2.0</option>
+                      <option value="2.5">2.5</option>
+                      <option value="3.0">3.0</option>
+                      <option value="3.5">3.5</option>
+                      <option value="4.0">4.0</option>
+                      <option value="4.5">4.5</option>
+                      <option value="5.0">5.0</option>
+                      <option value="5.5+">5.5+</option>
                     </Form.Control>
                   </Form.Group>
                   <br></br>
@@ -129,10 +128,10 @@ const PostFormComponent = () => {
             </Col>
 
             {/* Thời gian và chi phí */}
-            <Col md={12} style={{ padding: 0}}>
-              <Card className="mb-3">
-                <Card.Body style={{ padding: 0}}>
-                  <Card.Title>Thời gian và chi phí</Card.Title>
+            <Col md={12} style={{ padding: 0 }}>
+              <Card className="mb-3 card" id='card-2'>
+                <Card.Body style={{ padding: 0 }}>
+                  <Card.Title id='post-card-title'>Thời gian và chi phí</Card.Title>
 
                   <Form.Group controlId="formDate" style={{ width: '90%', textAlign: 'center' }}>
                     <Form.Label><FaCalendarAlt /> Ngày (bắt buộc)</Form.Label>
@@ -149,10 +148,10 @@ const PostFormComponent = () => {
             </Col>
 
             {/* Thông tin liên hệ */}
-            <Col md={12} style={{ padding: 0}}>
-              <Card className="mb-3">
-                <Card.Body style={{ padding: 0}}>
-                  <Card.Title>Thông tin liên hệ</Card.Title>
+            <Col md={12} style={{ padding: 0 }}>
+              <Card className="mb-3 card" id='card-2'>
+                <Card.Body style={{ padding: 0 }}>
+                  <Card.Title style={{textAlign: "center"}}>Thông tin liên hệ</Card.Title>
 
                   <Form.Group controlId="formPhone" style={{ width: '90%', textAlign: 'center' }}>
                     <Form.Label><FaPhoneAlt /> Số điện thoại (bắt buộc)</Form.Label>
@@ -173,10 +172,10 @@ const PostFormComponent = () => {
 
       {/* Checkbox and Buttons */}
       <div className="form-actions">
-        <Form.Check type="checkbox" label="Lưu lựa chọn của bạn cho lần sau"  className="d-flex justify-content-center"/>
+        <Form.Check type="checkbox" label={<span className="custom-label">&nbsp;&nbsp; Lưu lựa chọn của bạn cho lần sau</span>} className="d-flex justify-content-center" style={{color: "fff"}}/>
         <div className="d-flex justify-content-center">
-          <Button variant="secondary" className="me-2">Hủy Bỏ</Button>
-          <Button variant="primary" type="submit">Đăng Bài</Button>
+          <Button variant="secondary" id='btn-post-1' className="post-form-button me-2">Hủy Bỏ</Button>
+          <Button variant="primary" type="submit" className='post-form-button'>Đăng Bài</Button>
         </div>
       </div>
     </div>
