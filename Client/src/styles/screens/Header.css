@@ -30,7 +30,14 @@
 .nav-links a {
   text-decoration: none;
   color: black;
+  transition: color 0.3s ease;
 }
+
+.nav-links li a:hover {
+  color: #064d7e;
+}
+
+.nav-links li a:active
 
 .link a {
   text-decoration: none;
@@ -93,6 +100,13 @@
   margin-right: 0.5rem;
 }
 
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none; /* Hidden by default for larger screens */
+}
+
 .menu-icon {
   background: none;
   border: none;
@@ -138,6 +152,10 @@
   color: #064D7E;
 }
 
+#icon {
+  margin-right: 8px;
+}
+
 @media (max-width: 430px) {
   .header {
     height: 5vh;
@@ -169,6 +187,7 @@
     display: flex;
     font-size: 30px;
     justify-content: center;
+    margin: 0;
   }
   
   .user-info {
@@ -192,11 +211,5 @@
 
   .menu-icon {
     display: block;
-  }
-}
-
-@media (min-width: 431px) {
-  .menu-icon {
-    display: none; /* Ẩn menu icon cho màn hình lớn hơn 430px */
   }
 }

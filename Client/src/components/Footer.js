@@ -7,10 +7,10 @@ import { FaFacebook } from "react-icons/fa";
 const Footer = () => {
   return (
     <footer className="footer">
-      <div>
+      <div className="footer-container">
         <div className="head-footer">
-          <div className="logo">
-            <h3><a style={{color: 'white', fontWeight:'bold', textDecoration: 'none'}} href="/"> Ji Ji Ball </a> </h3>
+          <div className="logo-footer">
+            <h3><a style={{ color: 'white', fontWeight: 'bold', textDecoration: 'none' }} href="/"> Ji Ji Ball </a> </h3>
             <p>Trang đặt sân Pickleball uy tín ở Việt Nam</p>
           </div>
         </div>
@@ -32,27 +32,28 @@ const Footer = () => {
               <p>
                 Cùng JIJI Pickleball phát triển cộng đồng Pickleball tại Việt Nam
               </p>
+              <div className="contact">
+                <h4>Liên hệ với chúng tôi qua:</h4>
+                <div className="social-icons" id="social-icons">
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaFacebook />
+                  </a>
+                  <a
+                    href="https://zalo.me"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Zalo
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="contact">
-            <h4>Liên hệ với chúng tôi qua:</h4>
-            <div className="social-icons">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaFacebook />
-              </a>
-              <a
-                href="https://zalo.me"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Z
-              </a>
-            </div>
-          </div>
+
         </div>
       </div>
     </footer>

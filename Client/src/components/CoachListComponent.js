@@ -38,7 +38,7 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
 
   return (
     <div className="coach-list ms-3" style={{ textAlign: 'center' }} >
-      <h2 style={{ fontWeight: '600' }}>Huấn Luyện Viên</h2>
+      <h2 style={{ fontWeight: '600', margin: "50px 0 30px 0"}}>Huấn Luyện Viên</h2>
 
       {/* Responsive grid for coach list */}
       <Row className="coach-list-row" >

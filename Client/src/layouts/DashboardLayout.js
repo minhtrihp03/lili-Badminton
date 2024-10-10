@@ -13,7 +13,7 @@ const DashboardLayout = () => {
     // Fetch posts from the API
     const fetchPosts = async () => {
       try {
-        const response = await fetch('https://bepickleball.vercel.app/api/post', {
+        const response = await fetch('https://bepickleball.vercel.app/api/admin/posts/6706be0db0e84c056f3f5816', {
           method: 'GET',
         });
         

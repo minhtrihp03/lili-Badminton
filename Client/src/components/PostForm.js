@@ -44,7 +44,7 @@ const PostForm = () => {
   };
 
   return (
-    <Form className="post-form" onSubmit={handleSubmit}>
+    <Form className="post-form" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/post-background.png)`}} onSubmit={handleSubmit}>
       <h4 style={{textAlign: 'left'}}>Bài đăng</h4>
 
       {/* Tên huấn luyện viên */}

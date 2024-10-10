@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import '../styles/screens/Header.css';
 import { useNavigate } from 'react-router-dom';
 import { FaBars, FaRegPenToSquare } from "react-icons/fa6";
+import { FaCheckCircle } from 'react-icons/fa';
+
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,10 +32,14 @@ const Header = () => {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('name');
     localStorage.removeItem('avatar');
+    localStorage.removeItem('role'); 
     localStorage.removeItem('token');
+
     setIsLoggedIn(false);
     setName('');
     setAvatar('');
+    setRole('');
+
     navigate('/');
   };
 
@@ -64,15 +70,25 @@ const Header = () => {
         <li><a href="/coach">Huấn luyện viên</a></li>
       </ul>
       <ul className='link' style={{ textDecoration: "none" }}>
-        {isLoggedIn && role !== 'player' && (
-          <li><button className="post-button" >
-            <a href="/post-form" style={{ color: "white", backgroundColor: "#064D7E" }}>
-              <span id='icon'><FaRegPenToSquare /></span>
-              <span id='text' >Đăng Bài Tìm Giao Lưu </span>
-            </a>
-          </button>
+        {isLoggedIn && role !== 'player' ? (
+          <li>
+            <button className="post-button">
+              <a href="/post-form" style={{ color: "white", backgroundColor: "#064D7E", textDecoration: "none" }}>
+                <span id='icon'><FaRegPenToSquare /></span>
+                <span id='text'>Đăng Bài Tìm Giao Lưu</span>
+              </a>
+            </button>
           </li>
-        )}
+        ) : role === 'player' ? (
+          <li>
+            <button className="post-button">
+              <a href="/court-registration-list" style={{ color: "white", backgroundColor: "#064D7E", textDecoration: "none" }}>
+                <span id='icon'><FaCheckCircle style={{fontSize: "20px"}}/></span>
+                <span id='text'>Sân Đã Đăng Ký</span>
+              </a>
+            </button>
+          </li>
+        ) : null}
       </ul>
       {isLoggedIn ? (
         <div className="user-section">

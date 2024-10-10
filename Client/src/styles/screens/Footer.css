@@ -8,6 +8,11 @@
   text-align: left;
 }
 
+.footer-container {
+  margin: 0 200px;
+
+}
+
 .footer p, .footer h4 {
   color: #ffffff;
 }
@@ -28,6 +33,7 @@
 .logo-footer {
   flex: 1;
   max-width: 250px;
+  margin: 0 0 40px 0;
 }
 
 .logo-footer h1 {
@@ -49,7 +55,7 @@
 .links {
   display: flex;
   flex: 2;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .links div {
@@ -70,6 +76,14 @@
   font-weight: 400;
 }
 
+.link-info {
+  max-width: 200px;
+}
+
+.contact-container {
+  justify-content: right;
+}
+
 .contact {
   flex: 1;
   display: flex;
@@ -77,6 +91,7 @@
   align-items: flex-start;
   max-width: 200px;
   text-align: center;
+  margin-top: 30px;
 }
 
 .contact p {
@@ -89,8 +104,9 @@
   font-weight: 700;
 }
 
-.social-icons {
+#social-icons {
   display: flex;
+  flex-direction: row;
   gap: 10px;
   margin-top: 5px;
 }
@@ -119,6 +135,7 @@
   }
 
   .logo-footer {
+    margin-left: 0  ;
     margin-bottom: 20px;
   }
 
@@ -145,8 +162,11 @@
     margin-bottom: 30px;
   }
 
+  .link-info {
+    width: 100%;
+  }
+
   .contact {
-    /* position: ; */
-    /* bottom: 50px; */
+    margin-top: 40px;
   }
 }
