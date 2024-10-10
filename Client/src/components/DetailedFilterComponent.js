@@ -139,9 +139,13 @@ const DetailedFilterComponent = ({ setFilteredResults, allCourts }) => {
                 className="form-control-sm"
               >
                 <option value="">Trình độ</option>
-                {Array.from({ length: 11 }, (_, i) => (i * 0.5).toFixed(1)).map((level) => (
-                  <option key={level} value={level}>{level}</option>
-                ))}
+                <option value="<2.0">1.0 - 2.0 (Newbie)</option>
+                <option value="2.5">2.5</option>
+                <option value="3.0">3.0</option>
+                <option value="3.5">3.5</option>
+                <option value="4.0">4.0</option>
+                <option value="4.5">4.5</option>
+                <option value="5.0">5.0</option>
                 <option value="5.5+">5.5+</option>
               </Form.Control>
             </Form.Group>
