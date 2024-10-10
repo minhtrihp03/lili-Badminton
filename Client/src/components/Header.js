@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/screens/Header.css';
 import { useNavigate } from 'react-router-dom';
-import { FaBars, FaRegPenToSquare } from "react-icons/fa6";
+import { FaBars, FaRegPenToSquare, FaBell } from "react-icons/fa6";
 import { FaCheckCircle } from 'react-icons/fa';
-
+import { useNotifications } from './NotificationContext';
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -11,6 +11,8 @@ const Header = () => {
   const [avatar, setAvatar] = useState('');
   const [role, setRole] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const { notifications } = useNotifications(); // Lấy thông báo từ context
 
   const navigate = useNavigate();
 
@@ -50,8 +52,13 @@ const Header = () => {
   const handleRegister = () => {
     navigate('/register');
   }
+
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen); // Toggle the menu visibility
+    setMenuOpen(!menuOpen);
+  }
+
+  const toggleNotifications = () => {
+    setNotificationsOpen(!notificationsOpen);
   }
 
   return (
@@ -60,9 +67,8 @@ const Header = () => {
         <a href="/">
           <img src={process.env.PUBLIC_URL + '/assets/images/logo.png'} alt="Logo" />
         </a>
-
       </div>
-      <span className="menu-toggle" onClick={toggleMenu}>&#9776;</span> {/* Menu toggle button */}
+      <span className="menu-toggle" onClick={toggleMenu}>&#9776;</span>
       <ul className={`nav-links ${menuOpen ? 'show' : ''}`}>
         <li><a href="/">Trang chủ</a></li>
         <li><a href="https://jijiball-shop-pickleball.netlify.app/" target="_blank" rel="noopener noreferrer">Cửa Hàng</a></li>
@@ -90,6 +96,27 @@ const Header = () => {
           </li>
         ) : null}
       </ul>
+
+      {/* Nút thông báo */}
+      <button className="notification-icon" onClick={toggleNotifications}>
+        <FaBell size={24} />
+      </button>
+
+      {/* Bảng thông báo */}
+      {notificationsOpen && (
+        <div className={`notification-dropdown ${notificationsOpen ? 'open' : ''}`}>
+          <ul>
+            {notifications.length > 0 ? (
+              notifications.map((notification, index) => (
+                <li key={index}>{notification}</li>
+              ))
+            ) : (
+              <li>Không có thông báo nào</li>
+            )}
+          </ul>
+        </div>
+      )}
+
       {isLoggedIn ? (
         <div className="user-section">
           <div className="user-info">
@@ -112,6 +139,7 @@ const Header = () => {
       <button className="menu-icon" onClick={toggleMenu}>
         <FaBars size={24} />
       </button>
+
       {menuOpen && (
         <div className={`dropdown-menu ${menuOpen ? 'open' : ''}`}>
           <ul>
@@ -120,9 +148,7 @@ const Header = () => {
             <li><a href="/court">Giao lưu</a></li>
             <li><a href="/coach">Huấn luyện viên</a></li>
             {isLoggedIn ? (
-              <>
-                <li><a onClick={handleLogout}>Đăng xuất</a></li>
-              </>
+              <li><a onClick={handleLogout}>Đăng xuất</a></li>
             ) : (
               <>
                 <li><a onClick={handleLogin}>Đăng nhập</a></li>

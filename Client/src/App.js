@@ -30,10 +30,12 @@ import CoachLayout from './layouts/CoachLayout';
 import DashboardLayout from './layouts/DashboardLayout';
 import Admin from './layouts/Admin';
 import CourtRegistrationList from './components/CourtRegistrationList';
+import { NotificationProvider } from './components/NotificationContext';
 
 function App() {
   return (
     <div className='App'>
+      <NotificationProvider>
       <Router>
         <Routes>
           <Route path="/register" element={<AuthLayout><Register /></AuthLayout>} />
@@ -53,6 +55,7 @@ function App() {
           <Route path="/" element={<HomeLayout></HomeLayout>} />
         </Routes>
       </Router>
+      </NotificationProvider>
 
       {/* <HomeComponent />
       <CourtComponent name="Sân 286 Nguyễn Xiên" price="100.000" slots="6" location="Hà Nội" />
