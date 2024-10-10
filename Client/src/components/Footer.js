@@ -8,23 +8,18 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
-        <div className="head-footer">
+        <div className="head-footer w-40">
           <div className="logo-footer">
-            <h3><a style={{ color: 'white', fontWeight: 'bold', textDecoration: 'none' }} href="/"> Ji Ji Ball </a> </h3>
-            <p>Trang đặt sân Pickleball uy tín ở Việt Nam</p>
+            <h1><a style={{ color: 'white', fontWeight: 'bold', textDecoration: 'none' }} href="/"> Ji Ji Ball </a> </h1>
+            <p>Phục vụ những nhu cầu thiết yếu của cộng đồng PICKLEBALL</p>
           </div>
         </div>
-        <div className="text-link">
+        <div className="text-link w-60">
           <div className="links">
             <div className="link-info">
               <h4>Về chúng tôi</h4>
-              <p>Điều khoản</p>
-              <p>Chính sách bảo mật thông tin cá nhân</p>
-            </div>
-            <div className="link-info">
-              <h4>Hỗ trợ khách hàng</h4>
-              <p>Sử dụng tài khoản</p>
-              <p>Cách thức hoạt động</p>
+              <p>Giới thiệu</p>
+              <p>Hướng dẫn sử dụng</p>
               <p>Phản hồi, góp ý</p>
             </div>
             <div className="link-info">
@@ -36,7 +31,7 @@ const Footer = () => {
                 <h4>Liên hệ với chúng tôi qua:</h4>
                 <div className="social-icons" id="social-icons">
                   <a
-                    href="https://facebook.com"
+                    href="https://web.facebook.com/profile.php?id=61566880312514"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -53,7 +48,6 @@ const Footer = () => {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </footer>

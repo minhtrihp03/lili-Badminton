@@ -148,7 +148,7 @@ const formatDate = (dateObject) => {
                     placeholder="Nhập link địa điểm"
                     value={post.location}
                     onChange={handleInputChange}
-                    style={{ width: '90%' }}
+                  style={{ width: '90%' }}
                   />
                 </Form.Group>
 
@@ -191,6 +191,8 @@ const formatDate = (dateObject) => {
         </Col>
 
         {/* Right Side: Other information in 3 cards */}
+        <Col md={6} style={{ padding: 0 }} className="g-3">
+          <Row style={{ margin: 0 }}>
         <Col md={6} style={{ padding: 0 }} className="g-3">
           <Row style={{ margin: 0 }}>
             {/* Yêu cầu về thành viên */}
