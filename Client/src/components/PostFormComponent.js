@@ -4,6 +4,7 @@ import { FaMapMarkerAlt, FaUsers, FaCalendarAlt, FaDollarSign, FaPhoneAlt, FaFac
 import { useNavigate } from 'react-router-dom';
 import '../styles/screens/PostFormComponent.css';
 
+
 const PostFormComponent = () => {
   const navigate = useNavigate();
   const [post, setPost] = useState({
@@ -16,15 +17,14 @@ const PostFormComponent = () => {
     phone: '',
     facebook: '',
     image: '',
+    level: '<2.0', // Added default value for skill level
   });
 
   const [showModal, setShowModal] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    // Check if the field is the date input
     if (name === "date") {
-      // Convert the input string (YYYY-MM-DD) to a Date object
       const dateValue = new Date(value);
       setPost({ ...post, [name]: dateValue });
     } else {
@@ -64,19 +64,22 @@ const PostFormComponent = () => {
     } else {
       alert('Please enter a valid date.');
       return;
+      alert('Please enter a valid date.');
+      return;
     }
 
     formData.append("cost", post.price);
     formData.append("contact_info", JSON.stringify({ phone: post.phone, facebook: post.facebook }));
 
-    // Validate required fields
     if (!post.location || post.slots <= 0 || !post.courtType || !post.date || !post.price || !post.phone) {
+      alert('Please fill in all required fields.');
+      return;
       alert('Please fill in all required fields.');
       return;
     }
 
-    // Log the form data
     for (const [key, value] of formData.entries()) {
+      console.log(key, value);
       console.log(key, value);
     }
 
@@ -101,13 +104,16 @@ const PostFormComponent = () => {
     } catch (error) {
       console.log(error);
       alert('Có lỗi xảy ra khi đăng bài!');
+      console.log(error);
+      alert('Có lỗi xảy ra khi đăng bài!');
     }
+  };
   };
 
   // Utility function to format Date object to DD-MM-YYYY
   const formatDate = (dateObject) => {
     const day = String(dateObject.getDate()).padStart(2, '0');
-    const month = String(dateObject.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const month = String(dateObject.getMonth() + 1).padStart(2, '0');
     const year = dateObject.getFullYear();
     return `${day}-${month}-${year}`; // Return formatted date
   };
@@ -148,6 +154,7 @@ const PostFormComponent = () => {
                     placeholder="Nhập liên kết địa điểm"
                     value={post.location}
                     onChange={handleInputChange}
+                    style={{ width: '90%' }}
                     style={{ width: '90%' }}
                   />
                 </Form.Group>
