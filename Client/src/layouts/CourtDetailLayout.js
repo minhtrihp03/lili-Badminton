@@ -11,19 +11,22 @@ const CourtDetailLayout = () => {
   const { court } = location.state; // Extract the court data from the state
 
   return (
-    <div className="court-detail-layout" style={{backgroundColor: "#F0F0F0"}}>
+    <div className="court-detail-layout" style={{ backgroundColor: "#F0F0F0" }}>
       {/* Header */}
       <Header />
 
       {/* Main Content */}
       <div className="main-content">
 
-      <HomeComponent />
-        {/* Court Detail Component */}
-        <CourtDetailComponent court={{ name: "Sân 286 Nguyễn Xiên", price: "100.000", slots: "6", location: "Hà Nội" }} />
+        <HomeComponent />
+        <div style={{ margin: "0 277px" }}>
+          {/* Court Detail Component */}
+          <CourtDetailComponent court={{ name: "Sân 286 Nguyễn Xiên", price: "100.000", slots: "6", location: "Hà Nội" }} />
 
-        {/* Related Posts */}
-        <RelatedPostsComponent />
+          {/* Related Posts */}
+          <RelatedPostsComponent />
+        </div>
+
       </div>
 
       {/* Footer */}
