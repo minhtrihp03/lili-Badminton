@@ -29,6 +29,7 @@ import PostFormLayout from './layouts/PostFormLayout';
 import CoachLayout from './layouts/CoachLayout';
 import DashboardLayout from './layouts/DashboardLayout';
 import Admin from './layouts/Admin';
+import CourtRegistrationList from './components/CourtRegistrationList';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           <Route path="/coach" element={<CoachLayout />} />
           <Route path="/dashboard" element={<DashboardLayout />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/court-registration-list" element={<CourtRegistrationList />} />
           <Route path="/" element={<HomeLayout></HomeLayout>} />
         </Routes>
       </Router>
