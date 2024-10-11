@@ -25,7 +25,7 @@ const CourtDetailComponent = () => {
           <Col md={7} style={{ padding: 0 }}>
             <img style={{ width: "90%" }} src={image} alt={`Court ${name}`} />
           </Col>
-          <Col md={5} className="court-details" style={{ padding: 0 }}>
+          <Col md={5} className="court-details">
             <Card.Body>
               <div className="badge-container">
                 <Button variant="outline-primary" className="court-badge">{type}</Button>
@@ -35,7 +35,8 @@ const CourtDetailComponent = () => {
                 <FaMapMarkerAlt className="icon" style={{ color: "#828282" }} /> {courtLocation}
               </Card.Text>
               <Card.Text>
-                <FaArrowUpRightDots className="icon" style={{ color: "#064D7E" }} /> {time}
+                <FaArrowUpRightDots className="icon" style={{ color: "#828282" }} />
+                Trình độ: {level.toFixed(1)}
               </Card.Text>
               <Card.Text>
                 <FaUserFriends className="icon" style={{ color: "#064D7E" }} /> {applied_players}/{players_needed} người đã đăng ký
@@ -46,6 +47,21 @@ const CourtDetailComponent = () => {
               <Card.Text style={{ fontSize: "24px", fontWeight: "600", color: "#064D7E" }}>{price} VNĐ</Card.Text>
               <Button className="register-btn" variant="primary" onClick={handleRegister}>Đăng kí giao lưu</Button>
             </Card.Body>
+          </Col>
+        </Row>
+        {/* Court Description */}
+        <Row>
+          <Col style={{ textAlign: "left" }}>
+            <h5 style={{ color: "#059A8F" }}>Lưu ý</h5>
+            <div style={{ width: '4%', height: '1px', color: "#059A8F", backgroundColor: '#ccc', margin: '10px 0' }} /> {/* Đường kẻ ngăn cách */}
+            <br />
+            <p>
+              1.  "Xé vé" là hình thức thu tiền trọn gói cho cả buổi chơi (thường 2-3 giờ) bao gồm: sân + bóng + nước uống (Aqua/Dasani). <br />
+              2. Hình thức này rất phù hợp với những người có công việc bận rộn không có nhóm chơi cố định hoặc có thời gian rảnh mà không kiếm được đồng đội chơi cùng. <br />
+              3. Sau khi đăng ký giao lưu thành công, mọi người thể kiểm tra lại thông qua chức năng sân đã đăng ký. <br />
+              4. Mọi người hoàn toàn có thể hủy sân sau khi đặt nếu có việc đột suất. <br />
+              5. Chúng tôi hoàn toàn không thu bất kì phí nào của người chơi, vui lòng thanh toán trực tiếp với chủ sân.
+            </p>
           </Col>
         </Row>
       </Card>

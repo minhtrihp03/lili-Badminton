@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import CourtDetailComponent from '../components/CourtDetailComponent';
 import RelatedPostsComponent from '../components/RelatedPostsComponent';
 import HomeComponent from '../components/HomeComponent';
+import "../styles/layouts/CourtDetailLayout.css";
 
 const CourtDetailLayout = () => {
   const location = useLocation();
@@ -19,7 +20,7 @@ const CourtDetailLayout = () => {
       <div className="main-content">
 
         <HomeComponent />
-        <div style={{ margin: "0 277px" }}>
+        <div className='main-detail-court'>
           {/* Court Detail Component */}
           <CourtDetailComponent court={{ name: "Sân 286 Nguyễn Xiên", price: "100.000", slots: "6", location: "Hà Nội" }} />
 

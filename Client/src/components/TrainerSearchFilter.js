@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import '../styles/screens/TrainerSearchFilter.css'; // Ensure to create this CSS file for custom styles
 
-const TrainerSearchFilter = ({ onSearch }) => {
+const TrainerSearchFilter = ({ allCourts, setFilteredResults }) => {
   const [filters, setFilters] = useState({
     location: '',
     level: '',

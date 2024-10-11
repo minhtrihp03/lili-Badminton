@@ -23,6 +23,7 @@
   display: flex;
   justify-content: space-around;
   justify-content: left;
+  width: 40%;
 }
 
 .container {
@@ -48,6 +49,10 @@
 .logo-footer img {
   width: 55px;
   height: 55px;
+}
+
+.text-link {
+  width: 60%;
 }
 
 .links {
@@ -132,9 +137,17 @@
     text-align: left;
   }
 
+  .footer-container {
+    margin: 0;
+    flex-direction: column;
+    gap: 0;
+  }
+
   .logo-footer {
-    margin-left: 0  ;
+    margin-top: 20px;
+    margin-left: 0 ;
     margin-bottom: 20px;
+    text-align: left;
   }
 
   .logo-footer img {
@@ -144,6 +157,7 @@
   .head-footer {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 
   .links {
@@ -158,6 +172,7 @@
 
   .text-link {
     margin-bottom: 30px;
+    width: 100%;
   }
 
   .link-info {

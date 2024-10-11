@@ -8,13 +8,13 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
-        <div className="head-footer w-40">
+        <div className="head-footer ">
           <div className="logo-footer">
             <h1><a style={{ color: 'white', fontWeight: 'bold', textDecoration: 'none' }} href="/"> Ji Ji Ball </a> </h1>
             <p>Phục vụ những nhu cầu thiết yếu của cộng đồng PICKLEBALL</p>
           </div>
         </div>
-        <div className="text-link w-60">
+        <div className="text-link ">
           <div className="links">
             <div className="link-info">
               <h4>Về chúng tôi</h4>
