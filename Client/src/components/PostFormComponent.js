@@ -11,6 +11,7 @@ const PostFormComponent = () => {
     name: '',
     location: '',
     courtType: '',
+    playTime: '',
     slots: 0,
     date: new Date(), // Initialize with a Date object
     price: '',
@@ -35,76 +36,73 @@ const PostFormComponent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const token = localStorage.getItem('token'); // Retrieve token from localStorage
     console.log('Token:', token);
-
-    const formData = new FormData();
-    formData.append("court_address", post.location);
-    formData.append("total_players", post.slots);
-    formData.append("court_type", post.courtType);
-    formData.append("players_needed", post.slots);
-    formData.append("skill_level", post.level);
-
+  
     // Ensure date is formatted correctly and exists
-    if (post.date) {
-      // Create a Date object from the post.date
-      const dateObject = new Date(post.date);
-
-      // Check if the date is valid
-      if (isNaN(dateObject)) {
-        alert('Please enter a valid date.');
-        return;
-      }
-
-      // Format date to DD-MM-YYYY
-      const formattedDate = formatDate(dateObject);
-      console.log("Formatted Date:", formattedDate, "typeDate", typeof (formattedDate)); // Log formatted date
-      formData.append("play_date", formattedDate);
-    } else {
-      alert('Please enter a valid date.');
-      return;
+    if (!post.date) {
       alert('Please enter a valid date.');
       return;
     }
-
-    formData.append("cost", post.price);
-    formData.append("contact_info", JSON.stringify({ phone: post.phone, facebook: post.facebook }));
-
-    if (!post.location || post.slots <= 0 || !post.courtType || !post.date || !post.price || !post.phone) {
-      alert('Please fill in all required fields.');
+  
+    // Create a Date object from the post.date
+    const dateObject = new Date(post.date);
+  
+    // Check if the date is valid
+    if (isNaN(dateObject)) {
+      alert('Please enter a valid date.');
       return;
+    }
+  
+    // Format date to DD-MM-YYYY
+    const formattedDate = formatDate(dateObject);
+    console.log("Formatted Date:", formattedDate, "typeDate", typeof (formattedDate)); // Log formatted date
+  
+    // Validate required fields
+    if (!post.location || post.slots <= 0 || !post.courtType || !post.price || !post.phone) {
       alert('Please fill in all required fields.');
       return;
     }
+  
+    // Create reqBody as a JSON object
 
-    for (const [key, value] of formData.entries()) {
-      console.log(key, value);
-      console.log(key, value);
-    }
-
+    const reqBody = {
+      court_name: post.name,
+      location: post.location,
+      total_players: post.slots,
+      court_type: post.courtType,
+      players_needed: post.slots,
+      skill_level: post.level,
+      play_date: formattedDate,
+      cost: post.price,
+      play_time: post.playTime,
+      contact_info: `SĐT: ${post.phone}, Facebook: ${post.facebook}`
+    };
+  
+    console.log( JSON.stringify(reqBody));
+  
     try {
       const response = await fetch("https://bepickleball.vercel.app/api/post/create", {
         method: "POST",
         headers: {
+          'Content-Type': 'application/json', // Set Content-Type header to JSON
           'Authorization': `Bearer ${token}`, // Use the token in the Authorization header
         },
-        body: formData,
+        body: JSON.stringify(reqBody), // Send the reqBody as JSON
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
         console.error('Response Error:', errorData); // Log error response
-        alert(`Error: ${errorData.error}`);
+        alert(`${errorData.error}`);
         return;
       }
-
+  
       const result = await response.json();
       setShowModal(true); // Show modal on success
     } catch (error) {
-      console.log(error);
-      alert('Có lỗi xảy ra khi đăng bài!');
-      console.log(error);
+      console.error(error);
       alert('Có lỗi xảy ra khi đăng bài!');
     }
   };
@@ -115,7 +113,7 @@ const PostFormComponent = () => {
     const day = String(dateObject.getDate()).padStart(2, '0');
     const month = String(dateObject.getMonth() + 1).padStart(2, '0');
     const year = dateObject.getFullYear();
-    return `${day}-${month}-${year}`; // Return formatted date
+    return `${day}/${month}/${year}`; // Return formatted date
   };
 
 
@@ -174,17 +172,17 @@ const PostFormComponent = () => {
                     <Form.Check
                       inline
                       type="radio"
-                      label="Không có mái che"
+                      label="Sân Không Có Mái Che"
                       name="courtType"
-                      value="Không có mái che"
+                      value="Sân Không Có Mái Che"
                       onChange={handleInputChange}
                     />
                     <Form.Check
                       inline
                       type="radio"
-                      label="Có mái che"
+                      label="Sân Có Mái Che"
                       name="courtType"
-                      value="Có mái che"
+                      value="Sân Có Mái Che"
                       onChange={handleInputChange}
                     />
                   </div>
@@ -260,6 +258,18 @@ const PostFormComponent = () => {
                           value={post.date.toISOString().substring(0, 10)}
                           onChange={handleInputChange}
                         />
+                      </Form.Group>
+
+                      <Form.Group controlId="playTime" style={{ width: '90%', textAlign: 'center' }}>
+                        <Form.Label>Thời gian chơi (bắt buộc)</Form.Label>
+                        <Form.Control as="select" name="playTime" onChange={handleInputChange}>
+                          <option value="5h-7h">5h-7h</option>
+                          <option value="7h-10h">7h-10h</option>
+                          <option value="10h-13h">10h-13h</option>
+                          <option value="13h-16h">13h-16h</option>
+                          <option value="16h-19h">16h-19h</option>
+                          <option value="19h-21h">19h-21h</option>
+                        </Form.Control>
                       </Form.Group>
 
                       <Form.Group controlId="formPrice" style={{ width: '90%', textAlign: 'center' }}>
