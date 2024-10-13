@@ -35,8 +35,6 @@ const CourtListComponent = ({ filteredResults }) => {
   const handlePageChange = (event, value) => {
     setPage(value);
   };
-  console.log(page);
-  
 
   const startIndex = (page - 1) * itemsPerPage;
   const currentCourts = filteredResults.slice(startIndex, startIndex + itemsPerPage);

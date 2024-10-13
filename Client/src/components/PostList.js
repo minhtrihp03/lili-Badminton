@@ -10,11 +10,20 @@ const PostList = ({ posts: initialPosts }) => {
     const confirmDelete = window.confirm('Bạn có chắc chắn muốn xóa bài đăng này?');
     if (!confirmDelete) return;
   
+    // Lấy token từ localStorage (hoặc nguồn khác)
+    const token = localStorage.getItem('token');
+  
+    if (!token) {
+      alert('Bạn cần đăng nhập để thực hiện hành động này.');
+      return;
+    }
+  
     try {
       const response = await fetch(`https://bepickleball.vercel.app/api/post/cancel/${postId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` // Thêm token vào header
         },
       });
   
@@ -29,6 +38,7 @@ const PostList = ({ posts: initialPosts }) => {
       alert('Có lỗi xảy ra khi xóa bài đăng');
     }
   };
+  
   
 
   return (

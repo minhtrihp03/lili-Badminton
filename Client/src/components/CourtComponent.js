@@ -9,7 +9,7 @@ const CourtComponent = ({ name, price, slots, location, type, level, image, appl
   const navigate = useNavigate();
 
   // Fallback level if it's undefined
-  const displayedLevel = level ? level.toFixed(1) : "N/A";
+  const displayedLevel = level ? level.toFixed(1) : "1-2";
 
   // Handle card click to navigate with court details
   const handleCardClick = () => {
@@ -32,7 +32,7 @@ const CourtComponent = ({ name, price, slots, location, type, level, image, appl
   return (
     <Card className="court-card" onClick={handleCardClick}>
       <div className="top-left-badge">
-        {type === 'có mái che' ? 'Sân Có Mái Che' : 'Sân không có mái che'}
+        {type === 'Sân Có Mái Che' ? 'Sân Có Mái Che' : 'Sân không có mái che'}
       </div>
 
       <div className="top-right-badge">
