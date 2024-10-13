@@ -63,7 +63,7 @@ const CourtComponent = ({ name, price, slots, location, type, level, image, appl
 
         <Row style={{ padding: "0px", margin: "0px", marginBottom: "10px" }}>
           <Col className="location" md={7}>
-            <CiLocationOn /> {location}
+            <CiLocationOn /> {name}
           </Col>
           <Col className="slots-text" md={5}>
             <PiUserRectangleLight /> {slots}/8 người
