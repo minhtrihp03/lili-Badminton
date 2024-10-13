@@ -9,15 +9,17 @@ const PostList = ({ posts: initialPosts }) => {
   const handleDelete = async (postId) => {
     const confirmDelete = window.confirm('Bạn có chắc chắn muốn xóa bài đăng này?');
     if (!confirmDelete) return;
-
+  
     try {
       const response = await fetch(`https://bepickleball.vercel.app/api/post/cancel/${postId}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
-
+  
       if (response.ok) {
-        // Xóa bài đăng khỏi danh sách sau khi xóa thành công
-        setPosts(posts.filter((post) => post.id !== postId));
+        setPosts(posts.filter((post) => post._id !== postId));  // _id từ MongoDB
         alert('Bài đăng đã được xóa thành công');
       } else {
         alert('Xóa bài đăng thất bại');
@@ -27,6 +29,7 @@ const PostList = ({ posts: initialPosts }) => {
       alert('Có lỗi xảy ra khi xóa bài đăng');
     }
   };
+  
 
   return (
     <div className="post-list">
