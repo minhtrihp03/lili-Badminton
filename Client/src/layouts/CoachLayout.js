@@ -7,22 +7,20 @@ import Footer from '../components/Footer';
 
 const CoachLayout = () => {
   const [searchFilters, setSearchFilters] = useState({
-    trainerName: '',
-    experienceLevel: '',
+    location: '',
+    level: '',
+    otherLocation: '',
   });
 
-  // Hàm để nhận thông tin tìm kiếm từ TrainerSearchFilter
   const handleSearch = (filters) => {
-    setSearchFilters(filters); // Cập nhật bộ lọc tìm kiếm
+    setSearchFilters(filters); // Update the search filters state
   };
 
   return (
-    <div style={{backgroundColor: "#F0F0F0"}}>
+    <div style={{ backgroundColor: "#F0F0F0" }}>
       <Header />
       <HomeComponent />
-      {/* Truyền hàm handleSearch cho TrainerSearchFilter */}
       <TrainerSearchFilter onSearch={handleSearch} />
-      {/* Truyền searchFilters cho CoachListComponent */}
       <CoachListComponent searchFilters={searchFilters} />
       <Footer />
     </div>

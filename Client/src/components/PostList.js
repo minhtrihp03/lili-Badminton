@@ -49,7 +49,7 @@ const PostList = () => {
     console.log('Token:', token);
 
     try {
-      const response = await fetch(`https://bepickleball.vercel.app/api/post/cancel/${postId}`, {
+      const response = await fetch(`https://bepickleball.vercel.app/api/post/delete/${postId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
