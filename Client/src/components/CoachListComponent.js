@@ -52,6 +52,7 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
                 contact={coach.contact_info}
                 phone={coach?.contact_info.phone}
                 image={coach.profile_image_url}
+                location={coach.address}
                 style={{
                   width: "250px", /* Kích thước cố định cho mỗi thẻ coach */
                   alignItems: 'center',

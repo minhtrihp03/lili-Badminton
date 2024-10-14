@@ -1,8 +1,9 @@
 import React from 'react';
 import { FaFacebook, FaPhoneAlt, FaUserTie } from 'react-icons/fa';
 import '../styles/screens/CoachComponent.css'; // Custom CSS for card styling
+import { CiLocationOn } from "react-icons/ci";
 
-const CoachComponent = ({ name, price, level, phone, image, contact }) => {
+const CoachComponent = ({ name, price, level, phone, image, contact, location }) => {
   return (
     <div className="card coach-card">
       {/* Image at the top */}
@@ -19,34 +20,24 @@ const CoachComponent = ({ name, price, level, phone, image, contact }) => {
           {price} VND/buổi
         </p>
 
-        <p className="card-text level-text" style={{ marginBottom: 0 }}>
-          <FaUserTie /> Trình độ: {level}
-        </p>
-
-
-
-        <p className="card-text">
-          <FaPhoneAlt /> SĐT: {phone}
-        </p>
+        <div className="court-info-item">
+                  <CiLocationOn className="icon" style={{ color: "#828282" }} /> 
+                  <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: "none", color: "#828282" }}
+                >
+                  {location}
+                </a>
+                </div>
 
         {/* Contact buttons: Facebook and Zalo */}
         <div className="row contact-buttons">
           <div className="col">
-            <button className="btn btn-outline-primary contact-btn" style={{ color: "#3b5998", backgroundColor: "white", borderColor: "#3b5998" }}>
-              <FaFacebook /> {contact?.facebook && (
-                <a style={{ color: "black", textDecoration: "none" }} href={contact.facebook} target="_blank" rel="noopener noreferrer">
-                  Facebook
-                </a>
-              )}
-            </button>
-          </div>
-          <div className="col">
             <button className="btn btn-outline-primary contact-btn" style={{ color: "white", backgroundColor: "#3b5998", borderColor: "#3b5998" }}>
-              <FaPhoneAlt />  {contact?.zalo && (
                 <a href={`https://zalo.me/${phone}`} target="_blank" rel="noopener noreferrer" style={{ marginLeft: '5px', color: "white", textDecoration: "none" }}>
-                  Zalo
+                  Xem thông tin liên hệ
                 </a>
-              )}
             </button>
           </div>
         </div>
