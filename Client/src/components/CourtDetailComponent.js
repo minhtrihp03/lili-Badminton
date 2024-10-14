@@ -35,6 +35,9 @@ const CourtDetailComponent = () => {
   };
 
   const getPhoneNumber = (contactInfo) => {
+    if (!contactInfo || typeof contactInfo !== 'string') {
+      return 'Không có số điện thoại';
+    }
     const match = contactInfo.match(/SĐT:\s?(\d+)/);
     return match ? match[1] : 'Không có số điện thoại';
   };
