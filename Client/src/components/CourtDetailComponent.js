@@ -7,8 +7,10 @@ import { IoIosInformationCircle } from "react-icons/io";
 import { PiUserSquareLight } from "react-icons/pi";
 import { useNotifications } from './NotificationContext'; // Cập nhật đường dẫn
 import '../styles/screens/CourtDetailComponent.css';
+import { useNavigate } from 'react-router-dom';
 
 const CourtDetailComponent = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const { state } = location;
   const {
@@ -32,6 +34,15 @@ const CourtDetailComponent = () => {
   const [showOverlay, setShowOverlay] = useState(false); // Trạng thái cho overlay
 
   const handleRegister = () => {
+    const loggedInStatus = localStorage.getItem('isLoggedIn');
+  
+    if (loggedInStatus === 'true') {
+      // Người dùng đã đăng nhập
+      alert('Bạn đã đăng ký sân thành công!');
+    } else {
+      // Người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập
+      navigate('/login');
+    }
     addNotification(`Đặt sân ${name} thành công!`);
   };
 
