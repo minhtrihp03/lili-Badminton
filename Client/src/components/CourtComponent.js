@@ -1,15 +1,16 @@
 import React from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import { CiLocationOn } from "react-icons/ci";
-import { PiUserRectangleLight  } from "react-icons/pi";
+import { PiUserRectangleLight } from "react-icons/pi";
 import { useNavigate } from 'react-router-dom';
 import '../styles/screens/CourtComponent.css'; // Import custom CSS
+import NoImage from '../assets/no-image.jpg'; 
 
-const CourtComponent = ({ name, price, slots, location, type, level, image, applied_players, players_needed, time, contact_info }) => { // Added time here
+const CourtComponent = ({ name, price, slots, location, type, level, images = [], applied_players, players_needed, time, contact_info }) => { // Added time here
   const navigate = useNavigate();
 
   // Fallback level if it's undefined
-  const displayedLevel = level ? level.toFixed(1) : "1-2";
+  const displayedLevel = level ? level.toFixed(1) : "N/A";
 
   // Handle card click to navigate with court details
   const handleCardClick = () => {
@@ -21,7 +22,7 @@ const CourtComponent = ({ name, price, slots, location, type, level, image, appl
         location,
         type,
         level,
-        image,
+        images,
         applied_players,
         players_needed,
         time, // time is now defined
@@ -33,7 +34,7 @@ const CourtComponent = ({ name, price, slots, location, type, level, image, appl
   return (
     <Card className="court-card" onClick={handleCardClick}>
       <div className="top-left-badge">
-        {type === 'Sân Có Mái Che' ? 'Sân Có Mái Che' : 'Sân không có mái che'}
+        {type === 'có mái che' ? 'Sân Có Mái Che' : 'Sân không có mái che'}
       </div>
 
       <div className="top-right-badge">
@@ -49,7 +50,7 @@ const CourtComponent = ({ name, price, slots, location, type, level, image, appl
       <div
         className="card-image"
         style={{
-          backgroundImage: `url(${image})`,
+          backgroundImage: `url(${images.length > 0 ? images[0] : NoImage})`, // Thay thế bằng hình ảnh mặc định nếu không có
         }}
         alt={`Court ${name}`}
       />

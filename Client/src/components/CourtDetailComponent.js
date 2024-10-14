@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Card, Row, Col, Button } from 'react-bootstrap';
-import { FaMapMarkerAlt, FaUserFriends, FaCheckCircle, FaRegClock } from 'react-icons/fa';
 import { CiLocationOn } from "react-icons/ci";
 import { FaArrowUpRightDots } from "react-icons/fa6";
 import { IoIosInformationCircle } from "react-icons/io";
@@ -12,18 +11,48 @@ import '../styles/screens/CourtDetailComponent.css';
 const CourtDetailComponent = () => {
   const location = useLocation();
   const { state } = location;
-  const { name, price, slots, location: courtLocation, type, level, image, players_needed, applied_players, time, contact_info } = state;
+  const {
+    name,
+    price,
+    slots,
+    location: courtLocation,
+    type,
+    level,
+    images = [],
+    players_needed,
+    applied_players,
+    time,
+    contact_info
+  } = state || {};
 
   const { addNotification } = useNotifications(); // Lấy hàm addNotification từ context
 
+  const [selectedImage, setSelectedImage] = useState(images[0] || ''); // Trạng thái cho hình ảnh đã chọn
+  const [showOverlay, setShowOverlay] = useState(false); // Trạng thái cho overlay
+
   const handleRegister = () => {
-    // Thêm thông báo khi đăng ký thành công
     addNotification(`Đặt sân ${name} thành công!`);
   };
 
   const getPhoneNumber = (contactInfo) => {
-    const match = contactInfo.match(/SĐT:\s?(\d+)/); // Tìm số điện thoại
-    return match ? match[1] : 'Không có số điện thoại'; // Trả về số điện thoại nếu có
+    const match = contactInfo.match(/SĐT:\s?(\d+)/);
+    return match ? match[1] : 'Không có số điện thoại';
+  };
+
+  const handleViewMore = () => {
+    alert('Hiển thị thêm hình ảnh...');
+  };
+
+  const handleThumbnailClick = (img) => {
+    setSelectedImage(img); // Cập nhật hình ảnh đã chọn khi nhấp vào thumbnail
+  };
+
+  const handleShowOverlay = () => {
+    setShowOverlay(true); // Hiện overlay khi nhấp vào nút "Xem thêm"
+  };
+
+  const handleCloseOverlay = () => {
+    setShowOverlay(false); // Ẩn overlay khi nhấp vào overlay
   };
 
   return (
@@ -31,10 +60,64 @@ const CourtDetailComponent = () => {
       <Card id="court-detail-card">
         <Row>
           <Col md={7} style={{ padding: 0 }}>
-            <img src={image} alt={`Court ${name}`} />
+            <Card.Body className='court-card-body'>
+              <Row>
+                <Col md={12} style={{ padding: 0 }}>
+                  {/* Hiển thị hình ảnh lớn */}
+                  {selectedImage ? (
+                    <div className="image-container">
+                      <img src={selectedImage} alt={`Court ${name}`} className="large-image" />
+                      {showOverlay && (
+                        <div className="overlay" onClick={handleCloseOverlay}>
+                          <span className="overlay-text">Xem thêm</span>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="placeholder-image">No Image Available</div>
+                  )}
+                </Col>
+              </Row>
+
+              <Row className="image-grid">
+                {/* 3 ảnh nhỏ */}
+                {images.slice(1, 4).map((img, index) => (
+                  <Col md={3} key={index} className="small-image-col">
+                    {index === 2 ? ( // Hiển thị nút "Xem thêm" trên ảnh thứ 3
+                      <div className="small-image-container" onClick={handleShowOverlay}>
+                        <img
+                          src={img}
+                          alt={`Court ${name} ${index + 1}`}
+                          className="small-image"
+                        />
+                        <div className="overlay">
+                          <span className="overlay-text" onClick={handleViewMore}>Xem thêm</span>
+                        </div>
+                      </div>
+                    ) : (
+                      <img
+                        src={img}
+                        alt={`Court ${name} ${index + 1}`}
+                        className="small-image"
+                        onClick={() => handleThumbnailClick(img)} // Cập nhật hình ảnh lớn khi nhấp
+                      />
+                    )}
+                  </Col>
+                ))}
+
+                {/* Nút "Xem thêm" */}
+                {/* {images.length > 4 && (
+                  <Col md={4} className="small-image-col">
+                    <Button variant="outline-primary" className="view-more-btn" onClick={handleViewMore}>
+                      Xem thêm
+                    </Button>
+                  </Col>
+                )} */}
+              </Row>
+            </Card.Body>
           </Col>
           <Col md={5} className="court-details">
-            <Card.Body>
+            <Card.Body id='court-card-body'>
               <div className="badge-container">
                 <Button variant="outline-primary" className="court-badge">
                   {type}
@@ -50,9 +133,11 @@ const CourtDetailComponent = () => {
                   Trình độ: {level.toFixed(1)}
                 </div>
               </Card.Text>
-              <Card.Text style={{ fontSize: "24px", fontWeight: "600", color: "#059A8F" }}>{price.toLocaleString('vi-VN')} VND / người</Card.Text>
+              <Card.Text style={{ fontSize: "24px", fontWeight: "600", color: "#059A8F" }}>
+                {price.toLocaleString('vi-VN')} VND / người
+              </Card.Text>
               <Card.Text>
-                <PiUserSquareLight className="icon" style={{ color: "#828282" }} />Slot cần tuyển: {applied_players}/{players_needed} người đã đăng ký
+                <PiUserSquareLight className="icon" style={{ color: "#828282" }} />Slot cần tuyển: <span style={{ color: "red" }}>{applied_players}/{players_needed} người</span>
               </Card.Text>
               <Card.Text>
                 <IoIosInformationCircle className="icon" style={{ color: "#828282", fontSize: "20px" }} />Thời gian chơi: {time}
@@ -66,20 +151,20 @@ const CourtDetailComponent = () => {
         </Row>
         {/* Court Description */}
         <Row>
-          <Col style={{ textAlign: "left" }}>
-            <h5 style={{ color: "#059A8F" }}>Lưu ý</h5>
+          <Col className='court-description' style={{ textAlign: "left" }}>
+            <h5 className='des-text-1' style={{ color: "#059A8F" }}>Lưu ý</h5>
+            <h5 className='des-text-2' style={{ color: "#059A8F" }}>Mô tả</h5>
             <div
               style={{
-                width: "4%",
-                height: "1px",
+                width: "60px",
+                height: "1.8px",
                 color: "#059A8F",
-                backgroundColor: "#ccc",
+                backgroundColor: "#059A8F",
                 margin: "10px 0",
               }}
-            />{" "}
-            {/* Đường kẻ ngăn cách */}
+            />
             <br />
-            <p>
+            <p className='des-text-1'>
               1. "Xé vé" là hình thức thu tiền trọn gói cho cả buổi chơi (thường
               2-3 giờ) bao gồm: sân + bóng + nước uống (Aqua/Dasani). <br />
               2. Hình thức này rất phù hợp với những người có công việc bận rộn
@@ -91,6 +176,25 @@ const CourtDetailComponent = () => {
               suất. <br />
               5. Chúng tôi hoàn toàn không thu bất kì phí nào của người chơi,
               vui lòng thanh toán trực tiếp với chủ sân.
+            </p>
+            <p className='des-text-2'>Sân Pickleball có hình chữ nhật với kích thước nhỏ hơn sân tennis, được chia làm hai nửa bởi một lưới ở giữa. Sân thường có các đặc điểm sau: <br />
+              <ol>
+                <li>Kích thước: Sân có chiều dài 13,41 mét (44 feet) và chiều rộng 6,1 mét (20 feet). Mỗi bên sân có chiều dài 6,71 mét (22 feet).</li>
+                <li>Lưới: Lưới cao 91,4 cm (36 inch) ở hai đầu và cao 86,4 cm (34 inch) ở giữa. Lưới được căng ngang giữa sân, chia sân thành hai phần bằng nhau.</li>
+                <li>Khu vực:
+                  <ul>
+                    <li>
+                      Khu vực không vô lê: Gần lưới, có chiều dài 2,13 mét (7 feet) tính từ lưới về mỗi bên sân, được gọi là khu vực "kitchen" hoặc "no-volley zone". Trong khu vực này, người chơi không được thực hiện các cú vô lê (đánh bóng mà không cho bóng chạm đất trước).
+
+                    </li>
+                    <li>
+                      Phần sân còn lại: Được chia thành hai phần chính, tương ứng với phần sân phải và phần sân trái, nơi người chơi có thể giao bóng và đánh trả.
+
+                    </li>
+                  </ul></li>
+
+              </ol>
+
             </p>
           </Col>
         </Row>
