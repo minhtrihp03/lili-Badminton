@@ -30,6 +30,7 @@ const CourtComponent = ({ name, price, slots, location, type, level, images = []
         applied_count
       }
     });
+    window.location.reload();
   };
 
   console.log(applied_count);
