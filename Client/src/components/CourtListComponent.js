@@ -56,13 +56,14 @@ const CourtListComponent = ({ filteredResults }) => {
                   name={court.court_name}
                   price={court.cost}
                   slots={court.total_players}
-                  location={court.court_name}
+                  location={court.location}
                   type={court.court_type}
                   level={parseFloat(court.skill_level)}
                   image={court.images[0]}
                   players_needed={court.players_needed}
                   applied_players={court.applied_players}
-                  time={court.time}
+                  date={court.play_date}
+                  time={court.play_time}
                   contact_info={court.contact_info}
                 />
               </Col>

@@ -11,7 +11,9 @@ const PostForm = () => {
     price: '',
     zaloLink: '',
     facebookLink: '',
-    rememberChoice: false,  // Add rememberChoice field
+    trainerLocation: '',  // Đảm bảo có trường này cho địa điểm
+    courtLocation: '',     // Thêm trường courtLocation
+    rememberChoice: false,
   });
 
   // Effect to load saved data from localStorage
@@ -33,14 +35,54 @@ const PostForm = () => {
     setFormData({ ...formData, rememberChoice: e.target.checked });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('Bạn cần đăng nhập để thực hiện hành động này.');
+      return;
+    }
+
+    // Check if remember choice is checked
     if (formData.rememberChoice) {
       localStorage.setItem('formData', JSON.stringify(formData));
     } else {
       localStorage.removeItem('formData');
     }
+
+    // Log data for testing
     console.log('Form Data Submitted:', formData);
+
+    // Send data to the API
+    try {
+      const response = await fetch('https://bepickleball.vercel.app/api/coach/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          name: formData.trainerName,
+          rating: 4.5, // Giả định giá trị này
+          price_per_session: formData.price,
+          profile_image_url: formData.image,
+          contact_info: {
+            phone: formData.phoneNumber,
+            facebook: formData.facebookLink,
+            zalo: formData.zaloLink,
+          },
+          courtLocation: formData.courtLocation, // Thêm trường courtLocation
+        }),
+      });
+
+      const data = await response.json();
+      console.log('Response from API:', data);
+
+      // Thực hiện thêm xử lý sau khi gửi thành công, nếu cần
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   return (
@@ -148,6 +190,17 @@ const PostForm = () => {
           </Form.Group>
         </Col>
       </Row>
+
+      <Form.Group controlId="courtLocation">
+        <Form.Control
+          type="text"
+          placeholder="Nhập địa điểm sân"
+          name="courtLocation"
+          value={formData.courtLocation}
+          onChange={handleInputChange}
+          style={{ width: '90%', marginBottom: "20px" }}
+        />
+      </Form.Group>
 
       {/* Checkbox: Remember my choices */}
       <Form.Group controlId="rememberChoice">

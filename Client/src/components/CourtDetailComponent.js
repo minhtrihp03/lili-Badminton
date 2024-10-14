@@ -36,7 +36,9 @@ const CourtDetailComponent = () => {
           <Col md={5} className="court-details">
             <Card.Body>
               <div className="badge-container">
-                <Button variant="outline-primary" className="court-badge">{type}</Button>
+                <Button variant="outline-primary" className="court-badge">
+                  {type}
+                </Button>
               </div>
               <Card.Title style={{ fontSize: "32px", fontWeight: "500" }}>{name}</Card.Title>
               <Card.Text className='court-info'>
@@ -66,14 +68,29 @@ const CourtDetailComponent = () => {
         <Row>
           <Col style={{ textAlign: "left" }}>
             <h5 style={{ color: "#059A8F" }}>Lưu ý</h5>
-            <div style={{ width: '4%', height: '1px', color: "#059A8F", backgroundColor: '#ccc', margin: '10px 0' }} /> {/* Đường kẻ ngăn cách */}
+            <div
+              style={{
+                width: "4%",
+                height: "1px",
+                color: "#059A8F",
+                backgroundColor: "#ccc",
+                margin: "10px 0",
+              }}
+            />{" "}
+            {/* Đường kẻ ngăn cách */}
             <br />
             <p>
-              1.  "Xé vé" là hình thức thu tiền trọn gói cho cả buổi chơi (thường 2-3 giờ) bao gồm: sân + bóng + nước uống (Aqua/Dasani). <br />
-              2. Hình thức này rất phù hợp với những người có công việc bận rộn không có nhóm chơi cố định hoặc có thời gian rảnh mà không kiếm được đồng đội chơi cùng. <br />
-              3. Sau khi đăng ký giao lưu thành công, mọi người thể kiểm tra lại thông qua chức năng sân đã đăng ký. <br />
-              4. Mọi người hoàn toàn có thể hủy sân sau khi đặt nếu có việc đột suất. <br />
-              5. Chúng tôi hoàn toàn không thu bất kì phí nào của người chơi, vui lòng thanh toán trực tiếp với chủ sân.
+              1. "Xé vé" là hình thức thu tiền trọn gói cho cả buổi chơi (thường
+              2-3 giờ) bao gồm: sân + bóng + nước uống (Aqua/Dasani). <br />
+              2. Hình thức này rất phù hợp với những người có công việc bận rộn
+              không có nhóm chơi cố định hoặc có thời gian rảnh mà không kiếm
+              được đồng đội chơi cùng. <br />
+              3. Sau khi đăng ký giao lưu thành công, mọi người thể kiểm tra lại
+              thông qua chức năng sân đã đăng ký. <br />
+              4. Mọi người hoàn toàn có thể hủy sân sau khi đặt nếu có việc đột
+              suất. <br />
+              5. Chúng tôi hoàn toàn không thu bất kì phí nào của người chơi,
+              vui lòng thanh toán trực tiếp với chủ sân.
             </p>
           </Col>
         </Row>

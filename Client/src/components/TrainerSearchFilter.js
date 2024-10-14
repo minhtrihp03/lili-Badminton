@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import '../styles/screens/TrainerSearchFilter.css'; // Ensure to create this CSS file for custom styles
 
-const TrainerSearchFilter = ({ allCourts, setFilteredResults }) => {
+const TrainerSearchFilter = ({ allCourts = [], setFilteredResults }) => {
   const [filters, setFilters] = useState({
     location: '',
     level: '',
@@ -27,7 +27,8 @@ const TrainerSearchFilter = ({ allCourts, setFilteredResults }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const filteredResults = allCourts.filter(court => {
+    // Kiểm tra nếu allCourts tồn tại
+    const filteredResults = allCourts && allCourts.length > 0 ? allCourts.filter(court => {
       // Lọc theo địa điểm
       const locationFilter = filters.location === 'Other'
         ? court.court_address.includes(filters.otherLocation)
@@ -40,12 +41,8 @@ const TrainerSearchFilter = ({ allCourts, setFilteredResults }) => {
         ? parseFloat(court.skill_level) === parseFloat(filters.level)
         : true;
 
-    
-      return (
-        locationFilter &&
-        levelFilter
-      );
-    });
+      return locationFilter && levelFilter;
+    }) : [];
 
     setFilteredResults(filteredResults); // Cập nhật danh sách sau khi lọc
   };
@@ -136,6 +133,5 @@ const TrainerSearchFilter = ({ allCourts, setFilteredResults }) => {
     </div>
   );
 };
-
 
 export default TrainerSearchFilter;
