@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, Row, Col, Alert } from 'react-bootstrap';
+import { Button, Form, Row, Col } from 'react-bootstrap';
 import '../styles/screens/PostForm.css'; // Add your custom styles
 
 const PostForm = () => {
   const [formData, setFormData] = useState({
     trainerName: '',
     experience: '',
-    images: null, // Changed to null for initial state
+    image: '',
     phoneNumber: '',
-    price_per_session: '',
+    price: '',
     zaloLink: '',
     facebookLink: '',
-    trainerLocation: '',
-    description: '',
+    trainerLocation: '',  // Đảm bảo có trường này cho địa điểm
+    courtLocation: '',     // Thêm trường courtLocation
     rememberChoice: false,
-    address: '',
   });
-
-  const [submissionStatus, setSubmissionStatus] = useState({ success: false, error: null }); // New state for submission status
 
   // Effect to load saved data from localStorage
   useEffect(() => {
@@ -29,14 +26,8 @@ const PostForm = () => {
 
   // Handle input changes
   const handleInputChange = (e) => {
-    const { name, value, type, files } = e.target;
-
-    if (type === 'file') {
-      // Handle file input for images
-      setFormData({ ...formData, [name]: files[0] });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   // Handle checkbox change
@@ -53,71 +44,50 @@ const PostForm = () => {
       return;
     }
 
+    // Check if remember choice is checked
     if (formData.rememberChoice) {
       localStorage.setItem('formData', JSON.stringify(formData));
     } else {
       localStorage.removeItem('formData');
     }
 
+    // Log data for testing
     console.log('Form Data Submitted:', formData);
 
-    // Prepare form data for submission
-    const data = new FormData();
-    data.append('name', formData.trainerName);
-    data.append('price_per_session', formData.price_per_session); // Correct the field name
-    data.append('address', formData.address); // Append the address field
-    data.append('contact_info[phone]', formData.phoneNumber);
-    data.append('contact_info[facebook]', formData.facebookLink);
-    data.append('description', formData.description);
-
-    // Append the file if selected
-    if (formData.images) {
-      data.append('images', formData.images); // Send the file object
-    } else {
-      alert('No image selected. Please upload an image.');
-      return; // Prevent submission if no image is selected
-    }
-
+    // Send data to the API
     try {
       const response = await fetch('https://bepickleball.vercel.app/api/coach/add', {
         method: 'POST',
         headers: {
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: data
+        body: JSON.stringify({
+          name: formData.trainerName,
+          rating: 4.5, // Giả định giá trị này
+          price_per_session: formData.price,
+          profile_image_url: formData.image,
+          contact_info: {
+            phone: formData.phoneNumber,
+            facebook: formData.facebookLink,
+            zalo: formData.zaloLink,
+          },
+          courtLocation: formData.courtLocation, // Thêm trường courtLocation
+        }),
       });
 
-      const result = await response.json();
-      console.log('Response from API:', result);
-      console.log('Response status:', response);
+      const data = await response.json();
+      console.log('Response from API:', data);
 
-      if (response.ok) {
-        console.log('Form submitted successfully!');
-        setSubmissionStatus({ success: true, error: null }); // Set success status
-      } else {
-        console.error('Error in submission:', result.error);
-        setSubmissionStatus({ success: false, error: result.error }); // Set error status
-      }
+      // Thực hiện thêm xử lý sau khi gửi thành công, nếu cần
     } catch (error) {
       console.error('Error submitting form:', error);
-      setSubmissionStatus({ success: false, error: 'An unexpected error occurred.' }); // Set error status
     }
   };
 
   return (
-    <Form className="post-form" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/post-background.png)` }} onSubmit={handleSubmit}>
-      <h4 style={{ textAlign: 'left' }}>Bài đăng</h4>
-
-      {submissionStatus.success && (
-        <Alert variant="success" onClose={() => setSubmissionStatus({ success: false, error: null })} dismissible>
-          Đăng bài thành công!
-        </Alert>
-      )}
-      {submissionStatus.error && (
-        <Alert variant="danger" onClose={() => setSubmissionStatus({ success: false, error: null })} dismissible>
-          {submissionStatus.error}
-        </Alert>
-      )}
+    <Form className="post-form" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/post-background.png)`}} onSubmit={handleSubmit}>
+      <h4 style={{textAlign: 'left'}}>Bài đăng</h4>
 
       {/* Tên huấn luyện viên */}
       <Form.Group controlId="trainerName">
@@ -134,22 +104,22 @@ const PostForm = () => {
       {/* Trình độ và input ảnh */}
       <Row>
         <Col md={6} style={{ padding: 0 }}>
-          <Form.Group controlId="images">
+          <Form.Group controlId="image">
             <Form.Control
               type="file"
-              name="images"
+              name="image"
               onChange={handleInputChange}
               style={{ padding: 0, width: '90%' }}
             />
           </Form.Group>
         </Col>
         <Col md={6} style={{ padding: 0 }}>
-          <Form.Group controlId="price_per_session">
+          <Form.Group controlId="price">
             <Form.Control
               type="text"
               placeholder="Nhập giá tiền"
-              name="price_per_session"
-              value={formData.price_per_session}
+              name="price"
+              value={formData.price}
               onChange={handleInputChange}
               style={{ padding: 0, width: '90%' }}
             />
@@ -157,7 +127,7 @@ const PostForm = () => {
         </Col>
       </Row>
 
-      {/* Số điện thoại và Facebook link */}
+      {/* Số điện thoại và Giá tiền */}
       <Row>
         <Col md={6} style={{ padding: 0 }}>
           <Form.Group controlId="phoneNumber">
@@ -185,7 +155,7 @@ const PostForm = () => {
         </Col>
       </Row>
 
-      {/* Link Zalo và Địa chỉ */}
+      {/* Link Zalo và Facebook */}
       <Row>
         <Col md={6} style={{ padding: 0 }}>
           <Form.Group controlId="zaloLink">
@@ -200,12 +170,12 @@ const PostForm = () => {
           </Form.Group>
         </Col>
         <Col md={6} style={{ padding: 0 }}>
-          <Form.Group controlId="address">
+          <Form.Group controlId="facebookLink">
             <Form.Control
               type="text"
               placeholder="Khu vực cụ thể"
-              name="address"
-              value={formData.address}
+              name="facebookLink"
+              value={formData.facebookLink}
               onChange={handleInputChange}
               style={{ padding: 0, width: '90%' }}
             />
@@ -213,13 +183,12 @@ const PostForm = () => {
         </Col>
       </Row>
 
-      {/* Description */}
-      <Form.Group controlId="description">
+      <Form.Group controlId="courtLocation">
         <Form.Control
           type="text"
           placeholder="Thành tích cá nhân"
-          name="description"
-          value={formData.description}
+          name="courtLocation"
+          value={formData.courtLocation}
           onChange={handleInputChange}
           style={{ width: '90%', marginBottom: "20px" }}
         />
@@ -235,10 +204,10 @@ const PostForm = () => {
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit" className="me-2" style={{ backgroundColor: "#2D70A1", color: 'white', borderRadius: '25px' }}>
+      <Button variant="primary" type="submit" className="me-2" style={{backgroundColor: "#2D70A1", color: 'white', borderRadius: '25px'}}>
         Đăng bài
       </Button>
-      <Button variant="secondary" type="button" style={{ backgroundColor: "white", color: '#2D70A1', borderRadius: '25px' }}>
+      <Button variant="secondary" type="button" style={{backgroundColor: "white", color: '#2D70A1', borderRadius: '25px'}}>
         Hủy bỏ
       </Button>
     </Form>
