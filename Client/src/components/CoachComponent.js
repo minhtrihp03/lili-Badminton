@@ -61,7 +61,7 @@ const CoachComponent = memo(({ name, price, level, phone, image, contact, addres
             </button> */}
             <button className="btn btn-outline-primary contact-btn" style={{ color: "#FFFFFF", backgroundColor: "#2D70A1", borderColor: "#2D70A1" }}>
                {contact?.facebook && (
-                <a style={{ color: "#FFFFFF", textDecoration: "none" }} href={contact.facebook} target="_blank" rel="noopener noreferrer">
+                <a style={{ color: "#FFFFFF", textDecoration: "none" }} href="/coach-detail" target="_blank" rel="noopener noreferrer">
                   Xem thông tin liên hệ
                 </a>
               )}
