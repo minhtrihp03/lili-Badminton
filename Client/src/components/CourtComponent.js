@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/screens/CourtComponent.css'; // Import custom CSS
 import NoImage from '../assets/no-image.jpg'; 
 
-const CourtComponent = ({ name, price, slots, location, type, level, images = [], applied_players, players_needed, time, contact_info }) => { // Added time here
+const CourtComponent = ({ name, price, slots, location, type, level, images = [], applied_players, players_needed, time, contact_info, applied_count }) => { // Added time here
   const navigate = useNavigate();
 
   // Fallback level if it's undefined
@@ -26,10 +26,14 @@ const CourtComponent = ({ name, price, slots, location, type, level, images = []
         applied_players,
         players_needed,
         time, // time is now defined
-        contact_info
+        contact_info,
+        applied_count
       }
     });
   };
+
+  console.log(applied_count);
+  
 
   return (
     <Card className="court-card" onClick={handleCardClick}>
