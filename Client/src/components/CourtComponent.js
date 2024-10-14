@@ -25,14 +25,14 @@ const CourtComponent = ({ name, price, slots, location, type, level, images = []
         images,
         applied_players,
         players_needed,
-        time, // time is now defined
+        time,
         contact_info,
         applied_count
       }
     });
   };
 
-  console.log(applied_count);
+  // console.log(applied_count);
   
 
   return (

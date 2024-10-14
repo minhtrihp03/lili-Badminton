@@ -59,7 +59,7 @@ const CourtDetailComponent = () => {
     setShowOverlay(false); // Ẩn overlay khi nhấp vào overlay
   };
 
-  console.log(applied_count);
+  // console.log(applied_count);
   
 
   return (

@@ -36,6 +36,9 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
     setVisibleCount((prevCount) => Math.min(prevCount + 4, filteredCoaches.length));
   };
 
+  // console.log(coaches[0].description);
+  
+
   return (
     <div className="coach-list ms-3" style={{ textAlign: 'center' }} >
       <h2 style={{ fontWeight: '600', margin: "50px 0 30px 0"}}>Huấn Luyện Viên</h2>
@@ -51,7 +54,9 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
                 level={coach.rating}
                 contact={coach.contact_info}
                 phone={coach?.contact_info.phone}
-                image={coach.profile_image_url}
+                image={coach.images[0]}
+                address={coach.address}
+                description={coach.description}
                 style={{
                   width: "250px", /* Kích thước cố định cho mỗi thẻ coach */
                   alignItems: 'center',
