@@ -71,25 +71,6 @@ const TrainerSearchFilter = ({ onSearch }) => {
           )}
 
           <Col xs="auto" className="me-1">
-            <Form.Group controlId="formLevel">
-              <Form.Control
-                as="select"
-                name="level"
-                value={filters.level}
-                onChange={handleInputChange}
-                className="form-control-sm"
-              >
-                <option value="">Trình độ</option>
-                <option value="1.0">1.0</option>
-                <option value="2.0">2.0</option>
-                <option value="3.0">3.0</option>
-                <option value="4.0">4.0</option>
-                <option value="5.0">5.0</option>
-              </Form.Control>
-            </Form.Group>
-          </Col>
-
-          <Col xs="auto" className="me-1">
             <Button variant="primary" type="submit" className="btn-sm">
               Tìm kiếm
             </Button>
