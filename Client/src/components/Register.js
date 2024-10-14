@@ -134,7 +134,7 @@ const Register = () => {
                   name='email'
                   id='email'
                   onChange={handleChange}
-                  value={formData.phone} />
+                  value={formData.email} />
               </div>
               <div className="input-group">
                 <div className="icon-wrapper">
