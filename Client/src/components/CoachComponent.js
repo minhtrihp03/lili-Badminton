@@ -2,9 +2,9 @@ import React, {memo} from 'react';
 import '../styles/screens/CoachComponent.css'; // Custom CSS for card styling
 import { CiLocationOn } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
+import NoImage from '../assets/no-image.jpg'; 
 
-
-const CoachComponent = memo(({ name, price, level, phone, image, contact, address, description }) => {
+const CoachComponent = ({ name, price, level, phone, image = [], contact, address, description }) => {
   const navigate = useNavigate();
 
   // Handle card click to navigate with coach details
@@ -21,13 +21,13 @@ const CoachComponent = memo(({ name, price, level, phone, image, contact, addres
         description
       }
     });
-  }  
+  }
 
   return (
     <div className="card coach-card" onClick={handleCardClick}>
       {/* Image at the top */}
       <img
-        src={image}
+        src={image.length > 0 ? image[0] : NoImage}
         alt={`Coach ${name}`}
         className="card-img-top card-image"
       />
@@ -78,6 +78,6 @@ const CoachComponent = memo(({ name, price, level, phone, image, contact, addres
       </div>
     </div>
   );
-});
+};
 
 export default CoachComponent;
