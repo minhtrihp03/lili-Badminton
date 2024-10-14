@@ -98,9 +98,9 @@ const Header = () => {
       </ul>
 
       {/* Nút thông báo */}
-      <button className="notification-icon" onClick={toggleNotifications}>
+      {/* <button className="notification-icon" onClick={toggleNotifications}>
         <FaBell size={24} />
-      </button>
+      </button> */}
 
       {/* Bảng thông báo */}
       {notificationsOpen && (
@@ -124,6 +124,7 @@ const Header = () => {
               src={avatar ? avatar : process.env.PUBLIC_URL + '/assets/images/user1.png'}
               alt="User Avatar"
               className="image"
+              onClick={toggleNotifications}
             />
             <span>{name}</span>
           </div>

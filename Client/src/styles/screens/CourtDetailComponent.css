@@ -1,123 +1,148 @@
 /* CourtDetailComponent.css */
 
 .court-detail-container {
-    padding: 20px;
-    background-color: #F0F0F0;
-  }
-  
-  .court-detail-card {
-    border-radius: 12px;
-    border: none;
-    padding: 20px;
-    background-color: #F0F0F0;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+#court-detail-card {
+  border-radius: 12px;
+  border: none;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+#court-detail-card img {
+  border-radius: 30px;
+  width: 608px;        /* Kích thước cố định cho màn hình desktop */
+  height: 393px;       /* Kích thước cố định cho màn hình desktop */
+  object-fit: cover;   /* Đảm bảo giữ tỷ lệ ảnh */
+}
+
+.image-gallery {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.gallery-thumbnail {
+  width: 80px;
+  height: 50px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.view-more-btn {
+  margin-left: 10px;
+  font-size: 14px;
+  align-self: center;
+}
+
+.court-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.badge-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.court-badge {
+  font-size: 14px;
+  border-radius: 30px;
+  padding: 5px 10px;
+  border: 1px solid #2d70a1;
+  color: #2d70a1;
+}
+
+.court-details h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.court-info {
+  display: flex;         /* Đặt flexbox cho phần chứa cả hai thông tin */
+  align-items: center;   /* Căn chỉnh các mục theo trục dọc */
+  gap: 20px;             /* Khoảng cách giữa các phần tử */
+  padding-bottom: 20px;
+}
+
+.court-info-item {
+  display: flex;         /* Đặt flexbox cho từng mục */
+  align-items: center;   /* Căn giữa icon với text */
+}
+
+.icon {
+  margin-right: 8px;
+  color: #999;
+  vertical-align: middle;
+}
+
+.price-text {
+  color: #059a8f;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.slot-selection {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.slot-selection button {
+  border-radius: 20px;
+  padding: 5px 20px;
+  font-size: 14px;
+}
+
+.register-btn {
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px 0;
+  background-color: #2d70a1;
+  border-color: #2d70a1;
+  border-radius: 100px;
+}
+
+p {
+  font-size: 14px;
+  color: #555;
+}
+
+.card-text {
+  text-align: left;
+  padding: 10px 0;
+}
+
+.text-location {
+
+}
+
+/* Điều chỉnh hình ảnh cho màn hình nhỏ */
+@media (max-width: 768px) {
+  #court-detail-card img{
+    width: 100%; /* Đảm bảo ảnh chiếm toàn bộ chiều rộng của container */
+    height: auto; /* Giữ tỉ lệ ảnh */
   }
 
-  img {
-    border-radius: 12px;
-    object-fit: cover;
-    width: 100%;
+  #court-detail-card {
+    padding: 15px; /* Điều chỉnh padding để phù hợp với màn hình nhỏ hơn */
+  }
+}
+
+@media (max-width: 430px) {
+  #court-detail-card {
+    padding: 10px;
+  }
+
+  #court-detail-card img {
+    width: 100%; /* Đảm bảo ảnh hiển thị tốt trên thiết bị nhỏ */
     height: auto;
   }
-  
-  .court-image {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-  
-  .image-gallery {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-  }
-  
-  .gallery-thumbnail {
-    width: 80px;
-    height: 50px;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  
-  .view-more-btn {
-    margin-left: 10px;
-    font-size: 14px;
-    align-self: center;
-  }
-  
-  .court-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 0;
-  }
-  
-  .badge-container {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-  }
-  
-  .court-badge {
-    font-size: 14px;
-    border-radius: 30px;
-    padding: 5px 10px;
-    border: 1px solid #2D70A1;
-    color: #2D70A1;
-  }
-  
-  .court-details h4 {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-
-  .icon {
-    margin-right: 8px;
-    color: #999;
-    vertical-align: middle;
-  }
-  
-  .price-text {
-    color: #059A8F;
-    font-weight: bold;
-    font-size: 20px;
-  }
-  
-  .slot-selection {
-    display: flex;
-    gap: 10px;
-    margin: 20px 0;
-  }
-
-  .slot-selection button {
-    border-radius: 20px;
-    padding: 5px 20px;
-    font-size: 14px;
-  }
-  
-  .register-btn {
-    width: 100%;
-    margin-top: 15px;
-    padding: 10px 0;
-    background-color: #2D70A1;
-    border-color: #2D70A1;
-    border-radius: 100px;
-  }
-  
-  p {
-    font-size: 14px;
-    color: #555;
-  }
-
-  .card-text {
-    text-align: left;
-  }
-  
-  .text-location {
-    
-  }
-
-  
-@media (max-width: 430px) {
-
 }

@@ -5,7 +5,7 @@ import { PiUserRectangleLight  } from "react-icons/pi";
 import { useNavigate } from 'react-router-dom';
 import '../styles/screens/CourtComponent.css'; // Import custom CSS
 
-const CourtComponent = ({ name, price, slots, location, type, level, image, applied_players, players_needed, time }) => { // Added time here
+const CourtComponent = ({ name, price, slots, location, type, level, image, applied_players, players_needed, time, contact_info }) => { // Added time here
   const navigate = useNavigate();
 
   // Fallback level if it's undefined
@@ -24,7 +24,8 @@ const CourtComponent = ({ name, price, slots, location, type, level, image, appl
         image,
         applied_players,
         players_needed,
-        time // time is now defined
+        time, // time is now defined
+        contact_info
       }
     });
   };
