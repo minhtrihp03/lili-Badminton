@@ -185,16 +185,13 @@ const CourtDetailComponent = () => {
                   <ul>
                     <li>
                       Khu vực không vô lê: Gần lưới, có chiều dài 2,13 mét (7 feet) tính từ lưới về mỗi bên sân, được gọi là khu vực "kitchen" hoặc "no-volley zone". Trong khu vực này, người chơi không được thực hiện các cú vô lê (đánh bóng mà không cho bóng chạm đất trước).
-
                     </li>
                     <li>
                       Phần sân còn lại: Được chia thành hai phần chính, tương ứng với phần sân phải và phần sân trái, nơi người chơi có thể giao bóng và đánh trả.
-
                     </li>
-                  </ul></li>
-
+                  </ul>
+                </li>
               </ol>
-
             </p>
           </Col>
         </Row>
