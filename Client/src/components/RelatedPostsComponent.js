@@ -57,6 +57,8 @@ const CourtListComponent = () => {
               applied_players={court.applied_players}
               date={court.play_date}
               time={court.play_time}
+              contact_info={court.contact_info}
+              applied_count={court.applied_count}
               style={{ width: "100%", alignItems: 'center', justifyContent: 'center', textAlign: "center" }}
             />
           </Col>
