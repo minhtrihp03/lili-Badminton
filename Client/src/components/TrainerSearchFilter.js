@@ -13,34 +13,24 @@ const TrainerSearchFilter = ({ onSearch }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
     if (name === 'location' && value === 'Other') {
-      setShowOther(true); // Show the Other location input field
+      setShowOther(true);
     } else if (name === 'location') {
-      setShowOther(false); // Hide Other input if any other location is selected
-      setFilters({ ...filters, otherLocation: '' }); // Clear Other location input
+      setShowOther(false);
+      setFilters({ ...filters, otherLocation: '' });
     }
-
     setFilters({ ...filters, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Pass filters back to parent component, updating the location or other location
-    onSearch({
-      trainerName: filters.location === 'Other' ? filters.otherLocation : filters.location,
-      experienceLevel: filters.level,
-    });
+    onSearch(filters); // Pass filters back to parent
   };
 
-  const handleResetLocation = () => {
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      location: '',
-      otherLocation: '',
-    }));
+  const handleReset = () => {
+    setFilters({ location: '', level: '', otherLocation: '' });
     setShowOther(false);
-    onSearch({ trainerName: '', experienceLevel: filters.level }); // Only reset location filter
+    onSearch({ location: '', level: '', otherLocation: '' }); // Reset filters in parent
   };
 
   return (
@@ -60,12 +50,11 @@ const TrainerSearchFilter = ({ onSearch }) => {
                 <option value="Hồ Chí Minh">Hồ Chí Minh</option>
                 <option value="Hà Nội">Hà Nội</option>
                 <option value="Hải Phòng">Hải Phòng</option>
-                <option value="Other">Other</option> {/* Other option */}
+                <option value="Other">Other</option>
               </Form.Control>
             </Form.Group>
           </Col>
 
-          {/* Show Other location input field if selected */}
           {showOther && (
             <Col xs="auto" className="me-1">
               <Form.Group controlId="formOtherLocation">
@@ -88,7 +77,7 @@ const TrainerSearchFilter = ({ onSearch }) => {
           </Col>
 
           <Col xs="auto" className="me-1">
-            <Button variant="link" className="btn-sm" onClick={handleResetLocation}>
+            <Button variant="link" className="btn-sm" onClick={handleReset}>
               Xóa lọc
             </Button>
           </Col>
