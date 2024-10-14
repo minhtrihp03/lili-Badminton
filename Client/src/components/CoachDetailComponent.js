@@ -13,15 +13,27 @@ const CoachDetailComponent = () => {
         name,
         price,
         level,
+        phone,
         image = [],
         contact,
         address,
         location: courtLocation,
+        type,
+        images = [],
         description,
+        contact_info,
     } = state || {};
 
-    const [selectedImage, setSelectedImage] = useState(image[0] || ''); // Trạng thái cho hình ảnh đã chọn
+    const [selectedImage, setSelectedImage] = useState(images[0] || ''); // Trạng thái cho hình ảnh đã chọn
     const [showOverlay, setShowOverlay] = useState(false); // Trạng thái cho overlay
+
+    // const getPhoneNumber = (contact) => {
+    //     if (!contact || typeof contact !== 'string') {
+    //         return 'Không có số điện thoại';
+    //     }
+    //     const match = contact.match(/phone:\s?(\d+)/);
+    //     return match ? match[1] : 'Không có số điện thoại';
+    // };
 
     const handleViewMore = () => {
         alert('Hiển thị thêm hình ảnh...');
@@ -40,7 +52,7 @@ const CoachDetailComponent = () => {
     };
 
     console.log(description);
-
+    
 
     return (
         <div className="court-detail-container">
@@ -53,7 +65,7 @@ const CoachDetailComponent = () => {
                                     {/* Hiển thị hình ảnh lớn */}
                                     {selectedImage ? (
                                         <div className="image-container">
-                                            <img src={selectedImage} alt={`Coach ${name}`} className="large-image" />
+                                            <img src={selectedImage} alt={`Court ${name}`} className="large-image" />
                                             {showOverlay && (
                                                 <div className="overlay" onClick={handleCloseOverlay}>
                                                     <span className="overlay-text">Xem thêm</span>
@@ -68,12 +80,12 @@ const CoachDetailComponent = () => {
 
                             <Row className="image-grid">
                                 {/* 3 ảnh nhỏ */}
-                                {image.slice(1, 4).map((img, index) => (
+                                {images.slice(1, 4).map((img, index) => (
                                     <Col md={3} key={index} className="small-image-col">
                                         {index === 2 ? ( // Hiển thị nút "Xem thêm" trên ảnh thứ 3
                                             <div className="small-image-container" onClick={handleShowOverlay}>
                                                 <img
-                                                    src={image}
+                                                    src={img}
                                                     alt={`Court ${name} ${index + 1}`}
                                                     className="small-image"
                                                 />
@@ -92,11 +104,24 @@ const CoachDetailComponent = () => {
                                     </Col>
                                 ))}
 
+                                {/* Nút "Xem thêm" */}
+                                {/* {images.length > 4 && (
+                  <Col md={4} className="small-image-col">
+                    <Button variant="outline-primary" className="view-more-btn" onClick={handleViewMore}>
+                      Xem thêm
+                    </Button>
+                  </Col>
+                )} */}
                             </Row>
                         </Card.Body>
                     </Col>
                     <Col md={5} className="court-details">
                         <Card.Body id='court-card-body'>
+                            <div className="badge-container">
+                                <Button variant="outline-primary" className="court-badge">
+                                    {type}
+                                </Button>
+                            </div>
                             <Card.Title style={{ fontSize: "32px", fontWeight: "500" }}>{name}</Card.Title>
                             <Card.Text className='court-info'>
                                 <div className="court-info-item">
@@ -140,9 +165,9 @@ const CoachDetailComponent = () => {
                         />
                         <br />
                         <p className='des-text-1'>
-                            1. Giá trên là giá ghép chung giữa các bạn học viên khoảng 6 người/lớp, đã bao gồm toàn bộ chi phí sân và bóng tập. <br />
-                            2. Xác minh thông tin HLV: Chúng tôi cung cấp đầy đủ thông tin về trình độ, địa điểm, thành tích, giá tiền của các HLV. Tất cả đều được xác thực. <br />
-                            3. Mọi người có thể liên hệ HLV thông qua SĐT và FACEBOOK của họ, trang Web chỉ cung cấp những thông tin uy tín và được kiểm duyệt không hỗ trợ liên hệ. <br />
+                            1. Giá trên là giá ghép chung giữa các bạn học viên khoảng 6 người/lớp, đã bao gồm toàn bộ chi phí sân và bóng tập. <br/>
+                            2. Xác minh thông tin HLV: Chúng tôi cung cấp đầy đủ thông tin về trình độ, địa điểm, thành tích, giá tiền của các HLV. Tất cả đều được xác thực. <br/>
+                            3. Mọi người có thể liên hệ HLV thông qua SĐT và FACEBOOK của họ, trang Web chỉ cung cấp những thông tin uy tín và được kiểm duyệt không hỗ trợ liên hệ. <br/>
                             4. Đảm bảo rằng HLV có chuyên môn giảng dạy.
 
                         </p>
