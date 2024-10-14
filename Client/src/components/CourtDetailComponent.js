@@ -22,7 +22,8 @@ const CourtDetailComponent = () => {
     players_needed,
     applied_players,
     time,
-    contact_info
+    contact_info,
+    applied_count
   } = state || {};
 
   const { addNotification } = useNotifications(); // Lấy hàm addNotification từ context
@@ -57,6 +58,9 @@ const CourtDetailComponent = () => {
   const handleCloseOverlay = () => {
     setShowOverlay(false); // Ẩn overlay khi nhấp vào overlay
   };
+
+  console.log(applied_count);
+  
 
   return (
     <div className="court-detail-container">
@@ -148,7 +152,7 @@ const CourtDetailComponent = () => {
                 {price.toLocaleString('vi-VN')} VND / người
               </Card.Text>
               <Card.Text>
-                <PiUserSquareLight className="icon" style={{ color: "#828282" }} />Slot cần tuyển: <span style={{ color: "red" }}>{applied_players}/{players_needed} người</span>
+                <PiUserSquareLight className="icon" style={{ color: "#828282" }} />Slot đã đặt: <span style={{ color: "red" }}>{applied_count}/{players_needed} người</span>
               </Card.Text>
               <Card.Text>
                 <IoIosInformationCircle className="icon" style={{ color: "#828282", fontSize: "20px" }} />Thời gian chơi: {time}
