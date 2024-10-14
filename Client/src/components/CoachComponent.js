@@ -69,11 +69,9 @@ const CoachComponent = memo(({ name, price, level, phone, image, contact, addres
           </div>
           {/* <div className="col">
             <button className="btn btn-outline-primary contact-btn" style={{ color: "white", backgroundColor: "#3b5998", borderColor: "#3b5998" }}>
-              <FaPhoneAlt />  {contact?.zalo && (
                 <a href={`https://zalo.me/${phone}`} target="_blank" rel="noopener noreferrer" style={{ marginLeft: '5px', color: "white", textDecoration: "none" }}>
-                  Zalo
+                  Xem thông tin liên hệ
                 </a>
-              )}
             </button>
           </div> */}
         </div>
