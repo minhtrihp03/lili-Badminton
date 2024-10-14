@@ -15,7 +15,7 @@ const PostList = () => {
           throw new Error('Failed to fetch posts');
         }
         const data = await response.json();
-        console.log('Fetched posts:', data);  // Log dữ liệu API để kiểm tra
+        console.log('Fetched posts:', data);  // Log data to debug
         setPosts(data);
       } catch (error) {
         console.error('Error fetching posts:', error);
@@ -28,14 +28,13 @@ const PostList = () => {
     fetchPosts();
   }, []);
 
-  // Hàm xóa bài đăng
+  // Function to delete a post
   const handleDelete = async (postId) => {
     if (!postId) {
-      console.error('Không có postId để xóa');
+      console.error('No postId provided for deletion');
       return;
     }
     console.log(postId, "---------");
-    
 
     const confirmDelete = window.confirm('Bạn có chắc chắn muốn xóa bài đăng này?');
     if (!confirmDelete) return;
@@ -53,17 +52,21 @@ const PostList = () => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`, // Thêm token vào header
+          'Authorization': `Bearer ${token}`, // Include the token in the header
         },
       });
-console.log("response", response);
 
-      if (response.ok) {
-        setPosts(posts.filter((post) => post._id !== postId));
-        alert('Bài đăng đã được xóa thành công');
-      } else {
-        alert('Xóa bài đăng thất bại');
+      console.log("response", response);
+
+      if (!response.ok) {
+        const errorData = await response.json(); // Read error response
+        alert(`Xóa bài đăng thất bại: ${errorData.error || "Có lỗi xảy ra."}`);
+        return; // Stop execution if the response is not ok
       }
+
+      // If deletion was successful, update the posts state
+      setPosts(posts.filter((post) => post._id !== postId));
+      alert('Bài đăng đã được xóa thành công');
     } catch (error) {
       console.error('Lỗi khi xóa bài đăng:', error);
       alert('Có lỗi xảy ra khi xóa bài đăng');
@@ -83,25 +86,29 @@ console.log("response", response);
       <h4 style={{ paddingLeft: '10px' }}>Bài đăng</h4>
 
       <div className="post-items scrollable-list">
-        {posts.map((post) => (
-          <div key={post._id} className="post-item">
-            <img 
-              src={post.images[0] || '/assets/images/default-court.png'} 
-              alt={post.court_name} 
-              className="post-image" 
-            />
-            <div className="post-details">
-              <p style={{ color: '#2D70A1' }}>{post.court_type}</p>
-              <h5>{post.court_name}</h5>
-              <p style={{ color: '#828282' }}>
-                Yêu cầu: {post.players_needed}/{post.total_players} người - Trình độ: {post.skill_level}
-              </p>
+        {posts.length > 0 ? (
+          posts.map((post) => (
+            <div key={post._id} className="post-item">
+              <img 
+                src={post.images[0] || '/assets/images/default-court.png'} 
+                alt={post.court_name} 
+                className="post-image" 
+              />
+              <div className="post-details">
+                <p style={{ color: '#2D70A1' }}>{post.court_type}</p>
+                <h5>{post.court_name}</h5>
+                <p style={{ color: '#828282' }}>
+                  Yêu cầu: {post.players_needed}/{post.total_players} người - Trình độ: {post.skill_level}
+                </p>
+              </div>
+              <div className="post-actions">
+                <Button variant="danger" onClick={() => handleDelete(post._id)}>Xóa</Button>
+              </div>
             </div>
-            <div className="post-actions">
-              <Button variant="danger" onClick={() => handleDelete(post._id)}>Xóa</Button>
-            </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>Không tìm thấy bài đăng nào.</p>
+        )}
       </div>
     </div>
   );
