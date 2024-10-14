@@ -104,30 +104,22 @@ const PostForm = () => {
       {/* Trình độ và input ảnh */}
       <Row>
         <Col md={6} style={{ padding: 0 }}>
-          <Form.Group controlId="experience">
-            <Form.Select
-              name="experience"
-              value={formData.experience}
-              onChange={handleInputChange}
-              style={{ padding: 0, width: '90%' }}
-            >
-              <option value="">Chọn trình độ</option>
-              <option value="1.0">1.0-2.0</option>
-              <option value="2.5">2.5</option>
-              <option value="3.0">3.0</option>
-              <option value="3.5">3.5</option>
-              <option value="4.0">4.0</option>
-              <option value="4.5">4.5</option>
-              <option value="5.0">5.0</option>
-              <option value="5.5+">5.5+</option>
-            </Form.Select>
-          </Form.Group>
-        </Col>
-        <Col md={6} style={{ padding: 0 }}>
           <Form.Group controlId="image">
             <Form.Control
               type="file"
               name="image"
+              onChange={handleInputChange}
+              style={{ padding: 0, width: '90%' }}
+            />
+          </Form.Group>
+        </Col>
+        <Col md={6} style={{ padding: 0 }}>
+          <Form.Group controlId="price">
+            <Form.Control
+              type="text"
+              placeholder="Nhập giá tiền"
+              name="price"
+              value={formData.price}
               onChange={handleInputChange}
               style={{ padding: 0, width: '90%' }}
             />
@@ -150,34 +142,6 @@ const PostForm = () => {
           </Form.Group>
         </Col>
         <Col md={6} style={{ padding: 0 }}>
-          <Form.Group controlId="price">
-            <Form.Control
-              type="text"
-              placeholder="Nhập giá tiền"
-              name="price"
-              value={formData.price}
-              onChange={handleInputChange}
-              style={{ padding: 0, width: '90%' }}
-            />
-          </Form.Group>
-        </Col>
-      </Row>
-
-      {/* Link Zalo và Facebook */}
-      <Row>
-        <Col md={6} style={{ padding: 0 }}>
-          <Form.Group controlId="zaloLink">
-            <Form.Control
-              type="text"
-              placeholder="Nhập link Zalo"
-              name="zaloLink"
-              value={formData.zaloLink}
-              onChange={handleInputChange}
-              style={{ padding: "0px", width: '90%', justifyContent: 'center' }}
-            />
-          </Form.Group>
-        </Col>
-        <Col md={6} style={{ padding: 0 }}>
           <Form.Group controlId="facebookLink">
             <Form.Control
               type="text"
@@ -191,10 +155,38 @@ const PostForm = () => {
         </Col>
       </Row>
 
+      {/* Link Zalo và Facebook */}
+      <Row>
+        <Col md={6} style={{ padding: 0 }}>
+          <Form.Group controlId="zaloLink">
+            <Form.Control
+              type="text"
+              placeholder="Thành Phố"
+              name="zaloLink"
+              value={formData.zaloLink}
+              onChange={handleInputChange}
+              style={{ padding: "0px", width: '90%', justifyContent: 'center' }}
+            />
+          </Form.Group>
+        </Col>
+        <Col md={6} style={{ padding: 0 }}>
+          <Form.Group controlId="facebookLink">
+            <Form.Control
+              type="text"
+              placeholder="Khu vực cụ thể"
+              name="facebookLink"
+              value={formData.facebookLink}
+              onChange={handleInputChange}
+              style={{ padding: 0, width: '90%' }}
+            />
+          </Form.Group>
+        </Col>
+      </Row>
+
       <Form.Group controlId="courtLocation">
         <Form.Control
           type="text"
-          placeholder="Nhập địa điểm sân"
+          placeholder="Thành tích cá nhân"
           name="courtLocation"
           value={formData.courtLocation}
           onChange={handleInputChange}
