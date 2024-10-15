@@ -54,7 +54,7 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
                 level={coach.rating}
                 contact={coach.contact_info}
                 phone={coach?.contact_info.phone}
-                image={coach.images[0]}
+                images={coach.images}
                 address={coach.address}
                 description={coach.description}
                 style={{
@@ -70,13 +70,6 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
           <p>Không tìm thấy huấn luyện viên nào.</p>
         )}
       </Row>
-
-
-      {visibleCount < filteredCoaches.length && (
-        <button className="btn btn-primary" onClick={handleShowMore} style={{ marginBottom: '20px' }}>
-          Xem thêm
-        </button>
-      )}
     </div>
   );
 };

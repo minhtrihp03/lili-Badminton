@@ -123,14 +123,6 @@ const CourtDetailComponent = () => {
                   </Col>
                 ))}
 
-                {/* Nút "Xem thêm" */}
-                {/* {images.length > 4 && (
-                  <Col md={4} className="small-image-col">
-                    <Button variant="outline-primary" className="view-more-btn" onClick={handleViewMore}>
-                      Xem thêm
-                    </Button>
-                  </Col>
-                )} */}
               </Row>
             </Card.Body>
           </Col>

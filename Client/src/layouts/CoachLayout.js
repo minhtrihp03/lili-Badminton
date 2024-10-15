@@ -4,6 +4,7 @@ import HomeComponent from '../components/HomeComponent';
 import TrainerSearchFilter from '../components/TrainerSearchFilter';
 import CoachListComponent from '../components/CoachListComponent';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 
 const CoachLayout = () => {
   const [searchFilters, setSearchFilters] = useState({
@@ -24,6 +25,7 @@ const CoachLayout = () => {
       <TrainerSearchFilter onSearch={handleSearch} />
       {/* Truyền searchFilters cho CoachListComponent */}
       <CoachListComponent searchFilters={searchFilters} />
+      <Link to={'/coach'} style={{padding: "10px 0", textDecoration: "none", color: "gray"}}>Xem thêm</Link>
       <Footer />
     </div>
   );

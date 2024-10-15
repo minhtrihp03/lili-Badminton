@@ -4,7 +4,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
 
 
-const CoachComponent = memo(({ name, price, level, phone, image, contact, address, description }) => {
+const CoachComponent = memo(({ name, price, level, phone, images, contact, address, description }) => {
   const navigate = useNavigate();
 
   // Handle card click to navigate with coach details
@@ -15,7 +15,7 @@ const CoachComponent = memo(({ name, price, level, phone, image, contact, addres
         price,
         level,
         phone,
-        image,
+        images,
         contact,
         address,
         description
@@ -27,7 +27,7 @@ const CoachComponent = memo(({ name, price, level, phone, image, contact, addres
     <div className="card coach-card" onClick={handleCardClick}>
       {/* Image at the top */}
       <img
-        src={image}
+        src={images[0]}
         alt={`Coach ${name}`}
         className="card-img-top card-image"
       />
