@@ -66,6 +66,7 @@ const CourtListComponent = ({ filteredResults }) => {
                   time={court.play_time}
                   contact_info={court.contact_info}
                   applied_count={court.applied_count}
+                  idCourt={court._id || court.id}
                 />
               </Col>
             ))}

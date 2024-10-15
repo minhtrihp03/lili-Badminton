@@ -1,59 +1,73 @@
 .court-registration-list {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: left;
+  padding: 10px;
 }
 
-.court-items {
-  /* Show max 3 courts and allow scrolling */
-  max-height: 360px;
+.scrollable-list {
+  max-height: 400px;
   overflow-y: auto;
-  padding-right: 15px;
-  border-radius: 10px;
 }
 
 .court-item {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
+  align-items: center;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .court-image {
-  width: 80px;
-  height: 80px;
-  border-radius: 10px;
-  margin-right: 15px;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .court-details {
   flex-grow: 1;
+  padding-left: 15px;
+}
+
+.court-details h5 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.court-details h6 {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.court-details p {
+  margin: 3px 0;
 }
 
 .court-actions {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-/* Custom scrollbar */
-.scrollable-list {
-  scrollbar-width: thin;
-  scrollbar-color: #007bff #e0e0e0;
+.court-actions button {
+  margin-bottom: 5px;
 }
 
-.scrollable-list::-webkit-scrollbar {
-  width: 10px;
+.completed-btn {
+  color: white;
+  background-color: #00b894;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
 }
 
-.scrollable-list::-webkit-scrollbar-track {
-  background: #e0e0e0;
-}
-
-.scrollable-list::-webkit-scrollbar-thumb {
-  background-color: #007bff;
-  border-radius: 10px;
+.cancel-btn {
+  color: white;
+  background-color: #d63031;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
 }

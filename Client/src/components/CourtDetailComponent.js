@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 const CourtDetailComponent = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { state } = location;
+  const { state = {}} = location;
   const {
     name,
     price,
@@ -25,7 +25,7 @@ const CourtDetailComponent = () => {
     applied_players,
     time,
     contact_info,
-    total_players
+    idCourt,
   } = state || {};
 
   const { addNotification } = useNotifications(); // Lấy hàm addNotification từ context
@@ -33,18 +33,60 @@ const CourtDetailComponent = () => {
   const [selectedImage, setSelectedImage] = useState(images[0] || ''); // Trạng thái cho hình ảnh đã chọn
   const [showOverlay, setShowOverlay] = useState(false); // Trạng thái cho overlay
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     const loggedInStatus = localStorage.getItem('isLoggedIn');
+    const _id = localStorage.getItem('_id');
+    const token = localStorage.getItem('token');
+    const postId = idCourt; // Retrieve post ID
+    console.log(idCourt, "postId");
+    
   
-    if (loggedInStatus === 'true') {
-      // Người dùng đã đăng nhập
-      alert('Bạn đã đăng ký sân thành công!');
+    if (!postId) {
+      console.error('Post ID is missing.');
+      alert('Có lỗi xảy ra, không tìm thấy thông tin sân.');
+      return;
+    }
+  
+    if (loggedInStatus === 'true' && _id && token) {
+      try {
+        const response = await fetch(`https://bepickleball.vercel.app/api/post/${postId}/apply`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            _id,
+            court_name: name,
+            location: courtLocation,
+            slots,
+            players_needed,
+            skill_level: level,
+            play_date: time,
+            cost: price,
+            contact_info,
+            status: 'pending',
+          }),
+        });
+  
+        console.log(response, "response");
+  
+        if (response.ok) {
+          alert('Bạn đã đăng ký sân thành công!');
+          addNotification(`Đặt sân ${name} thành công!`);
+          navigate('/court-registration-list');
+        } else {
+          throw new Error('Đăng ký không thành công');
+        }
+      } catch (error) {
+        console.error('Đã xảy ra lỗi:', error);
+        alert('Có lỗi xảy ra khi đăng ký sân.');
+      }
     } else {
-      // Người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập
       navigate('/login');
     }
-    addNotification(`Đặt sân ${name} thành công!`);
   };
+  
 
   const getPhoneNumber = (contactInfo) => {
     if (!contactInfo || typeof contactInfo !== 'string') {
@@ -70,7 +112,7 @@ const CourtDetailComponent = () => {
     setShowOverlay(false); // Ẩn overlay khi nhấp vào overlay
   };
 
-  // console.log(total_players);
+  // console.log(slots);
   
 
   return (
