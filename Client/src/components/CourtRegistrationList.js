@@ -64,7 +64,7 @@ const CourtRegistrationList = () => {
               alt={court.court_name}
               className="court-image"
             />
-            <div className="court-details">
+            <div id="court-details">
               <p style={{ color: '#2D70A1' }}>{court.court_type}</p>
               <h5>{court.court_name}</h5>
               <h6>Liên hệ {court.contact_info}</h6>
