@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import { CiLocationOn, CiMedal } from "react-icons/ci";
 import { FaArrowUpRightDots, FaFacebook } from "react-icons/fa6";
@@ -25,13 +25,13 @@ const CoachDetailComponent = () => {
     const [selectedImage, setSelectedImage] = useState(images[0] || ""); // Trạng thái cho hình ảnh đã chọn
     const [showOverlay, setShowOverlay] = useState(false); // Trạng thái cho overlay
     console.log(selectedImage);
-    // const getPhoneNumber = (contact) => {
-    //     if (!contact || typeof contact !== 'string') {
-    //         return 'Không có số điện thoại';
-    //     }
-    //     const match = contact.match(/phone:\s?(\d+)/);
-    //     return match ? match[1] : 'Không có số điện thoại';
-    // };
+
+     // Sử dụng useEffect để cập nhật selectedImage khi state thay đổi
+     useEffect(() => {
+        if (images.length > 0) {
+            setSelectedImage(images[0]); // Cập nhật ảnh đầu tiên khi dữ liệu huấn luyện viên thay đổi
+        }
+    }, [images]); // Lắng nghe sự thay đổi của images
 
     const handleViewMore = () => {
         alert("Hiển thị thêm hình ảnh...");
@@ -49,7 +49,7 @@ const CoachDetailComponent = () => {
         setShowOverlay(false); // Ẩn overlay khi nhấp vào overlay
     };
 
-    console.log(description);
+    // console.log(description);
 
     return (
         <div className="court-detail-container">
@@ -112,7 +112,6 @@ const CoachDetailComponent = () => {
                                         )}
                                     </Col>
                                 ))}
-
                             </Row>
                         </Card.Body>
                     </Col>
@@ -156,9 +155,22 @@ const CoachDetailComponent = () => {
                             </Card.Text>
                             <div className="row contact-buttons w-25">
                                 <div className="col">
-                                    <button className="btn btn-outline-primary contact-btn" style={{ color: "#3b5998", backgroundColor: "white", borderColor: "#3b5998" }}>
-                                        <FaFacebook /> {contact?.facebook && (
-                                            <a style={{ color: "black", textDecoration: "none" }} href={contact.facebook} target="_blank" rel="noopener noreferrer">
+                                    <button
+                                        className="btn btn-outline-primary contact-btn"
+                                        style={{
+                                            color: "#3b5998",
+                                            backgroundColor: "white",
+                                            borderColor: "#3b5998",
+                                        }}
+                                    >
+                                        <FaFacebook />{" "}
+                                        {contact?.facebook && (
+                                            <a
+                                                style={{ color: "black", textDecoration: "none" }}
+                                                href={contact.facebook}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
                                                 Facebook
                                             </a>
                                         )}

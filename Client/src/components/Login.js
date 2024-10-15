@@ -24,7 +24,7 @@ const Login = () => {
         localStorage.setItem('token', token);
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('name', user.username); // You can also save email or any other details
-        localStorage.setItem('avatar', user.avatar || ''); // Handle case where avatar might be missing
+        localStorage.setItem('avatar', user.avatar); // Handle case where avatar might be missing
         localStorage.setItem('role', user.role); // Save role
   
         // Redirect based on role
