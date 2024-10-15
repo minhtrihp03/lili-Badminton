@@ -68,7 +68,7 @@ const PostFormComponent = () => {
     formData.append("location", post.location);
     formData.append("total_players", post.slots);
     formData.append("court_type", post.courtType);
-    formData.append("players_needed", post.slots);
+    formData.append("players_needed", post.memberSlots);
     formData.append("skill_level", post.level);
     formData.append("play_date", formattedDate);
     formData.append("cost", post.price);

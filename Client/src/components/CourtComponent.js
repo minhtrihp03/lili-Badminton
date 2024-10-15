@@ -27,7 +27,9 @@ const CourtComponent = ({ name, price, slots, location, type, level, images = []
         players_needed,
         time,
         contact_info,
-        applied_count
+        applied_count,
+        players_needed,
+        applied_players,
       }
     });
     window.location.reload();
@@ -73,7 +75,7 @@ const CourtComponent = ({ name, price, slots, location, type, level, images = []
             <CiLocationOn /> {name}
           </Col>
           <Col className="slots-text" md={5}>
-            <PiUserRectangleLight /> {slots}/8 người
+            <PiUserRectangleLight /> {players_needed}/{slots} người
           </Col>
         </Row>
       </Card.Body>

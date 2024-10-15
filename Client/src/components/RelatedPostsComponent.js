@@ -52,7 +52,7 @@ const CourtListComponent = () => {
               location={court.location}
               type={court.court_type}
               level={parseFloat(court.skill_level)}
-              image={court.images[0]}
+              images={court.images}
               players_needed={court.players_needed}
               applied_players={court.applied_players}
               date={court.play_date}
