@@ -73,7 +73,7 @@ const CourtComponent = ({ name, price, slots, location, type, level, images = []
             <CiLocationOn /> {name}
           </Col>
           <Col className="slots-text" md={5}>
-            <PiUserRectangleLight /> {players_needed}/{slots} người
+            <PiUserRectangleLight /> {applied_count}/{slots} người
           </Col>
         </Row>
       </Card.Body>
