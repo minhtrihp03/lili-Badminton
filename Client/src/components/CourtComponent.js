@@ -37,47 +37,47 @@ const CourtComponent = ({ name, price, slots, location, type, level, images = []
   
 
   return (
-    <Card className="court-card" onClick={handleCardClick}>
-      <div className="top-left-badge">
-        {type === 'Sân Có Mái Che' ? 'Sân Có Mái Che' : 'Sân không có mái che'}
-      </div>
-
-      <div className="top-right-badge">
-        {displayedLevel}
-      </div>
-
-      {/* <Card.Img
-        variant="top"
-        src={image}
-        alt={`Court ${name}`}
-        className="card-image"
-      /> */}
-      <div
-        className="card-image"
-        style={{
-          backgroundImage: `url(${images.length > 0 ? images[0] : NoImage})`, // Thay thế bằng hình ảnh mặc định nếu không có
-        }}
-        alt={`Court ${name}`}
-      />
-
-
-      <Card.Body style={{ padding: "0px", margin: "8px", marginBottom: "0px", marginRight: "0px" }}>
-        <Card.Title className="court-name">{name}</Card.Title>
-
-        <Card.Text className="price-text" style={{ marginTop: "10px" }}>
-          {price.toLocaleString('vi-VN')} VND /người
-        </Card.Text>
-
-        <Row style={{ padding: "0px", margin: "0px", marginBottom: "10px" }}>
-          <Col className="location" md={7}>
-            <CiLocationOn /> {name}
-          </Col>
-          <Col className="slots-text" md={5}>
-            <PiUserRectangleLight /> {applied_count}/{slots} người
-          </Col>
-        </Row>
-      </Card.Body>
-    </Card>
+    <Card className={`court-card ${applied_count >= slots ? 'full-court' : ''}`} onClick={handleCardClick}>
+    <div className="top-left-badge">
+      {type === 'Sân Có Mái Che' ? 'Sân Có Mái Che' : 'Sân không có mái che'}
+    </div>
+  
+    <div className="top-right-badge">
+      {displayedLevel}
+    </div>
+  
+    <div
+      className="card-image"
+      style={{
+        backgroundImage: `url(${images.length > 0 ? images[0] : NoImage})`, // Thay thế bằng hình ảnh mặc định nếu không có
+      }}
+      alt={`Court ${name}`}
+    />
+  
+    <Card.Body style={{ padding: "0px", margin: "8px", marginBottom: "0px", marginRight: "0px" }}>
+      <Card.Title className="court-name">{name}</Card.Title>
+  
+      <Card.Text className="price-text" style={{ marginTop: "10px" }}>
+        {price.toLocaleString('vi-VN')} VND /người
+      </Card.Text>
+  
+      <Row style={{ padding: "0px", margin: "0px", marginBottom: "10px" }}>
+        <Col className="location" md={7}>
+          <CiLocationOn /> {name}
+        </Col>
+        <Col className="slots-text" md={5}>
+          {applied_count >= slots ? (
+            <span style={{ color: 'red', fontWeight: 'bold' }}>Đã đầy</span> // Hiển thị khi đã đầy
+          ) : (
+            <span>
+              <PiUserRectangleLight /> {applied_count}/{slots} người
+            </span>
+          )}
+        </Col>
+      </Row>
+    </Card.Body>
+  </Card>
+  
   );
 };
 

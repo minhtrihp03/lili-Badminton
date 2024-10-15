@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 const CourtDetailComponent = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { state = {}} = location;
+  const { state = {} } = location;
   const {
     name,
     price,
@@ -40,14 +40,14 @@ const CourtDetailComponent = () => {
     const token = localStorage.getItem('token');
     const postId = idCourt; // Retrieve post ID
     console.log(idCourt, "postId");
-    
-  
+
+
     if (!postId) {
       console.error('Post ID is missing.');
       alert('Có lỗi xảy ra, không tìm thấy thông tin sân.');
       return;
     }
-  
+
     if (loggedInStatus === 'true' && _id && token) {
       try {
         const response = await fetch(`https://bepickleball.vercel.app/api/post/${postId}/apply`, {
@@ -69,9 +69,9 @@ const CourtDetailComponent = () => {
             status: 'pending',
           }),
         });
-  
+
         console.log(response, "response");
-  
+
         if (response.ok) {
           alert('Bạn đã đăng ký sân thành công!');
           addNotification(`Đặt sân ${name} thành công!`);
@@ -87,7 +87,7 @@ const CourtDetailComponent = () => {
       navigate('/login');
     }
   };
-  
+
 
   const getPhoneNumber = (contactInfo) => {
     if (!contactInfo || typeof contactInfo !== 'string') {
@@ -114,7 +114,7 @@ const CourtDetailComponent = () => {
   };
 
   // console.log(slots);
-  
+
 
   return (
     <div className="court-detail-container">
@@ -179,15 +179,15 @@ const CourtDetailComponent = () => {
               <Card.Title style={{ fontSize: "32px", fontWeight: "500" }}>{name}</Card.Title>
               <Card.Text className='court-info'>
                 <div className="court-info-item">
-                  <CiLocationOn className="icon" style={{ color: "#828282" }} /> 
+                  <CiLocationOn className="icon" style={{ color: "#828282" }} />
                   <a
-                  href={courtLocation}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ textDecoration: "none", color: "#064D7E" }}
-                >
-                  {name}
-                </a>
+                    href={courtLocation}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none", color: "#064D7E" }}
+                  >
+                    {name}
+                  </a>
                 </div>
                 <div className="court-info-item">
                   <FaArrowUpRightDots className="icon" style={{ color: "#828282", fontSize: "20px" }} />
@@ -206,7 +206,17 @@ const CourtDetailComponent = () => {
               <Card.Text>
                 <div className="icon" style={{ color: "#828282" }} />Số điện thoại: {getPhoneNumber(contact_info)}
               </Card.Text>
-              <Button className="register-btn" variant="primary" onClick={handleRegister}>Đăng kí giao lưu</Button>
+
+              {/* Kiểm tra nếu số lượng người đã đặt = slots */}
+              {applied_count >= slots ? (
+                <Button className="register-btn" variant="danger" disabled>
+                  Đã đầy
+                </Button>
+              ) : (
+                <Button className="register-btn" variant="primary" onClick={handleRegister}>
+                  Đăng kí giao lưu
+                </Button>
+              )}
             </Card.Body>
           </Col>
         </Row>
