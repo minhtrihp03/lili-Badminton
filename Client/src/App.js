@@ -34,6 +34,7 @@ import { NotificationProvider } from './components/NotificationContext';
 import CoachDetailComponent from './components/CoachDetailComponent';
 import CoachDetailLayout from './layouts/CoachDetailLayout';
 
+
 function App() {
   return (
     <div className='App'>
