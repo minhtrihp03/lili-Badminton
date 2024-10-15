@@ -17,95 +17,95 @@ const PostFormComponent = () => {
     price: '',
     phone: '',
     facebook: '',
-    image: '',
+    image: null,
     level: '<2.0', // Added default value for skill level
   });
 
   const [showModal, setShowModal] = useState(false);
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
     if (name === "date") {
-      const dateValue = new Date(value);
-      setPost({ ...post, [name]: dateValue });
+        const dateValue = new Date(value);
+        setPost({ ...post, [name]: dateValue });
+    } else if (name === "image") {
+        setPost({ ...post, image: files[0] }); // Capture the first file selected
     } else {
-      setPost({ ...post, [name]: value });
+        setPost({ ...post, [name]: value });
     }
     console.log("Updated Post State:", { ...post, [name]: value });
-  };
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const token = localStorage.getItem('token'); // Retrieve token from localStorage
+    const token = localStorage.getItem('token');
     console.log('Token:', token);
   
-    // Ensure date is formatted correctly and exists
     if (!post.date) {
-      alert('Please enter a valid date.');
-      return;
+        alert('Please enter a valid date.');
+        return;
     }
   
-    // Create a Date object from the post.date
     const dateObject = new Date(post.date);
   
-    // Check if the date is valid
     if (isNaN(dateObject)) {
-      alert('Please enter a valid date.');
-      return;
+        alert('Please enter a valid date.');
+        return;
     }
   
-    // Format date to DD-MM-YYYY
     const formattedDate = formatDate(dateObject);
-    console.log("Formatted Date:", formattedDate, "typeDate", typeof (formattedDate)); // Log formatted date
-  
-    // Validate required fields
+    console.log("Formatted Date:", formattedDate, "typeDate", typeof (formattedDate));
+
     if (!post.location || post.slots <= 0 || !post.courtType || !post.price || !post.phone) {
-      alert('Please fill in all required fields.');
-      return;
+        alert('Please fill in all required fields.');
+        return;
     }
   
-    // Create reqBody as a JSON object
-
-    const reqBody = {
-      court_name: post.name,
-      location: post.location,
-      total_players: post.slots,
-      court_type: post.courtType,
-      players_needed: post.slots,
-      skill_level: post.level,
-      play_date: formattedDate,
-      cost: post.price,
-      play_time: post.playTime,
-      contact_info: `SĐT: ${post.phone}, Facebook: ${post.facebook}`
-    };
-  
-    console.log( JSON.stringify(reqBody));
+    // Create a FormData object to send form data and file
+    const formData = new FormData();
+    formData.append("court_name", post.name);
+    formData.append("location", post.location);
+    formData.append("total_players", post.slots);
+    formData.append("court_type", post.courtType);
+    formData.append("players_needed", post.slots);
+    formData.append("skill_level", post.level);
+    formData.append("play_date", formattedDate);
+    formData.append("cost", post.price);
+    formData.append("play_time", post.playTime);
+    formData.append("contact_info", `SĐT: ${post.phone}, Facebook: ${post.facebook}`);
+    
+    // Append the image file (the actual file, not the path)
+    if (post.image) {
+        formData.append("images", post.image); // Assuming post.image contains the file object
+    } else {
+        alert('Please upload an image.');
+        return;
+    }
   
     try {
-      const response = await fetch("https://bepickleball.vercel.app/api/post/create", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json', // Set Content-Type header to JSON
-          'Authorization': `Bearer ${token}`, // Use the token in the Authorization header
-        },
-        body: JSON.stringify(reqBody), // Send the reqBody as JSON
-      });
+        const response = await fetch("https://bepickleball.vercel.app/api/post/create", {
+            method: "POST",
+            headers: {
+                'Authorization': `Bearer ${token}`, // Only authorization header
+            },
+            body: formData, // Use FormData as the body
+        });
+        console.log("-------", response);
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Response Error:', errorData);
+            alert(`${errorData.error}`);
+            return;
+        }
   
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Response Error:', errorData); // Log error response
-        alert(`${errorData.error}`);
-        return;
-      }
-  
-      const result = await response.json();
-      setShowModal(true); // Show modal on success
+        const result = await response.json();
+        setShowModal(true); // Show modal on success
     } catch (error) {
-      console.error(error);
-      alert('Có lỗi xảy ra khi đăng bài!');
+        console.error(error);
+        alert('Có lỗi xảy ra khi đăng bài!');
     }
-  };
+};
 
 
   // Utility function to format Date object to DD-MM-YYYY
