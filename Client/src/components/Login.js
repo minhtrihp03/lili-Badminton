@@ -44,13 +44,14 @@ const Login = () => {
     }
   };
 
-  const handleBackButton = () => {
-    navigate('/');
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleLoginClick();
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Ngăn chặn mặc định của form
-    handleLoginClick(); // Gọi hàm đăng nhập
+  const handleBackButton = () => {
+    navigate('/');
   };
 
   return (
@@ -75,6 +76,7 @@ const Login = () => {
               placeholder="Tên đăng nhập"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              onKeyDown={handleKeyDown} // Thêm sự kiện này cho input username
               required
             />
           </div>
@@ -88,6 +90,7 @@ const Login = () => {
               placeholder="Mật khẩu"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={handleKeyDown} // Thêm sự kiện này cho input password
               required
             />
           </div>
@@ -99,7 +102,7 @@ const Login = () => {
             </div>
             <a href="/forgot-password" className="link">Quên mật khẩu?</a>
           </div>
-          <button type='submit' className="button" onClick={handleLoginClick}>Đăng nhập</button>
+          <button className="button" onClick={handleLoginClick}>Đăng nhập</button>
           <p>Chưa có tài khoản? <a href="/register" className="link">Đăng ký</a></p>
         </div>
         <img src={process.env.PUBLIC_URL + '/assets/images/Register.png'} alt="Login" className="image" />
