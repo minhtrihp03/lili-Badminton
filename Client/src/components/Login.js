@@ -62,10 +62,6 @@ const Login = () => {
             <FaArrowLeft />
           </button>
           <h2>Đăng nhập</h2>
-          <button className="facebook-button">
-            <FaFacebook /> Đăng nhập bằng Facebook
-          </button>
-          <p className="subtitle1">Hoặc</p>
           <div className="input-group" style={{borderRadius: "20px"}}>
             <div className="icon-wrapper">
               <FaUser />

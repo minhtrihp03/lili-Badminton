@@ -78,7 +78,8 @@ const Register = () => {
 
       console.log(data);
       toast.success("Đăng ký thành công!");
-
+      
+      navigate('/login');
     } catch (error) {
       console.log("Error: ", error);
       toast.error("Đã xảy ra lỗi, vui lòng thử lại sau!");
