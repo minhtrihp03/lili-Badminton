@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import { CiLocationOn, CiMedal } from "react-icons/ci";
-import { FaArrowUpRightDots } from "react-icons/fa6";
+import { FaArrowUpRightDots, FaFacebook } from "react-icons/fa6";
 import { IoIosInformationCircle } from "react-icons/io";
 import { PiUserSquareLight } from "react-icons/pi";
 import { useLocation } from "react-router-dom";
@@ -81,7 +81,7 @@ const CoachDetailComponent = () => {
 
                             <Row className="image-grid">
                                 {/* 3 ảnh nhỏ */}
-                                {images.slice(1, 4).map((img, index) => (
+                                {images.slice(0, 3).map((img, index) => (
                                     <Col md={3} key={index} className="small-image-col">
                                         {index === 2 ? ( // Hiển thị nút "Xem thêm" trên ảnh thứ 3
                                             <div
@@ -118,14 +118,18 @@ const CoachDetailComponent = () => {
                     </Col>
                     <Col md={5} className="court-details">
                         <Card.Body id="court-card-body">
-                            <div className="badge-container">
-                                <Button variant="outline-primary" className="court-badge">
-                                    {type}
-                                </Button>
-                            </div>
                             <Card.Title style={{ fontSize: "32px", fontWeight: "500" }}>
                                 {name}
                             </Card.Title>
+                            <Card.Text
+                                style={{
+                                    fontSize: "24px",
+                                    fontWeight: "600",
+                                    color: "#059A8F",
+                                }}
+                            >
+                                {price.toLocaleString("vi-VN")} VND / người
+                            </Card.Text>
                             <Card.Text className="court-info">
                                 <div className="court-info-item">
                                     <CiLocationOn className="icon" style={{ color: "#828282" }} />
@@ -139,15 +143,6 @@ const CoachDetailComponent = () => {
                                     </a>
                                 </div>
                             </Card.Text>
-                            <Card.Text
-                                style={{
-                                    fontSize: "24px",
-                                    fontWeight: "600",
-                                    color: "#059A8F",
-                                }}
-                            >
-                                {price.toLocaleString("vi-VN")} VND / người
-                            </Card.Text>
                             <Card.Text>
                                 <CiMedal
                                     className="icon"
@@ -159,9 +154,17 @@ const CoachDetailComponent = () => {
                                 <div className="icon" style={{ color: "#828282" }} />
                                 Số điện thoại: {contact?.phone}
                             </Card.Text>
-                            <Button className="register-btn" variant="primary">
-                                Liên hệ
-                            </Button>
+                            <div className="row contact-buttons w-25">
+                                <div className="col">
+                                    <button className="btn btn-outline-primary contact-btn" style={{ color: "#3b5998", backgroundColor: "white", borderColor: "#3b5998" }}>
+                                        <FaFacebook /> {contact?.facebook && (
+                                            <a style={{ color: "black", textDecoration: "none" }} href={contact.facebook} target="_blank" rel="noopener noreferrer">
+                                                Facebook
+                                            </a>
+                                        )}
+                                    </button>
+                                </div>
+                            </div>
                         </Card.Body>
                     </Col>
                 </Row>

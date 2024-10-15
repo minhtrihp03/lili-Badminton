@@ -48,6 +48,11 @@ const Login = () => {
     navigate('/');
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Ngăn chặn mặc định của form
+    handleLoginClick(); // Gọi hàm đăng nhập
+  };
+
   return (
     <div className="container">
       <div className="form-wrapper">
@@ -94,7 +99,7 @@ const Login = () => {
             </div>
             <a href="/forgot-password" className="link">Quên mật khẩu?</a>
           </div>
-          <button className="button" onClick={handleLoginClick}>Đăng nhập</button>
+          <button type='submit' className="button" onClick={handleLoginClick}>Đăng nhập</button>
           <p>Chưa có tài khoản? <a href="/register" className="link">Đăng ký</a></p>
         </div>
         <img src={process.env.PUBLIC_URL + '/assets/images/Register.png'} alt="Login" className="image" />
