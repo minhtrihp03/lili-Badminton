@@ -26,14 +26,14 @@
 
 #court-detail-card .large-image {
   border-radius: 12px;
-  width: 608px;
-  height: 393px;
+  width: 100%;
+  height: 50%;
   object-fit: cover; 
 }
 
 #court-detail-card .small-image {
   border-radius: 8px;
-  width: 154px; 
+  width: 100%; 
   height: 107px; 
   cursor: pointer;
 }
