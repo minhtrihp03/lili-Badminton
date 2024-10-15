@@ -65,7 +65,7 @@ const CoachList = () => {
           coaches.map((coach) => (
             <div key={coach._id} className="coach-item">
               <img
-                src={coach.profile_image_url || '/assets/images/default-coach.png'}
+                src={coach.images || '/assets/images/default-coach.png'}
                 alt={coach.name}
                 className="coach-image"
               />

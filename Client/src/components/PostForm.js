@@ -189,19 +189,7 @@ const PostForm = () => {
 
       {/* Link Zalo và Facebook */}
       <Row>
-        <Col md={6} style={{ padding: 0 }}>
-          <Form.Group controlId="zaloLink">
-            <Form.Control
-              type="text"
-              placeholder="Thành Phố"
-              name="zaloLink"
-              value={formData.zaloLink}
-              onChange={handleInputChange}
-              style={{ padding: "0px", width: '90%', justifyContent: 'center' }}
-            />
-          </Form.Group>
-        </Col>
-        <Col md={6} style={{ padding: 0 }}>
+        <Col style={{ padding: 0 }}>
         <Form.Group controlId="address">
             <Form.Control
               type="text"
