@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, Row, Col } from 'react-bootstrap';
+import { Button, Form, Row, Col, Alert } from 'react-bootstrap';
 import '../styles/screens/PostForm.css'; // Add your custom styles
 
 const PostForm = () => {
   const [formData, setFormData] = useState({
     trainerName: '',
     experience: '',
-    image: '',
+    images: null,
     phoneNumber: '',
-    price: '',
+    price_per_session: '',
     zaloLink: '',
     facebookLink: '',
-    trainerLocation: '',  // Đảm bảo có trường này cho địa điểm
-    courtLocation: '',     // Thêm trường courtLocation
+    trainerLocation: '',
+    description: '',
     rememberChoice: false,
+    address: '',
   });
+
+  const [submissionStatus, setSubmissionStatus] = useState({ success: false, error: null }); 
 
   // Effect to load saved data from localStorage
   useEffect(() => {
@@ -26,8 +29,14 @@ const PostForm = () => {
 
   // Handle input changes
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type, files } = e.target;
+
+    if (type === 'file') {
+      // Handle file input for images
+      setFormData({ ...formData, [name]: files[0] });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   // Handle checkbox change
@@ -54,41 +63,64 @@ const PostForm = () => {
     // Log data for testing
     console.log('Form Data Submitted:', formData);
 
+    // Prepare form data for submission
+    const data = new FormData();
+    data.append('name', formData.trainerName);
+    data.append('price_per_session', formData.price_per_session); // Correct the field name
+    data.append('address', formData.address); // Append the address field
+    data.append('contact_info[phone]', formData.phoneNumber);
+    data.append('contact_info[facebook]', formData.facebookLink);
+    data.append('description', formData.description);
+
+    // Append the file if selected
+    if (formData.images) {
+      data.append('images', formData.images); // Send the file object
+    } else {
+      alert('No image selected. Please upload an image.');
+      return; // Prevent submission if no image is selected
+    }
+
     // Send data to the API
     try {
       const response = await fetch('https://bepickleball.vercel.app/api/coach/add', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({
-          name: formData.trainerName,
-          rating: 4.5, // Giả định giá trị này
-          price_per_session: formData.price,
-          profile_image_url: formData.image,
-          contact_info: {
-            phone: formData.phoneNumber,
-            facebook: formData.facebookLink,
-            zalo: formData.zaloLink,
-          },
-          courtLocation: formData.courtLocation, // Thêm trường courtLocation
-        }),
+        body: data
       });
 
-      const data = await response.json();
-      console.log('Response from API:', data);
+      const result = await response.json();
+      console.log('Response from API:', result);
+      console.log('Response status:', response);
 
-      // Thực hiện thêm xử lý sau khi gửi thành công, nếu cần
+      if (response.ok) {
+        console.log('Form submitted successfully!');
+        setSubmissionStatus({ success: true, error: null }); // Set success status
+      } else {
+        console.error('Error in submission:', result.error);
+        setSubmissionStatus({ success: false, error: result.error }); // Set error status
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
+      setSubmissionStatus({ success: false, error: 'An unexpected error occurred.' });
     }
   };
 
   return (
-    <Form className="post-form" style={{backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/post-background.png)`}} onSubmit={handleSubmit}>
-      <h4 style={{textAlign: 'left'}}>Bài đăng</h4>
+    <Form className="post-form" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/assets/images/post-background.png)` }} onSubmit={handleSubmit}>
+      <h4 style={{ textAlign: 'left' }}>Bài đăng</h4>
 
+      {submissionStatus.success && (
+        <Alert variant="success" onClose={() => setSubmissionStatus({ success: false, error: null })} dismissible>
+          Đăng bài thành công!
+        </Alert>
+      )}
+      {submissionStatus.error && (
+        <Alert variant="danger" onClose={() => setSubmissionStatus({ success: false, error: null })} dismissible>
+          {submissionStatus.error}
+        </Alert>
+      )}
       {/* Tên huấn luyện viên */}
       <Form.Group controlId="trainerName">
         <Form.Control
@@ -104,22 +136,22 @@ const PostForm = () => {
       {/* Trình độ và input ảnh */}
       <Row>
         <Col md={6} style={{ padding: 0 }}>
-          <Form.Group controlId="image">
+        <Form.Group controlId="images">
             <Form.Control
               type="file"
-              name="image"
+              name="images"
               onChange={handleInputChange}
               style={{ padding: 0, width: '90%' }}
             />
           </Form.Group>
         </Col>
         <Col md={6} style={{ padding: 0 }}>
-          <Form.Group controlId="price">
+        <Form.Group controlId="price_per_session">
             <Form.Control
               type="text"
               placeholder="Nhập giá tiền"
-              name="price"
-              value={formData.price}
+              name="price_per_session"
+              value={formData.price_per_session}
               onChange={handleInputChange}
               style={{ padding: 0, width: '90%' }}
             />
@@ -170,12 +202,12 @@ const PostForm = () => {
           </Form.Group>
         </Col>
         <Col md={6} style={{ padding: 0 }}>
-          <Form.Group controlId="facebookLink">
+        <Form.Group controlId="address">
             <Form.Control
               type="text"
               placeholder="Khu vực cụ thể"
-              name="facebookLink"
-              value={formData.facebookLink}
+              name="address"
+              value={formData.address}
               onChange={handleInputChange}
               style={{ padding: 0, width: '90%' }}
             />
@@ -183,12 +215,12 @@ const PostForm = () => {
         </Col>
       </Row>
 
-      <Form.Group controlId="courtLocation">
+      <Form.Group controlId="description">
         <Form.Control
           type="text"
           placeholder="Thành tích cá nhân"
-          name="courtLocation"
-          value={formData.courtLocation}
+          name="description"
+          value={formData.description}
           onChange={handleInputChange}
           style={{ width: '90%', marginBottom: "20px" }}
         />
