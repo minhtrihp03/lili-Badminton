@@ -1,19 +1,59 @@
 .court-registration-list {
-    padding: 20px;
-  }
-  
-  .card img {
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .pagination {
-    margin-top: 20px;
-  }
-  
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.court-items {
+  /* Show max 3 courts and allow scrolling */
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: 15px;
+  border-radius: 10px;
+}
+
+.court-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.court-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+
+.court-details {
+  flex-grow: 1;
+}
+
+.court-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Custom scrollbar */
+.scrollable-list {
+  scrollbar-width: thin;
+  scrollbar-color: #007bff #e0e0e0;
+}
+
+.scrollable-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollable-list::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+
+.scrollable-list::-webkit-scrollbar-thumb {
+  background-color: #007bff;
+  border-radius: 10px;
+}
