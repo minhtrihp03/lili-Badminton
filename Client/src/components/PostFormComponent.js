@@ -17,7 +17,7 @@ const PostFormComponent = () => {
     price: '',
     phone: '',
     facebook: '',
-    image: null,
+    image: [],
     level: '<2.0', // Added default value for skill level
   });
 
@@ -29,7 +29,7 @@ const PostFormComponent = () => {
         const dateValue = new Date(value);
         setPost({ ...post, [name]: dateValue });
     } else if (name === "image") {
-        setPost({ ...post, image: files[0] }); // Capture the first file selected
+        setPost({ ...post, image: [...files] }); // Capture the first file selected
     } else {
         setPost({ ...post, [name]: value });
     }
@@ -76,11 +76,13 @@ const PostFormComponent = () => {
     formData.append("contact_info", `SĐT: ${post.phone}, Facebook: ${post.facebook}`);
     
     // Append the image file (the actual file, not the path)
-    if (post.image) {
-        formData.append("images", post.image); // Assuming post.image contains the file object
+    if (post.image.length > 0) {
+      post.image.forEach((image, index) => {
+        formData.append(`images`, image); // Multiple images can be appended with the same key
+      });
     } else {
-        alert('Please upload an image.');
-        return;
+      alert('Please upload at least one image.');
+      return;
     }
   
     try {
