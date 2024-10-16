@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import CoachComponent from './CoachComponent';
 
-const CoachListComponent = ({ searchFilters }) => {
+const CoachListComponent = ({ searchFilters = {} }) => {
   const [coaches, setCoaches] = useState([]);
 
    // Hàm để lấy dữ liệu từ API
