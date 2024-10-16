@@ -97,6 +97,18 @@ const CourtDetailComponent = () => {
     return match ? match[1] : 'Không có số điện thoại';
   };
 
+  const getFacebook = (contactInfo) => {
+    if (!contactInfo || typeof contactInfo !== 'string') {
+      return 'Không có Facebook';
+    }
+
+    // Biểu thức chính quy để tìm URL Facebook
+    const match = contactInfo.match(/Facebook:\s*(https?:\/\/www\.facebook\.com\/[^\s,]+)/);
+
+    return match ? match[1] : 'Không có Facebook';
+  };
+
+
   const handleViewMore = () => {
     alert('Hiển thị thêm hình ảnh...');
   };
@@ -205,6 +217,24 @@ const CourtDetailComponent = () => {
               </Card.Text>
               <Card.Text>
                 <div className="icon" style={{ color: "#828282" }} />Số điện thoại: {getPhoneNumber(contact_info)}
+              </Card.Text>
+              {/* <Card.Text>
+                <div className="icon" style={{ color: "#828282" }} />Facebook: {getFacebook(contact_info)}
+              </Card.Text> */}
+              <Card.Text>
+                <div className="icon" style={{ color: "#828282", fontSize: "20px" }} />Facebook: &nbsp;
+                {getFacebook(contact_info) !== 'Không có Facebook' ? (
+                  <a
+                    href={getFacebook(contact_info)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none", color: "#064D7E" }}
+                  >
+                    {getFacebook(contact_info)}
+                  </a>
+                ) : (
+                  'Không có Facebook'
+                )}
               </Card.Text>
 
               {/* Kiểm tra nếu số lượng người đã đặt = slots */}
