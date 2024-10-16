@@ -33,10 +33,11 @@ const PostForm = () => {
 
     if (type === 'file') {
       // Handle file input for images
-      setFormData({ ...formData, [name]: files });
+      setFormData({ ...formData, images: [...files] });
     } else {
       setFormData({ ...formData, [name]: value });
     }
+    console.log("Updated Post State:", { ...formData, [name]: value });
   };
 
   // Handle checkbox change
@@ -75,7 +76,7 @@ const PostForm = () => {
     // Append the file if selected
     if (formData.images) {
       Array.from(formData.images).forEach((image, index) => {
-        data.append(`images[${index}]`, image); // Append từng ảnh với tên khác nhau
+        data.append(`images`, images); // Append từng ảnh với tên khác nhau
       });
     } else {
       alert('No image selected. Please upload an image.');

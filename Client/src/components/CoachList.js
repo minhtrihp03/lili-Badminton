@@ -29,11 +29,25 @@ const CoachList = () => {
 
   // Hàm xóa huấn luyện viên
   const handleDelete = async (coachId) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('Bạn cần đăng nhập để thực hiện hành động này.');
+      return;
+    }
     const confirmDelete = window.confirm('Bạn có chắc chắn muốn xóa huấn luyện viên này?');
     if (!confirmDelete) return;
+    console.log('Xóa huấn luyện là:', coachId);
+
+    console.log(token, "token");
+    
+    
 
     try {
-      const response = await axios.delete(`https://bepickleball.vercel.app/api/coach/cancel/${coachId}`);
+      const response = await axios.delete(`https://bepickleball.vercel.app/api/coach/delete/${coachId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`, // Thêm token vào header
+        },
+      });
       if (response.status === 200) {
         setCoaches(coaches.filter((coach) => coach._id !== coachId)); // Cập nhật danh sách huấn luyện viên
         alert('Huấn luyện viên đã được xóa thành công');
