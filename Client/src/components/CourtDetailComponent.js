@@ -210,7 +210,7 @@ const CourtDetailComponent = () => {
                 {price.toLocaleString('vi-VN')} VND / người
               </Card.Text>
               <Card.Text>
-                <PiUserSquareLight className="icon" style={{ color: "#828282" }} />Slot đã đặt: <span style={{ color: "red" }}>{applied_count}/{slots} người</span>
+                <PiUserSquareLight className="icon" style={{ color: "#828282" }} />Slot đã đặt: <span style={{ color: "red" }}>{players_needed}/{slots} người</span>
               </Card.Text>
               <Card.Text>
                 <IoIosInformationCircle className="icon" style={{ color: "#828282", fontSize: "20px" }} />Thời gian bắt đầu chơi: {time}
@@ -238,7 +238,7 @@ const CourtDetailComponent = () => {
               </Card.Text>
 
               {/* Kiểm tra nếu số lượng người đã đặt = slots */}
-              {applied_count >= slots ? (
+              {players_needed >= slots ? (
                 <Button className="register-btn" variant="danger" disabled>
                   Đã đầy
                 </Button>
