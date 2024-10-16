@@ -5,38 +5,37 @@ import { MdModeEdit } from "react-icons/md";
 import AvatarBlank from '../assets/avt-blank.jpg';
 
 const Profile = () => {
-  const [profileData, setProfileData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [isEditing, setIsEditing] = useState({});  // Để theo dõi trường nào đang được chỉnh sửa
+  const [profileData, setProfileData] = useState(null);  // State để lưu dữ liệu profile
+  const [loading, setLoading] = useState(true);  // State để hiển thị trạng thái loading
+  const [error, setError] = useState(null);  // State để xử lý lỗi
+  const [isEditing, setIsEditing] = useState(false);  
   const [updatedProfile, setUpdatedProfile] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const token = localStorage.getItem('token');
+        // Giả sử bạn lưu token trong localStorage
+        const token = localStorage.getItem('token');  
 
         if (!token) {
           setError('Token không hợp lệ, vui lòng đăng nhập lại');
-          navigate('/login');
+          navigate('/login');  // Điều hướng về trang login nếu không có token
           return;
         }
 
         const response = await fetch('https://bepickleball.vercel.app/api/auth/profile', {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${token}`,  // Thêm token vào headers
             'Content-Type': 'application/json',
           },
         });
 
         if (response.ok) {
           const data = await response.json();
-          setProfileData(data.profile);
+          setProfileData(data.profile);  // Cập nhật dữ liệu profile
           setLoading(false);
-          // Khởi tạo updatedProfile với dữ liệu hiện có
-          setUpdatedProfile(data.profile);
         } else {
           const errorData = await response.json();
           setError(errorData.message || 'Có lỗi xảy ra khi tải thông tin hồ sơ');
@@ -49,13 +48,13 @@ const Profile = () => {
     fetchProfile();
   }, [navigate]);
 
-  const handleEditToggle = (field) => {
-    setIsEditing((prev) => ({ ...prev, [field]: !prev[field] }));  // Chuyển trạng thái chỉnh sửa cho trường tương ứng
+  const handleEdit = () => {
+    setIsEditing(true);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUpdatedProfile((prevState) => ({
+    setUpdatedProfile(prevState => ({
       ...prevState,
       [name]: value,
     }));
@@ -66,19 +65,19 @@ const Profile = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch('https://bepickleball.vercel.app/api/auth/profile/update', {
-        method: 'PUT',
+        method: 'PUT',  // Sử dụng PUT để cập nhật
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(updatedProfile),
+        body: JSON.stringify(updatedProfile),  // Gửi dữ liệu cập nhật
       });
 
       if (response.ok) {
         const data = await response.json();
         alert('Cập nhật hồ sơ thành công!');
-        setProfileData(data.profile);
-        setIsEditing({});  // Đóng tất cả các trường chỉnh sửa
+        setProfileData(data.profile);  // Cập nhật dữ liệu profile mới
+        setIsEditing(false);  // Đóng form chỉnh sửa
       } else {
         const errorData = await response.json();
         alert(errorData.message || 'Có lỗi xảy ra khi cập nhật hồ sơ');
@@ -106,124 +105,54 @@ const Profile = () => {
       <div className="profile-card">
         <div className="profile-header">
           <img
-            src={profileData.avatar || AvatarBlank}
+            src={profileData.profile.avatar || AvatarBlank}
             alt="Avatar"
             className="profile-avatar"
           />
-          <h2>{profileData.name || 'Tên chưa cập nhật'}</h2>
-          <p className="profile-role">{profileData.role}</p>
+          <h2>{profileData.profile.name || 'Tên chưa cập nhật'}</h2>
+          <p className="profile-role">{profileData.role.toUpperCase()}</p>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          <div className="profile-body">
-            <div className="profile-info">
-              <label>Tài khoản:</label>
-              {isEditing.username ? (
-                <input
-                  type="text"
-                  name="username"
-                  value={updatedProfile.username || ''}
-                  onChange={handleChange}
-                  required
-                />
-              ) : (
-                <p>{profileData.username || 'Chưa cập nhật'} &nbsp; <span onClick={() => handleEditToggle('username')}><MdModeEdit /></span></p>
-              )}
-            </div>
-            <div className="profile-info">
-              <label>Email:</label>
-              {isEditing.email ? (
-                <input
-                  type="email"
-                  name="email"
-                  value={updatedProfile.email || ''}
-                  onChange={handleChange}
-                  required
-                />
-              ) : (
-                <p>{profileData.email || 'Chưa cập nhật'} &nbsp; <span onClick={() => handleEditToggle('email')}><MdModeEdit /></span></p>
-              )}
-            </div>
-            <div className="profile-info">
-              <label>Số điện thoại:</label>
-              {isEditing.phone ? (
-                <input
-                  type="tel"
-                  name="phone"
-                  value={updatedProfile.phone || ''}
-                  onChange={handleChange}
-                  required
-                />
-              ) : (
-                <p>{profileData.phone || 'Chưa cập nhật'} &nbsp; <span onClick={() => handleEditToggle('phone')}><MdModeEdit /></span></p>
-              )}
-            </div>
-            <div className="profile-info">
-              <label>Cấp độ kỹ năng:</label>
-              {isEditing.skill_level ? (
-                <input
-                  type="text"
-                  name="skill_level"
-                  value={updatedProfile.skill_level || ''}
-                  onChange={handleChange}
-                />
-              ) : (
-                <p>{profileData.skill_level || 'Chưa cập nhật'} &nbsp; <span onClick={() => handleEditToggle('skill_level')}><MdModeEdit /></span></p>
-              )}
-            </div>
-            <div className="profile-info">
-              <label>Tiểu sử:</label>
-              {isEditing.bio ? (
-                <textarea
-                  name="bio"
-                  value={updatedProfile.bio || ''}
-                  onChange={handleChange}
-                />
-              ) : (
-                <p>{profileData.bio || 'Chưa cập nhật tiểu sử'} &nbsp; <span onClick={() => handleEditToggle('bio')}><MdModeEdit /></span></p>
-              )}
-            </div>
-            <div className="profile-info">
-              <label>Liên hệ khác:</label>
-              {isEditing.phone_number ? (
-                <input
-                  type="text"
-                  name="phone_number"
-                  value={updatedProfile.phone_number || ''}
-                  onChange={handleChange}
-                />
-              ) : (
-                <p>{profileData.phone_number || 'Chưa có số liên hệ'} &nbsp; <span onClick={() => handleEditToggle('phone_number')}><MdModeEdit /></span></p>
-              )}
-            </div>
-            <div className="profile-info">
-              <label>Facebook:</label>
-              {isEditing.facebook_link ? (
-                <input
-                  type="url"
-                  name="facebook_link"
-                  value={updatedProfile.facebook_link || ''}
-                  onChange={handleChange}
-                />
-              ) : (
-                <p>
-                  {profileData.facebook_link ? (
-                    <a href={profileData.facebook_link} target="_blank" rel="noopener noreferrer">
-                      Facebook cá nhân
-                    </a>
-                  ) : (
-                    'Chưa cập nhật'
-                  )} &nbsp; <span onClick={() => handleEditToggle('facebook_link')}><MdModeEdit /></span>
-                </p>
-              )}
-            </div>
+        <div className="profile-body">
+          <div className="profile-info">
+            <label>Tài khoản:</label>
+            <p>{profileData.username} &nbsp; <span><MdModeEdit /></span></p>
+            
           </div>
-
-          {/* Nút lưu thay đổi chỉ hiển thị khi có ít nhất một trường đang chỉnh sửa */}
-          {Object.values(isEditing).some(edit => edit) && (
-            <button type="submit" className="button-save">Lưu thay đổi</button>
-          )}
-        </form>
+          <div className="profile-info">
+            <label>Email:</label>
+            <p>{profileData.email}</p>
+          </div>
+          <div className="profile-info">
+            <label>Số điện thoại:</label>
+            <p>{profileData.phone}</p>
+          </div>
+          <div className="profile-info">
+            <label>Cấp độ kỹ năng:</label>
+            <p>{profileData.profile.skill_level || 'Chưa cập nhật'} &nbsp; <span><MdModeEdit /></span></p>
+          </div>
+          <div className="profile-info">
+            <label>Tiểu sử:</label>
+            <p>{profileData.profile.bio || 'Chưa cập nhật tiểu sử'} &nbsp; <span><MdModeEdit /></span></p>
+          </div>
+          <div className="profile-info">
+            <label>Liên hệ khác:</label>
+            <p>{profileData.profile.phone_number || 'Chưa có số liên hệ'} &nbsp; <span><MdModeEdit /></span></p>
+          </div>
+          <div className="profile-info">
+            <label>Facebook:</label>
+            <p>
+              {profileData.profile.facebook_link ? (
+                <a href={profileData.profile.facebook_link} target="_blank" rel="noopener noreferrer">
+                  Facebook cá nhân
+                </a> 
+              ) : (
+                'Chưa cập nhật'
+              )}
+               &nbsp; <span><MdModeEdit /></span>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
