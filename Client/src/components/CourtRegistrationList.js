@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import '../styles/screens/CourtRegistrationList.css'; // Import your custom styles
+import { FaFacebook, FaPhone } from 'react-icons/fa6';
 
 const CourtRegistrationList = () => {
   const [courts, setCourts] = useState([]);  // Store list of courts
@@ -90,6 +91,25 @@ const CourtRegistrationList = () => {
     return playDateObj < today;
   };
 
+  const getPhoneNumber = (contactInfo) => {
+    if (!contactInfo || typeof contactInfo !== 'string') {
+      return 'Không có số điện thoại';
+    }
+    const match = contactInfo.match(/SĐT:\s?(\d+)/);
+    return match ? match[1] : 'Không có số điện thoại';
+  };
+
+  const getFacebook = (contactInfo) => {
+    if (!contactInfo || typeof contactInfo !== 'string') {
+      return 'Không có Facebook';
+    }
+
+    // Biểu thức chính quy để tìm URL Facebook
+    const match = contactInfo.match(/Facebook:\s*(https?:\/\/www\.facebook\.com\/[^\s,]+)/);
+
+    return match ? match[1] : 'Không có Facebook';
+  };
+
   return (
     <div className="court-registration-list">
       <h4>Sân đã đăng ký</h4>
@@ -105,7 +125,30 @@ const CourtRegistrationList = () => {
             <div id="court-details">
               <p style={{ color: '#2D70A1' }}>{court.court_type}</p>
               <h5>{court.court_name}</h5>
-              <h6>Liên hệ {court.contact_info}</h6>
+              <div className="icon" style={{ color: "#828282" }} />Liên hệ:
+                &nbsp;&nbsp;
+                {getPhoneNumber(court.contact_info) !== 'Không có số điện thoại' ? (
+                  <a>
+                    <FaPhone style={{ color: "#828282", fontSize: "17px", marginRight: "8px" }} />{getPhoneNumber(court.contact_info)}
+                  </a>
+                ) : (
+                  'Không có Số điện thoại'
+                )}
+                &nbsp;&nbsp;
+                {getFacebook(court.contact_info) !== 'Không có Facebook' ? (
+                  <a
+                    href={getFacebook(court.contact_info)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none", color: "#064D7E" }}
+                  >
+                    {/* Icon Facebook */}
+                    <FaFacebook style={{ color: "#828282", fontSize: "20px", marginRight: "8px" }} />
+                    Facebook
+                  </a>
+                ) : (
+                  'Không có Facebook'
+                )}
               <p style={{ color: '#828282' }}>
                 <a style={{ color: '#828282' }} href={court.location}>Vị trí: {court.court_name}</a>
                 - Thời gian chơi: {court.play_time}

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaBars, FaRegPenToSquare, FaBell } from "react-icons/fa6";
 import { FaCheckCircle } from 'react-icons/fa';
 import { useNotifications } from './NotificationContext';
+import AvaterBlank from '../assets/avt-blank.jpg';
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -51,6 +52,10 @@ const Header = () => {
 
   const handleRegister = () => {
     navigate('/register');
+  }
+
+  const handleProfile = () => {
+    navigate('/profile');
   }
 
   const toggleMenu = () => {
@@ -117,10 +122,10 @@ const Header = () => {
         <div className="user-section">
           <div className="user-info">
             <img
-              src={avatar }
+              src={avatar ? avatar : AvaterBlank}
               alt="User Avatar"
               className="image"
-              onClick={toggleNotifications}
+              onClick={handleProfile}
             />
             <span>{name}</span>
           </div>
