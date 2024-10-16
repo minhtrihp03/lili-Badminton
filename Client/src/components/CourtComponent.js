@@ -41,7 +41,7 @@ const CourtComponent = ({ name, price, slots, location, type, level, images = []
   }, []);
   
   return (
-    <Card className={`court-card ${players_needed >= slots ? 'full-court' : ''}`} onClick={handleCardClick}>
+    <Card className={`court-card ${slots - players_needed >= slots ? 'full-court' : ''}`} onClick={handleCardClick}>
     <div className="top-left-badge">
       {type === 'Sân Có Mái Che' ? 'Sân Có Mái Che' : 'Sân không có mái che'}
     </div>
@@ -70,11 +70,11 @@ const CourtComponent = ({ name, price, slots, location, type, level, images = []
           <CiLocationOn /> {name}
         </Col>
         <Col className="slots-text" md={5}>
-          {players_needed >= slots ? (
+          {slots-players_needed >= slots ? (
             <span style={{ color: 'red', fontWeight: 'bold' }}>Đã đầy</span> // Hiển thị khi đã đầy
           ) : (
             <span>
-              <PiUserRectangleLight /> {players_needed}/{slots} người
+              <PiUserRectangleLight /> {slots-players_needed}/{slots} người
             </span>
           )}
         </Col>
