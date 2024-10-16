@@ -203,7 +203,7 @@ const CourtDetailComponent = () => {
                 </div>
                 <div className="court-info-item">
                   <FaArrowUpRightDots className="icon" style={{ color: "#828282", fontSize: "20px" }} />
-                  Trình độ: {level.toFixed(1)}
+                  Trình độ: {level ? level.toFixed(1) : '1-2'}
                 </div>
               </Card.Text>
               <Card.Text style={{ fontSize: "24px", fontWeight: "600", color: "#059A8F" }}>
