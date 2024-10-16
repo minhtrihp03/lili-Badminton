@@ -52,7 +52,7 @@ const HomeLayout = () => {
             <ParticipationComponent />
 
             {/* Coach List Section */}
-            <CoachListComponent />
+            <CoachListComponent limit={8}/>
 
             <Link
               to="/coach"

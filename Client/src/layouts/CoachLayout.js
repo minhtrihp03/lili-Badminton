@@ -24,7 +24,7 @@ const CoachLayout = () => {
       {/* Truyền hàm handleSearch cho TrainerSearchFilter */}
       <TrainerSearchFilter onSearch={handleSearch} />
       {/* Truyền searchFilters cho CoachListComponent */}
-      <CoachListComponent searchFilters={searchFilters} />
+      <CoachListComponent searchFilters={searchFilters} limit={Infinity}/>
       <Footer />
     </div>
   );

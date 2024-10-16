@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import CoachComponent from './CoachComponent';
+import Pagination from '@mui/material/Pagination'; // Import Pagination component
 
 const CoachListComponent = ({ searchFilters = {} }) => {
   const [coaches, setCoaches] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const itemsPerPage = 16; // Số lượng huấn luyện viên mỗi trang
 
-   // Hàm để lấy dữ liệu từ API
-   const fetchCoaches = async () => {
+  // Hàm để lấy dữ liệu từ API
+  const fetchCoaches = async () => {
     try {
       const response = await fetch('https://bepickleball.vercel.app/api/coach/list');
       const data = await response.json();
@@ -20,7 +24,10 @@ const CoachListComponent = ({ searchFilters = {} }) => {
     fetchCoaches(); // Gọi hàm fetchCoaches khi component được mount
   }, []);
 
-  const [visibleCount, setVisibleCount] = useState(8);
+  useEffect(() => {
+    // Cập nhật tổng số trang mỗi khi danh sách huấn luyện viên thay đổi
+    setTotalPages(Math.ceil(coaches.length / itemsPerPage));
+  }, [coaches]);
 
   // Lọc danh sách huấn luyện viên dựa trên tên và trình độ
   const filteredCoaches = coaches.filter((coach) => {
@@ -28,36 +35,35 @@ const CoachListComponent = ({ searchFilters = {} }) => {
       ? coach.name.toLowerCase().includes(searchFilters.trainerName.toLowerCase())
       : true;
 
-      const matchesLocation = searchFilters.location && searchFilters.location !== 'Other'
+    const matchesLocation = searchFilters.location && searchFilters.location !== 'Other'
       ? coach.address && coach.address.includes(searchFilters.location) // Ensure coach.address is defined
       : searchFilters.otherLocation
-      ? coach.address && coach.address.includes(searchFilters.otherLocation) // Ensure coach.address is defined
-      : true;
-      const matchesLevel = searchFilters.level
+        ? coach.address && coach.address.includes(searchFilters.otherLocation) // Ensure coach.address is defined
+        : true;
+
+    const matchesLevel = searchFilters.level
       ? parseFloat(coach.skill_level) === parseFloat(searchFilters.level)
       : true;
-      return matchesName && matchesLocation && matchesLevel;
+
+    return matchesName && matchesLocation && matchesLevel;
   });
 
-  // Xác định số lượng huấn luyện viên sẽ được hiển thị
-  const displayedCoaches = filteredCoaches.slice(0, visibleCount);
+  // Xác định số lượng huấn luyện viên sẽ được hiển thị cho trang hiện tại
+  const displayedCoaches = filteredCoaches.slice((page - 1) * itemsPerPage, page * itemsPerPage);
 
-  const handleShowMore = () => {
-    setVisibleCount((prevCount) => Math.min(prevCount + 4, filteredCoaches.length));
+  const handlePageChange = (event, value) => {
+    setPage(value); // Cập nhật trang hiện tại
   };
 
-  // console.log(coaches[0].description);
-  
-
   return (
-    <div className="coach-list ms-3" style={{ textAlign: 'center' }} >
-      <h2 style={{ fontWeight: '600', margin: "50px 0 30px 0"}}>Huấn Luyện Viên</h2>
+    <div className="coach-list ms-3" style={{ textAlign: 'center' }}>
+      <h2 style={{ fontWeight: '600', margin: "50px 0 30px 0" }}>Huấn Luyện Viên</h2>
 
       {/* Responsive grid for coach list */}
-      <Row className="coach-list-row" >
+      <Row className="coach-list-row">
         {displayedCoaches.length > 0 ? (
           displayedCoaches.map((coach, index) => (
-            <Col key={index} style={{ padding: 0 }} >
+            <Col key={index} style={{ padding: 0 }}>
               <CoachComponent
                 name={coach.name}
                 price={coach.price_per_session.toLocaleString('vi-VN')}
@@ -80,6 +86,34 @@ const CoachListComponent = ({ searchFilters = {} }) => {
           <p>Không tìm thấy huấn luyện viên nào.</p>
         )}
       </Row>
+
+      {/* Pagination */}
+      <div className='pagination'>
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={handlePageChange}
+          siblingCount={2}
+          boundaryCount={1}
+          variant="outlined"
+          shape="circular"
+          sx={{
+            '& .MuiPaginationItem-root': {
+              borderRadius: '50%',
+              margin: '0 5px',
+              color: '#000',
+              backgroundColor: '#fff',
+              width: '30px',
+              height: '43px',
+              fontWeight: 600,
+              '&.Mui-selected': {
+                backgroundColor: '#2d70a1 !important',
+                color: '#fff',
+              },
+            },
+          }}
+        />
+      </div>
     </div>
   );
 };
