@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 import CoachComponent from './CoachComponent';
 import Pagination from '@mui/material/Pagination'; // Import Pagination component
 
-const CoachListComponent = ({ searchFilters = {} }) => {
+const CoachListComponent = ({ searchFilters = {}, limit = Infinity, enablePagination = false }) => {
   const [coaches, setCoaches] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -26,8 +26,27 @@ const CoachListComponent = ({ searchFilters = {} }) => {
 
   useEffect(() => {
     // Cập nhật tổng số trang mỗi khi danh sách huấn luyện viên thay đổi
-    setTotalPages(Math.ceil(coaches.length / itemsPerPage));
-  }, [coaches]);
+    const filteredCoaches = coaches.filter((coach) => {
+      const matchesName = searchFilters.trainerName
+        ? coach.name.toLowerCase().includes(searchFilters.trainerName.toLowerCase())
+        : true;
+
+      const matchesLocation = searchFilters.location && searchFilters.location !== 'Other'
+        ? coach.address && coach.address.includes(searchFilters.location)
+        : searchFilters.otherLocation
+          ? coach.address && coach.address.includes(searchFilters.otherLocation)
+          : true;
+
+      const matchesLevel = searchFilters.level
+        ? parseFloat(coach.skill_level) === parseFloat(searchFilters.level)
+        : true;
+
+      return matchesName && matchesLocation && matchesLevel;
+    });
+
+    // Cập nhật tổng số trang dựa trên số huấn luyện viên đã lọc
+    setTotalPages(Math.ceil(filteredCoaches.length / itemsPerPage));
+  }, [coaches, searchFilters]);
 
   // Lọc danh sách huấn luyện viên dựa trên tên và trình độ
   const filteredCoaches = coaches.filter((coach) => {
@@ -36,9 +55,9 @@ const CoachListComponent = ({ searchFilters = {} }) => {
       : true;
 
     const matchesLocation = searchFilters.location && searchFilters.location !== 'Other'
-      ? coach.address && coach.address.includes(searchFilters.location) // Ensure coach.address is defined
+      ? coach.address && coach.address.includes(searchFilters.location)
       : searchFilters.otherLocation
-        ? coach.address && coach.address.includes(searchFilters.otherLocation) // Ensure coach.address is defined
+        ? coach.address && coach.address.includes(searchFilters.otherLocation)
         : true;
 
     const matchesLevel = searchFilters.level
@@ -49,7 +68,9 @@ const CoachListComponent = ({ searchFilters = {} }) => {
   });
 
   // Xác định số lượng huấn luyện viên sẽ được hiển thị cho trang hiện tại
-  const displayedCoaches = filteredCoaches.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+  const displayedCoaches = enablePagination 
+    ? filteredCoaches.slice((page - 1) * itemsPerPage, page * itemsPerPage) 
+    : filteredCoaches.slice(0, limit); // Hiển thị theo limit nếu không có phân trang
 
   const handlePageChange = (event, value) => {
     setPage(value); // Cập nhật trang hiện tại
@@ -87,33 +108,35 @@ const CoachListComponent = ({ searchFilters = {} }) => {
         )}
       </Row>
 
-      {/* Pagination */}
-      <div className='pagination'>
-        <Pagination
-          count={totalPages}
-          page={page}
-          onChange={handlePageChange}
-          siblingCount={2}
-          boundaryCount={1}
-          variant="outlined"
-          shape="circular"
-          sx={{
-            '& .MuiPaginationItem-root': {
-              borderRadius: '50%',
-              margin: '0 5px',
-              color: '#000',
-              backgroundColor: '#fff',
-              width: '30px',
-              height: '43px',
-              fontWeight: 600,
-              '&.Mui-selected': {
-                backgroundColor: '#2d70a1 !important',
-                color: '#fff',
+      {/* Pagination chỉ hiển thị nếu enablePagination là true */}
+      {enablePagination && (
+        <div className='pagination'>
+          <Pagination
+            count={totalPages}
+            page={page}
+            onChange={handlePageChange}
+            siblingCount={2}
+            boundaryCount={1}
+            variant="outlined"
+            shape="circular"
+            sx={{
+              '& .MuiPaginationItem-root': {
+                borderRadius: '50%',
+                margin: '0 5px',
+                color: '#000',
+                backgroundColor: '#fff',
+                width: '30px',
+                height: '43px',
+                fontWeight: 600,
+                '&.Mui-selected': {
+                  backgroundColor: '#2d70a1 !important',
+                  color: '#fff',
+                },
               },
-            },
-          }}
-        />
-      </div>
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };
