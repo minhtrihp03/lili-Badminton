@@ -37,6 +37,7 @@ const PostForm = () => {
     } else {
       setFormData({ ...formData, [name]: value });
     }
+    console.log("Updated Post State:", { ...formData, [name]: value });
   };
 
   // Handle checkbox change
@@ -74,7 +75,7 @@ const PostForm = () => {
 
     // Append the file if selected
     if (formData.images) {
-      data.append('images', formData.images); // Send the file object
+      data.append('images', formData.images);
     } else {
       alert('No image selected. Please upload an image.');
       return; // Prevent submission if no image is selected
@@ -142,6 +143,7 @@ const PostForm = () => {
               name="images"
               onChange={handleInputChange}
               style={{ padding: 0, width: '90%' }}
+              multiple
             />
           </Form.Group>
         </Col>

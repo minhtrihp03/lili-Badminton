@@ -42,12 +42,16 @@ const CourtRegistrationList = () => {
     fetchCourts();
   }, []);
 
-  const handleUnregister = async (courtId) => {
+  const handleUnregister = async (courtId, courtName) => {
     const token = localStorage.getItem('token');
     console.log(token, "token");
     console.log(courtId, "courtId");
-    
-    
+    const isConfirmed = window.confirm(`Bạn có muốn hủy đăng ký sân ${courtName}?`);
+
+    // Nếu người dùng không xác nhận, dừng lại
+    if (!isConfirmed) {
+        return;
+    }
     
     if (!token) {
       setError('Bạn cần đăng nhập để thực hiện hủy đăng ký.');
@@ -113,7 +117,7 @@ const CourtRegistrationList = () => {
               {isPastDate(court.play_date) ? (
                 <Button className="completed-btn" disabled>Đã hoàn thành</Button>
               ) : (
-                <Button className="cancel-btn" onClick={() => handleUnregister(court._id)}>Hủy đăng ký</Button>
+                <Button className="cancel-btn" onClick={() => handleUnregister(court._id, court.court_name)}>Hủy đăng ký</Button>
               )}
             </div>
           </div>

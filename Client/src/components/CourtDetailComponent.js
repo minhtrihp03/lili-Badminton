@@ -203,14 +203,14 @@ const CourtDetailComponent = () => {
                 </div>
                 <div className="court-info-item">
                   <FaArrowUpRightDots className="icon" style={{ color: "#828282", fontSize: "20px" }} />
-                  Trình độ: {level.toFixed(1)}
+                  Trình độ: {level ? level.toFixed(1) : '1-2'}
                 </div>
               </Card.Text>
               <Card.Text style={{ fontSize: "24px", fontWeight: "600", color: "#059A8F" }}>
                 {price.toLocaleString('vi-VN')} VND / người
               </Card.Text>
               <Card.Text>
-                <PiUserSquareLight className="icon" style={{ color: "#828282" }} />Slot đã đặt: <span style={{ color: "red" }}>{players_needed}/{slots} người</span>
+                <PiUserSquareLight className="icon" style={{ color: "#828282" }} />Slot đã đặt: <span style={{ color: "red" }}>{slots-players_needed}/{slots} người</span>
               </Card.Text>
               <Card.Text>
                 <IoIosInformationCircle className="icon" style={{ color: "#828282", fontSize: "20px" }} />Thời gian bắt đầu chơi: {time}
@@ -238,7 +238,7 @@ const CourtDetailComponent = () => {
               </Card.Text>
 
               {/* Kiểm tra nếu số lượng người đã đặt = slots */}
-              {players_needed >= slots ? (
+              {players_needed == 0 ? (
                 <Button className="register-btn" variant="danger" disabled>
                   Đã đầy
                 </Button>
