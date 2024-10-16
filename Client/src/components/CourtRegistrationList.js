@@ -42,9 +42,43 @@ const CourtRegistrationList = () => {
     fetchCourts();
   }, []);
 
-  const handleUnregister = (courtId) => {
-    // Handle unregister logic
+  const handleUnregister = async (courtId) => {
+    const token = localStorage.getItem('token');
+    console.log(token, "token");
+    console.log(courtId, "courtId");
+    
+    
+    
+    if (!token) {
+      setError('Bạn cần đăng nhập để thực hiện hủy đăng ký.');
+      return;
+    }
+  
+    try {
+      const response = await fetch(`https://bepickleball.vercel.app/api/post/delete/${courtId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        }
+      });
+  console.log(response, "response");
+  
+      if (!response.ok) {
+        const errorData = await response.json();  // Ghi lại lỗi chi tiết
+    console.log(errorData);  // In ra chi tiết lỗi
+        throw new Error('Có lỗi xảy ra khi hủy đăng ký.');
+      }
+  
+      // Nếu thành công, xoá sân khỏi danh sách `courts`
+      setCourts((prevCourts) => prevCourts.filter((court) => court._id !== courtId));
+  
+    } catch (error) {
+      console.error(error.message);
+      setError('Có lỗi xảy ra khi hủy đăng ký.');
+    }
   };
+  
 
   const isPastDate = (playDate) => {
     const today = new Date();

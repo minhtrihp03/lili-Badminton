@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import CoachComponent from './CoachComponent';
 
-const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel: '' } }) => {
+const CoachListComponent = ({ searchFilters }) => {
   const [coaches, setCoaches] = useState([]);
 
    // Hàm để lấy dữ liệu từ API
@@ -24,9 +24,19 @@ const CoachListComponent = ({ searchFilters = { trainerName: '', experienceLevel
 
   // Lọc danh sách huấn luyện viên dựa trên tên và trình độ
   const filteredCoaches = coaches.filter((coach) => {
-    const matchesName = coach.name.toLowerCase().includes(searchFilters.trainerName.toLowerCase());
-    const matchesLevel = !searchFilters.experienceLevel || coach.level === searchFilters.experienceLevel;
-    return matchesName && matchesLevel;
+    const matchesName = searchFilters.trainerName
+      ? coach.name.toLowerCase().includes(searchFilters.trainerName.toLowerCase())
+      : true;
+
+      const matchesLocation = searchFilters.location && searchFilters.location !== 'Other'
+      ? coach.address && coach.address.includes(searchFilters.location) // Ensure coach.address is defined
+      : searchFilters.otherLocation
+      ? coach.address && coach.address.includes(searchFilters.otherLocation) // Ensure coach.address is defined
+      : true;
+      const matchesLevel = searchFilters.level
+      ? parseFloat(coach.skill_level) === parseFloat(searchFilters.level)
+      : true;
+      return matchesName && matchesLocation && matchesLevel;
   });
 
   // Xác định số lượng huấn luyện viên sẽ được hiển thị
