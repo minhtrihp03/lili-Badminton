@@ -55,7 +55,7 @@ const CourtRegistrationList = () => {
     }
   
     try {
-      const response = await fetch(`https://bepickleball.vercel.app/api/post/delete/${courtId}`, {
+      const response = await fetch(`https://bepickleball.vercel.app/api/post/cancel/${courtId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
