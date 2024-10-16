@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 import { CiLocationOn } from "react-icons/ci";
-import { FaArrowUpRightDots } from "react-icons/fa6";
+import { FaArrowUpRightDots, FaPhone } from "react-icons/fa6";
 import { IoIosInformationCircle } from "react-icons/io";
 import { PiUserSquareLight } from "react-icons/pi";
 import { useNotifications } from './NotificationContext'; // Cập nhật đường dẫn
 import '../styles/screens/CourtDetailComponent.css';
 import { useNavigate } from 'react-router-dom';
+import { FaFacebook } from 'react-icons/fa';
 
 const CourtDetailComponent = () => {
   const navigate = useNavigate();
@@ -211,20 +212,23 @@ const CourtDetailComponent = () => {
                 {price.toLocaleString('vi-VN')} VND / người
               </Card.Text>
               <Card.Text>
-                <PiUserSquareLight className="icon" style={{ color: "#828282" }} />Slot đã đặt: <span style={{ color: "red" }}>{slots-players_needed}/{slots} người</span>
+                <PiUserSquareLight className="icon" style={{ color: "#828282" }} />Slot đã đặt: <span style={{ color: "red" }}>{slots - players_needed}/{slots} người</span>
               </Card.Text>
               <Card.Text>
-                <IoIosInformationCircle className="icon" style={{ color: "#828282", fontSize: "20px" }} />Ngày chơi: {date} <br/>
+                <IoIosInformationCircle className="icon" style={{ color: "#828282", fontSize: "20px" }} />Ngày chơi: {date} <br />
                 <div style={{ marginLeft: '1.75rem' }}> Thời gian chơi: {time} </div>
               </Card.Text>
               <Card.Text>
-                <div className="icon" style={{ color: "#828282" }} />Số điện thoại: {getPhoneNumber(contact_info)}
-              </Card.Text>
-              {/* <Card.Text>
-                <div className="icon" style={{ color: "#828282" }} />Facebook: {getFacebook(contact_info)}
-              </Card.Text> */}
-              <Card.Text>
-                <div className="icon" style={{ color: "#828282", fontSize: "20px" }} />Facebook: &nbsp;
+                <div className="icon" style={{ color: "#828282" }} />Liên hệ:
+                &nbsp;&nbsp;
+                {getPhoneNumber(contact_info) !== 'Không có số điện thoại' ? (
+                  <a>
+                    <FaPhone style={{ color: "#828282", fontSize: "17px", marginRight: "8px" }} />{getPhoneNumber(contact_info)}
+                  </a>
+                ) : (
+                  'Không có Số điện thoại'
+                )}
+                &nbsp;&nbsp;
                 {getFacebook(contact_info) !== 'Không có Facebook' ? (
                   <a
                     href={getFacebook(contact_info)}
@@ -232,12 +236,21 @@ const CourtDetailComponent = () => {
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none", color: "#064D7E" }}
                   >
-                    {getFacebook(contact_info)}
+                    {/* Icon Facebook */}
+                    <FaFacebook style={{ color: "#828282", fontSize: "20px", marginRight: "8px" }} />
+                    Facebook
                   </a>
                 ) : (
                   'Không có Facebook'
                 )}
               </Card.Text>
+              {/* <Card.Text>
+                <div className="icon" style={{ color: "#828282" }} />Facebook: {getFacebook(contact_info)}
+              </Card.Text> */}
+              <Card.Text>
+
+              </Card.Text>
+
 
               {/* Kiểm tra nếu số lượng người đã đặt = slots */}
               {players_needed == 0 ? (
