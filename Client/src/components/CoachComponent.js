@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, useEffect } from 'react';
 import '../styles/screens/CoachComponent.css'; // Custom CSS for card styling
 import { CiLocationOn } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
@@ -21,7 +21,12 @@ const CoachComponent = memo(({ name, price, level, phone, images, contact, addre
         description
       }
     });
+    window.location.reload();
   }  
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="card coach-card" onClick={handleCardClick}>

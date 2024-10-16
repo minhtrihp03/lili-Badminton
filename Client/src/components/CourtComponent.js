@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect } from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import { CiLocationOn } from "react-icons/ci";
 import { PiUserRectangleLight } from "react-icons/pi";
@@ -35,8 +35,11 @@ const CourtComponent = ({ name, price, slots, location, type, level, images = []
   
     window.location.reload(); // If reloading is necessary (though be cautious about this)
   };
-  
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <Card className={`court-card ${players_needed >= slots ? 'full-court' : ''}`} onClick={handleCardClick}>
     <div className="top-left-badge">
