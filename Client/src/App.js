@@ -34,6 +34,7 @@ import { NotificationProvider } from './components/NotificationContext';
 import CoachDetailComponent from './components/CoachDetailComponent';
 import CoachDetailLayout from './layouts/CoachDetailLayout';
 import CourtRegistrationLayout from './layouts/CourtRegistrationLayout';
+import Profile from './components/Profile';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           <Route path="/forgot-password/otp" element={<AuthLayout><ForgotPasswordOTP /></AuthLayout>} />
           <Route path="/change-password" element={<AuthLayout><ChangePassword /></AuthLayout>} />
           <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
+          <Route path="/profile" element={<MainLayout><Profile /></MainLayout>} />
           <Route path="/news/:id" element={<NewDetailComponent />} />
           {/* <Route path="/" element={<MainLayout></MainLayout>} /> */}
           <Route path="/court" element={<CourtLayout></CourtLayout>} />
