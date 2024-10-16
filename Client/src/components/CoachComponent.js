@@ -1,55 +1,68 @@
-import React from 'react';
-import { Card, Button, Row, Col } from 'react-bootstrap';
-import { FaFacebook, FaPhoneAlt, FaUserTie } from 'react-icons/fa';
+import React, {memo, useEffect } from 'react';
 import '../styles/screens/CoachComponent.css'; // Custom CSS for card styling
+import { CiLocationOn } from "react-icons/ci";
+import { useNavigate } from 'react-router-dom';
 
-const CoachComponent = ({ name, price, level, phone, facebook, zalo }) => {
+
+const CoachComponent = memo(({ name, price, level, phone, images, contact, address, description }) => {
+  const navigate = useNavigate();
+
+  // Handle card click to navigate with coach details
+  const handleCardClick = () => {
+    navigate('/coach/coach-detail', {
+      state: {
+        name,
+        price,
+        level,
+        phone,
+        images,
+        contact,
+        address,
+        description
+      }
+    });
+    window.location.reload();
+  }  
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <Card className="coach-card">
-      {/* Zalo Button at the top right */}
-      <Button variant="light" className="zalo-btn">
-        Zalo
-      </Button>
-
+    <div className="card coach-card" onClick={handleCardClick}>
       {/* Image at the top */}
-      <Card.Img
-        variant="top"
-        src={process.env.PUBLIC_URL + '/assets/images/Register.png'}
+      <img
+        src={images[0]}
         alt={`Coach ${name}`}
-        className="card-image"
+        className="card-img-top card-image"
       />
 
-      <Card.Body>
-        <Card.Title>{name}</Card.Title>
+      <div className="card-body">
+        <h5 className="card-title">{name}</h5>
 
-        <Card.Text>
-          <FaUserTie /> Trình độ: {level}
-        </Card.Text>
-
-        <Card.Text className="price-text">
+        <p className="card-text" id='price-text'>
           {price} VND/buổi
-        </Card.Text>
+        </p>
 
-        <Card.Text>
-          <FaPhoneAlt /> SĐT: {phone}
-        </Card.Text>
+        <p className="card-text level-text" style={{ marginBottom: 0, padding: 0 }}>
+          <CiLocationOn /> Khu vực: {address}
+        </p>
 
         {/* Contact buttons: Facebook and Zalo */}
-        <Row className="contact-buttons">
-          <Col>
-            <Button variant="outline-primary" className="contact-btn">
-              <FaFacebook /> Facebook
-            </Button>
-          </Col>
-          <Col>
-            <Button variant="outline-primary" className="contact-btn">
-              <FaPhoneAlt /> Zalo
-            </Button>
-          </Col>
-        </Row>
-      </Card.Body>
-    </Card>
+        <div className="row contact-buttons">
+          <div className="col">
+            <button className="btn btn-outline-primary contact-btn" style={{ color: "#FFFFFF", backgroundColor: "#2D70A1", borderColor: "#2D70A1" }}>
+               {contact?.facebook && (
+                <a style={{ color: "#FFFFFF", textDecoration: "none" }} href="/coach/coach-detail" target="_blank" rel="noopener noreferrer">
+                  Xem thông tin liên hệ
+                </a>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
-};
+});
 
 export default CoachComponent;

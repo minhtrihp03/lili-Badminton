@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { FaUser, FaPhone, FaLock, FaRedo, FaArrowLeft } from 'react-icons/fa';
+import { FaUser, FaPhone, FaLock, FaRedo, FaArrowLeft, FaMailBulk } from 'react-icons/fa';
 import '../styles/bootstraps/custom_bootstrap.css';
 import '../styles/screens/Register.css';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { MdEmail } from "react-icons/md";
 
 const Register = () => {
   const [formData, setFormData] = useState({
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -21,21 +22,20 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password, confirmPassword, phone } = formData;
-    // console.log(formData);
+    const { username, email, password, confirmPassword, phone } = formData;
 
     // Kiểm tra xem các trường bắt buộc đã được điền đầy đủ hay không
-    if (!email || !password || !confirmPassword || !phone) {
-      toast.error("Vui lòng điền đầy đủ thông tin!");
-      return;
-    }
+    // if (!username || !email || !password || !confirmPassword || !phone) {
+    //   toast.error("Vui lòng điền đầy đủ thông tin!");
+    //   return;
+    // }
 
-    // Kiểm tra tính hợp lệ email
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if (!emailRegex.test(email)) {
-      toast.error("Email không hợp lệ!");
-      return;
-    }
+    // // Kiểm tra tính hợp lệ email
+    // const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    // if (!emailRegex.test(email)) {
+    //   toast.error("Email không hợp lệ!");
+    //   return;
+    // }
 
     // Kiểm tra tính hợp lệ của số điện thoại (ví dụ: độ dài tối thiểu là 10)
     if (phone.length !== 10) {
@@ -56,24 +56,30 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:9999/api/auth/signup", {
+      const response = await fetch("https://bepickleball.vercel.app/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          username,
+          phone,
+          email,
+          password,
+        }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        toast.error(data.error.message || "Đã xảy ra lỗi, vui lòng thử lại sau!");
+        toast.error(data.error || "Đã xảy ra lỗi, vui lòng thử lại sau!");
         return;
       }
-  
+
       console.log(data);
       toast.success("Đăng ký thành công!");
-
+      
+      navigate('/login');
     } catch (error) {
       console.log("Error: ", error);
       toast.error("Đã xảy ra lỗi, vui lòng thử lại sau!");
@@ -84,7 +90,7 @@ const Register = () => {
 
   const handleBackButton = () => {
     navigate('/');
-  }
+  };
 
   return (
     <div className="register-container-fluid">
@@ -112,7 +118,20 @@ const Register = () => {
                 </div>
                 <input
                   type="text"
-                  placeholder="Nhập email của bạn"
+                  placeholder="Nhập tên người dùng"
+                  className="input"
+                  name='username'
+                  id='username'
+                  onChange={handleChange}
+                  value={formData.username} />
+              </div>
+              <div className="input-group">
+                <div className="icon-wrapper">
+                  <MdEmail />
+                </div>
+                <input
+                  type="email"
+                  placeholder="Nhập email"
                   className="input"
                   name='email'
                   id='email'

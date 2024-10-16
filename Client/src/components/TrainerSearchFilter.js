@@ -1,60 +1,88 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import '../styles/screens/TrainerSearchFilter.css'; // Ensure to create this CSS file for custom styles
 
-const TrainerSearchFilter = () => {
-  const [trainerName, setTrainerName] = useState('');
-  const [experienceLevel, setExperienceLevel] = useState('');
+const TrainerSearchFilter = ({ onSearch }) => {
   const [filters, setFilters] = useState({
-    trainerName: '',
-    experienceLevel: '',
+    location: '',
+    level: '',
+    otherLocation: '', // Thêm trường cho tuỳ chọn "Other"
   });
 
-  // Experience levels from 1 to 10
-  const experienceLevels = Array.from({ length: 10 }, (_, index) => index + 1);
+  const [showOther, setShowOther] = useState(false); // Trạng thái cho việc hiển thị "Other"
 
-  const handleSearch = () => {
-    // Handle the search logic here
-    console.log('Searching for:', trainerName, 'Experience Level:', experienceLevel);
+  const capitalizeFirstLetter = (str) => {
+    return str
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    
+    // Chuyển đổi giá trị nhập vào thành chữ thường
+    const normalizedValue = capitalizeFirstLetter(value);
+
+    if (name === 'location' && normalizedValue === 'other') {
+      setShowOther(true); // Hiển thị trường Other nếu chọn "Other"
+    } else if (name === 'location') {
+      setShowOther(false); // Ẩn trường Other nếu chọn khác
+      setFilters({ ...filters, otherLocation: '' }); // Xoá giá trị Other khi chọn khác
+    }
+    
+    // Cập nhật giá trị bộ lọc và kích hoạt tìm kiếm
+    const updatedFilters = { ...filters, [name]: normalizedValue }; // Sử dụng normalizedValue
+    setFilters(updatedFilters);
+
+    // Kích hoạt tìm kiếm ngay khi có thay đổi
+    onSearch(updatedFilters);
   };
 
   const handleReset = () => {
-    setFilters({
-        experienceLevel: '',
-        trainerName: '',
-    });
+    const resetFilters = { location: '', level: '', otherLocation: '' };
+    setFilters(resetFilters);
+    setShowOther(false);
+    onSearch(resetFilters); // Reset filters in parent
   };
 
   return (
-    <div className="d-flex align-items-center justify-content-between p-3">
-      <input
-        type="text"
-        placeholder="Huấn luyện viên gần bạn"
-        value={trainerName}
-        onChange={(e) => setTrainerName(e.target.value)}
-        className="form-control me-2"
-      />
-      <select
-        value={experienceLevel}
-        onChange={(e) => setExperienceLevel(e.target.value)}
-        className="form-select me-2"
-      >
-        <option value="">Trình độ của huấn luyện viên</option>
-        {experienceLevels.map(level => (
-          <option key={level} value={level}>Level {level}</option>
-        ))}
-      </select>
-      <button
-        onClick={handleSearch}
-        className="btn btn-primary"
-      >
-        Tìm Kiếm
-      </button>
-      <button
-        className="btn-sm" onClick={handleReset}
-        variant="link"
-      >
-        xoá
-      </button>
+    <div className="detailed-filter">
+      <Form>
+        <Row className="g-2">
+          <Col xs="auto" className="me-1">
+            <Form.Group controlId="formLocation">
+              <Form.Control
+                type='text'
+                placeholder='Nhập thành phố'
+                name="location"
+                value={filters.location}
+                onChange={handleInputChange} // Kích hoạt tìm kiếm ngay lập tức
+                className="form-control-sm"
+              />
+            </Form.Group>
+          </Col>
+
+          <Col xs="auto" className="me-1">
+            <Form.Group controlId="formOtherLocation">
+              <Form.Control
+                type="text"
+                placeholder="Quận huyện (nếu có)"
+                name="otherLocation"
+                value={filters.otherLocation}
+                onChange={handleInputChange} // Kích hoạt tìm kiếm ngay lập tức
+                className="form-control-sm"
+              />
+            </Form.Group>
+          </Col>
+
+          <Col xs="auto" className="me-1">
+            <Button variant="link" className="btn-sm" onClick={handleReset}>
+              Xóa lọc
+            </Button>
+          </Col>
+        </Row>
+      </Form>
     </div>
   );
 };

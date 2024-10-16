@@ -2,15 +2,22 @@ import React from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import { FaMapMarkerAlt, FaUserFriends, FaClipboardList, FaUsers } from 'react-icons/fa';
 import '../styles/screens/ParticipationComponent.css'; // Add necessary styles here
+import { useNavigate } from 'react-router-dom';
 
 const ParticipationComponent = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/court');
+  }
+
   return (
     <div className="participation-section">
       <h2 className="text-center">Tham gia giao lưu</h2>
       <Row className="participation-content">
         {/* Left Section */}
-        <Col xs={12} md={6} className="left-section">
-          <h4>Đến với chúng tôi bạn sẽ được <span className="highlight">trải nghiệm</span>!</h4>
+        <Col md={7} className="left-section">
+          <h4>Đến với chúng tôi bạn sẽ được <span className="highlight">trải nghiệm !</span></h4>
           <div className="feature-list">
             <div className="feature-item">
               <FaMapMarkerAlt className="icon" />
@@ -44,17 +51,16 @@ const ParticipationComponent = () => {
         </Col>
 
         {/* Right Section */}
-        <Col xs={12} md={6} className="right-section">
+        <Col md={5} className="right-section">
           <div className="image-container">
             <img
-              src={process.env.PUBLIC_URL + '/assets/images/Register.png'}
+              src={process.env.PUBLIC_URL + '/assets/images/banner.png'}
               alt="Pickleball Experience"
-              className="img-fluid participation-image"
+              className="img-fluid participation-image w-100"
             />
             <div className="image-content">
-              <h5>Đừng bỏ lỡ cơ hội thử sức với môn thể thao đang được yêu thích này!</h5>
-              <Button variant="primary" className="participation-button">Nhóm xe vé</Button>
-              <Button variant="outline-primary" className="participation-button">Nhóm cố định</Button>
+              <h2 style={{textAlign: "left"}}>Đừng bỏ lỡ cơ hội thử sức với môn thể thao đang được yêu thích này!</h2>
+              <button className="participation-button button" onClick={() => window.location.href = '/court'}>Tham gia giao lưu ngay</button>
             </div>
           </div>
         </Col>
