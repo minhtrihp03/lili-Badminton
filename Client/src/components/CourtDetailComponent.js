@@ -215,7 +215,7 @@ const CourtDetailComponent = () => {
               </Card.Text>
               <Card.Text>
                 <IoIosInformationCircle className="icon" style={{ color: "#828282", fontSize: "20px" }} />Ngày chơi: {date} <br/>
-                <div style={{ marginLeft: '1.75rem' }}> Thời gian bắt đầu chơi: {time} </div>
+                <div style={{ marginLeft: '1.75rem' }}> Thời gian chơi: {time} </div>
               </Card.Text>
               <Card.Text>
                 <div className="icon" style={{ color: "#828282" }} />Số điện thoại: {getPhoneNumber(contact_info)}

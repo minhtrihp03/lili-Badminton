@@ -108,7 +108,7 @@ const CourtRegistrationList = () => {
               <h6>Liên hệ {court.contact_info}</h6>
               <p style={{ color: '#828282' }}>
                 <a style={{ color: '#828282' }} href={court.location}>Vị trí: {court.court_name}</a>
-                - Thời gian bắt đầu: {court.play_time}
+                - Thời gian chơi: {court.play_time}
               </p>
               <p style={{ color: '#828282' }}>Ngày bắt đầu: {court.play_date}</p>
             </div>
