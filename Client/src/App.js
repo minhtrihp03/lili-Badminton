@@ -33,6 +33,7 @@ import CourtRegistrationList from './components/CourtRegistrationList';
 import { NotificationProvider } from './components/NotificationContext';
 import CoachDetailComponent from './components/CoachDetailComponent';
 import CoachDetailLayout from './layouts/CoachDetailLayout';
+import CourtRegistrationLayout from './layouts/CourtRegistrationLayout';
 
 
 function App() {
@@ -55,7 +56,7 @@ function App() {
           <Route path="/coach/coach-detail" element={<CoachDetailLayout />} />
           <Route path="/dashboard" element={<DashboardLayout />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/court-registration-list" element={<CourtRegistrationList />} />
+          <Route path="/court-registration-list" element={<CourtRegistrationLayout />} />
           <Route path="/" element={<HomeLayout></HomeLayout>} />
         </Routes>
       </Router>
