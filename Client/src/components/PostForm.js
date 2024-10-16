@@ -6,7 +6,7 @@ const PostForm = () => {
   const [formData, setFormData] = useState({
     trainerName: '',
     experience: '',
-    images: [],
+    images: null,
     phoneNumber: '',
     price_per_session: '',
     zaloLink: '',
@@ -33,7 +33,7 @@ const PostForm = () => {
 
     if (type === 'file') {
       // Handle file input for images
-      setFormData({ ...formData, images: [...files] });
+      setFormData({ ...formData, [name]: files[0] });
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -75,9 +75,7 @@ const PostForm = () => {
 
     // Append the file if selected
     if (formData.images) {
-      Array.from(formData.images).forEach((image, index) => {
-        data.append(`images`, images); // Append từng ảnh với tên khác nhau
-      });
+      data.append('images', formData.images);
     } else {
       alert('No image selected. Please upload an image.');
       return; // Prevent submission if no image is selected
