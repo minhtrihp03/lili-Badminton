@@ -6,7 +6,7 @@ const PostForm = () => {
   const [formData, setFormData] = useState({
     trainerName: '',
     experience: '',
-    images: null,
+    images: [],
     phoneNumber: '',
     price_per_session: '',
     zaloLink: '',
@@ -33,7 +33,7 @@ const PostForm = () => {
 
     if (type === 'file') {
       // Handle file input for images
-      setFormData({ ...formData, [name]: files[0] });
+      setFormData({ ...formData, [name]: [...files] });
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -74,13 +74,18 @@ const PostForm = () => {
     data.append('description', formData.description);
 
     // Append the file if selected
-    if (formData.images) {
-      data.append('images', formData.images);
+    if (formData.images && formData.images.length > 0) {
+      formData.images.forEach((image, index) => {
+        data.append(`images`, image); // Đính kèm từng ảnh vào FormData
+      });
     } else {
       alert('No image selected. Please upload an image.');
       return; // Prevent submission if no image is selected
     }
 
+    for (let pair of data.entries()) {
+      console.log(pair[0] + ': ' + pair[1]);
+    }
     // Send data to the API
     try {
       const response = await fetch('https://bepickleball.vercel.app/api/coach/add', {
