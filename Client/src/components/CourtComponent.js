@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/screens/CourtComponent.css'; // Import custom CSS
 import NoImage from '../assets/no-image.jpg'; 
 
-const CourtComponent = ({ name, price, slots, location, type, level, images = [], applied_players, players_needed, time, contact_info, applied_count, idCourt, userName }) => { // Added time here
+const CourtComponent = ({ name, price, slots, location, type, level, images = [], applied_players, players_needed, date, time, contact_info, applied_count, idCourt, userName }) => { // Added time here
   const navigate = useNavigate();
 
   // Fallback level if it's undefined
@@ -29,7 +29,8 @@ const CourtComponent = ({ name, price, slots, location, type, level, images = []
         contact_info,
         applied_count,
         idCourt,
-        userName
+        userName,
+        date
       }
     });
   
