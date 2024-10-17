@@ -99,6 +99,10 @@ const Profile = () => {
     }
   };
 
+  const handleChangePassword = async (e) => {
+    navigate('/change-password');
+  }
+
   if (loading) {
     return <p>Đang tải...</p>;
   }
@@ -115,73 +119,104 @@ const Profile = () => {
     <div className="profile-container">
       <h1>Thông tin cá nhân</h1>
       <div className="profile-card">
-        <div className="profile-header">
-          <Image src={profileData?.profile?.avatar || AvatarBlank} alt="Avatar" className="profile-avatar" roundedCircle />
-          <h2>{profileData?.profile?.name || 'Tên chưa cập nhật'}</h2>
-          <p className="profile-role">{profileData?.role?.toUpperCase() || 'Vai trò chưa cập nhật'}</p>
-        </div>
-
-        <div className="profile-body">
-          <div className="profile-info">
-            <label>Tài khoản:</label>
-            <p>{profileData?.username || 'Chưa cập nhật'}</p>
-          </div>
-          <div className="profile-info">
-            <label>Email:</label>
-            <p>{profileData?.email || 'Chưa cập nhật'}</p>
-          </div>
-          <div className="profile-info">
-            <label>Số điện thoại:</label>
-            <p>{profileData?.phone || 'Chưa cập nhật'}</p>
-          </div>
-
-          {isEditing ? (
+        {isEditing ? (
+          <>
             <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="skillLevel">
-                <Form.Label>Cấp độ kỹ năng</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="skill_level"
-                  value={updatedProfile.skill_level || profileData?.profile?.skill_level || ''}
-                  onChange={handleChange}
-                />
-              </Form.Group>
+              <div className="profile-header">
+                <Image src={profileData?.profile?.avatar || AvatarBlank} alt="Avatar" className="profile-avatar" roundedCircle />
+                {/* <h2>{profileData?.profile?.name || 'Tên chưa cập nhật'}</h2> */}
+                <Form.Group controlId="profile-name">
+                  <Form.Label>Họ Và Tên</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="name"
+                    value={updatedProfile.name || profileData?.profile?.name || ''}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+                <p className="profile-role">{profileData?.role?.toUpperCase() || 'Vai trò chưa cập nhật'}</p>
+              </div>
+              <div className="profile-body">
+                <div className="profile-info">
+                  <label>Tài khoản:</label>
+                  <p>{profileData?.username || 'Chưa cập nhật'}</p>
+                </div>
+                <div className="profile-info">
+                  <label>Email:</label>
+                  <p>{profileData?.email || 'Chưa cập nhật'}</p>
+                </div>
+                <div className="profile-info">
+                  <label>Số điện thoại:</label>
+                  <p>{profileData?.phone || 'Chưa cập nhật'}</p>
+                </div>
 
-              <Form.Group controlId="bio">
-                <Form.Label>Tiểu sử</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  name="bio"
-                  value={updatedProfile.bio || profileData?.profile?.bio || ''}
-                  onChange={handleChange}
-                />
-              </Form.Group>
+                <Form.Group controlId="skillLevel">
+                  <Form.Label>Cấp độ kỹ năng</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="skill_level"
+                    value={updatedProfile.skill_level || profileData?.profile?.skill_level || ''}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-              <Form.Group controlId="phoneNumber">
-                <Form.Label>Liên hệ khác</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="phone_number"
-                  value={updatedProfile.phone_number || profileData?.profile?.phone_number || ''}
-                  onChange={handleChange}
-                />
-              </Form.Group>
+                <Form.Group controlId="bio">
+                  <Form.Label>Tiểu sử</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    name="bio"
+                    value={updatedProfile.bio || profileData?.profile?.bio || ''}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-              <Form.Group controlId="facebookLink">
-                <Form.Label>Facebook</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="facebook_link"
-                  value={updatedProfile.facebook_link || profileData?.profile?.facebook_link || ''}
-                  onChange={handleChange}
-                />
-              </Form.Group>
+                <Form.Group controlId="phoneNumber">
+                  <Form.Label>Liên hệ khác</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="phone_number"
+                    value={updatedProfile.phone_number || profileData?.profile?.phone_number || ''}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
 
-              <Button type="submit" variant="primary">Lưu</Button>
-              <Button variant="secondary" onClick={handleCancel} style={{ marginLeft: '10px' }}>Hủy</Button>
+                <Form.Group controlId="facebookLink">
+                  <Form.Label>Facebook</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="facebook_link"
+                    value={updatedProfile.facebook_link || profileData?.profile?.facebook_link || ''}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+
+                <Button type="submit" variant="primary">Lưu</Button>
+                <Button variant="secondary" onClick={handleCancel} style={{ marginLeft: '10px' }}>Hủy</Button>
+
+              </div>
             </Form>
-          ) : (
-            <>
+          </>
+
+        ) : (
+          <>
+            <div className="profile-header">
+              <Image src={profileData?.profile?.avatar || AvatarBlank} alt="Avatar" className="profile-avatar" roundedCircle />
+              <h2>{profileData?.profile?.name || 'Tên chưa cập nhật'}</h2>
+              <p className="profile-role">{profileData?.role?.toUpperCase() || 'Vai trò chưa cập nhật'}</p>
+            </div>
+            <div className="profile-body">
+              <div className="profile-info">
+                <label>Tài khoản:</label>
+                <p>{profileData?.username || 'Chưa cập nhật'}</p>
+              </div>
+              <div className="profile-info">
+                <label>Email:</label>
+                <p>{profileData?.email || 'Chưa cập nhật'}</p>
+              </div>
+              <div className="profile-info">
+                <label>Số điện thoại:</label>
+                <p>{profileData?.phone || 'Chưa cập nhật'}</p>
+              </div>
               <div className="profile-info">
                 <label>Cấp độ kỹ năng:</label>
                 <p>{profileData?.profile?.skill_level || 'Chưa cập nhật'}</p>
@@ -206,16 +241,22 @@ const Profile = () => {
                   )}
                 </p>
               </div>
-            </>
-          )}
-        </div>
+            </div>
+          </>
+        )}
 
-        {!isEditing && (
+      </div>
+      {!isEditing && (
+        <>
           <Button variant="primary" onClick={handleEdit}>
             <MdModeEdit /> Chỉnh sửa
           </Button>
-        )}
-      </div>
+          &nbsp;
+          <Button variant="primary" onClick={handleChangePassword}>
+            <MdModeEdit /> Đổi mật khẩu
+          </Button>
+        </>
+      )}
     </div>
   );
 };
