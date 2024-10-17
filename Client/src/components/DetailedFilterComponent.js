@@ -203,7 +203,7 @@ const DetailedFilterComponent = ({ setFilteredResults, allCourts }) => {
                 onChange={handleInputChange}
                 className="form-control-sm"
               >
-                <option value="">Chọn loại hình</option>
+                <option value="">Chọn loại nhóm</option>
                 <option value="Xé Vé">Xé Vé</option>
                 <option value="Giao Lưu">Giao Lưu</option>
               </Form.Control>
@@ -248,11 +248,6 @@ const DetailedFilterComponent = ({ setFilteredResults, allCourts }) => {
             </Form.Group>
           </Col>
 
-          <Col xs="auto" className="me-1">
-            <Button variant="primary" type="submit" className="btn-sm">
-              Tìm kiếm
-            </Button>
-          </Col>
 
           <Col xs="auto" className="me-1">
             <Button variant="link" className="btn-sm" onClick={handleReset}>
