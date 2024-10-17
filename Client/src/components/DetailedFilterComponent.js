@@ -9,6 +9,7 @@ const DetailedFilterComponent = ({ setFilteredResults, allCourts }) => {
     location: '',
     otherLocation: '',
     startTime: '',
+    playType: '',
     level: '',
     courtType: '',
     numPeople: '',
@@ -64,6 +65,10 @@ const DetailedFilterComponent = ({ setFilteredResults, allCourts }) => {
         ? court.court_name && court.court_name.toLowerCase().includes(updatedFilters.otherLocation.toLowerCase())
         : true;
 
+      const playTypeFilter = updatedFilters.playType
+        ? court.court_name && court.court_name.toLowerCase().includes(updatedFilters.playType.toLowerCase())
+        : true;
+
       const startTimeFilter = updatedFilters.startTime
         ? court.play_time === updatedFilters.startTime
         : true;
@@ -84,6 +89,7 @@ const DetailedFilterComponent = ({ setFilteredResults, allCourts }) => {
         locationFilter &&
         otherLocationFilter &&
         startTimeFilter &&
+        playTypeFilter &&
         levelFilter &&
         courtTypeFilter &&
         playDateFilter
@@ -184,6 +190,19 @@ const DetailedFilterComponent = ({ setFilteredResults, allCourts }) => {
                   );
                 })}
               </Form.Control>
+            </Form.Group>
+          </Col>
+
+          <Col xs="auto" className="me-1">
+            <Form.Group controlId="formPlayType">
+              <Form.Control
+                type="text"
+                placeholder="Nhóm giao lưu"
+                name="playType"
+                value={filters.playType}
+                onChange={handleInputChange} // Kích hoạt tìm kiếm ngay lập tức
+                className="form-control-sm"
+              />
             </Form.Group>
           </Col>
 

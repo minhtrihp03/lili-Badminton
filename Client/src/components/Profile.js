@@ -68,36 +68,51 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch('https://bepickleball.vercel.app/api/auth/profile/update', {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedProfile),
-      });
+        const token = localStorage.getItem('token');
+        const formData = new FormData();
 
-      if (response.ok) {
-        const data = await response.json();
-        alert('Cập nhật hồ sơ thành công!');
-        setProfileData(prevData => ({
-          ...prevData,
-          profile: {
-            ...prevData.profile,
-            ...updatedProfile,
-          }
-        }));
-        setIsEditing(false);
-        setUpdatedProfile({});
-      } else {
-        const errorData = await response.json();
-        alert(errorData.message || 'Có lỗi xảy ra khi cập nhật hồ sơ');
-      }
+        // Thêm thông tin hồ sơ vào FormData
+        formData.append('name', updatedProfile.name);
+        formData.append('skill_level', updatedProfile.skill_level);
+        formData.append('bio', updatedProfile.bio);
+        formData.append('phone_number', updatedProfile.phone_number);
+        formData.append('facebook_link', updatedProfile.facebook_link);
+
+        // Thêm file ảnh nếu có
+        if (updatedProfile.avatar) {
+            formData.append('avatar', updatedProfile.avatar); // `files` là tên field trong backend
+        }
+
+        const response = await fetch('https://bepickleball.vercel.app/api/auth/profile/update', {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                // 'Content-Type': 'application/json', // Không cần thêm header này khi dùng FormData
+            },
+            body: formData, // Gửi FormData
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            alert('Cập nhật hồ sơ thành công!');
+            setProfileData(prevData => ({
+                ...prevData,
+                profile: {
+                    ...prevData.profile,
+                    ...updatedProfile,
+                }
+            }));
+            setIsEditing(false);
+            setUpdatedProfile({});
+        } else {
+            const errorData = await response.json();
+            alert(errorData.message || 'Có lỗi xảy ra khi cập nhật hồ sơ');
+        }
     } catch (error) {
-      alert('Lỗi kết nối tới máy chủ');
+        alert('Lỗi kết nối tới máy chủ');
     }
-  };
+};
+
 
   const handleChangePassword = async (e) => {
     navigate('/change-password');
@@ -123,8 +138,18 @@ const Profile = () => {
           <>
             <Form onSubmit={handleSubmit}>
               <div className="profile-header">
-                <Image src={profileData?.profile?.avatar || AvatarBlank} alt="Avatar" className="profile-avatar" roundedCircle />
+                {/* <Image src={profileData?.profile?.avatar || AvatarBlank} alt="Avatar" className="profile-avatar" roundedCircle /> */}
                 {/* <h2>{profileData?.profile?.name || 'Tên chưa cập nhật'}</h2> */}
+                <Image src={profileData?.profile?.avatar || AvatarBlank} alt="Avatar" className="profile-avatar" roundedCircle />
+                <Form.Group controlId="profile-avatar">
+                  <Form.Label>Ảnh đại diện</Form.Label>
+                  <Form.Control
+                    type="file"
+                    name="avatar"
+                    accept="image/*"
+                    onChange={handleChange}
+                  />
+                  </Form.Group>
                 <Form.Group controlId="profile-name">
                   <Form.Label>Họ Và Tên</Form.Label>
                   <Form.Control

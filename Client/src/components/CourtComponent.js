@@ -2,6 +2,7 @@ import React, {useEffect } from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import { CiLocationOn } from "react-icons/ci";
 import { PiUserRectangleLight } from "react-icons/pi";
+import { MdDateRange } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
 import '../styles/screens/CourtComponent.css'; // Import custom CSS
 import NoImage from '../assets/no-image.jpg'; 
@@ -68,7 +69,7 @@ const CourtComponent = ({ name, price, slots, location, type, level, images = []
   
       <Row style={{ padding: "0px", margin: "0px", marginBottom: "10px" }}>
         <Col className="location" md={7}>
-          <CiLocationOn /> {name}
+          <MdDateRange style={{fontSize: "16px"}}/> {date}
         </Col>
         <Col className="slots-text" md={5}>
           {slots-players_needed >= slots ? (
