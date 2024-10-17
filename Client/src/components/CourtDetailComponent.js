@@ -190,7 +190,7 @@ const CourtDetailComponent = () => {
                   {type}
                 </Button>
               </div>
-              <Card.Title style={{ fontSize: "32px", fontWeight: "500" }}>{name}</Card.Title>
+              <Card.Title style={{ fontSize: "32px", fontWeight: "500", whiteSpace: "nowrap"}}>{name}</Card.Title>
               <Card.Text className='court-info'>
                 <div className="court-info-item">
                   <CiLocationOn className="icon" style={{ color: "#828282" }} />
@@ -198,7 +198,7 @@ const CourtDetailComponent = () => {
                     href={courtLocation}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ textDecoration: "none", color: "#064D7E" }}
+                    style={{ textDecoration: "none", color: "#064D7E"}}
                   >
                     {name}
                   </a>
