@@ -9,6 +9,7 @@ const CoachLayout = () => {
   const [searchFilters, setSearchFilters] = useState({
     trainerName: '',
     experienceLevel: '',
+    typeTrain: ''
   });
 
   // Hàm để nhận thông tin tìm kiếm từ TrainerSearchFilter

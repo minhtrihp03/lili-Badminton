@@ -7,6 +7,7 @@ const TrainerSearchFilter = ({ onSearch }) => {
     location: '',
     level: '',
     otherLocation: '', // Thêm trường cho tuỳ chọn "Other"
+    typeTrain: ''
   });
 
   const [showOther, setShowOther] = useState(false); // Trạng thái cho việc hiển thị "Other"
@@ -40,7 +41,7 @@ const TrainerSearchFilter = ({ onSearch }) => {
   };
 
   const handleReset = () => {
-    const resetFilters = { location: '', level: '', otherLocation: '' };
+    const resetFilters = { location: '', level: '', otherLocation: '', typeTrain: '' };
     setFilters(resetFilters);
     setShowOther(false);
     onSearch(resetFilters); // Reset filters in parent
@@ -73,6 +74,21 @@ const TrainerSearchFilter = ({ onSearch }) => {
                 onChange={handleInputChange} // Kích hoạt tìm kiếm ngay lập tức
                 className="form-control-sm"
               />
+            </Form.Group>
+          </Col>
+
+          <Col xs="auto" className="me-1">
+            <Form.Group controlId="formTypeTrain">
+              <Form.Select
+                name="typeTrain"
+                value={filters.typeTrain}
+                onChange={handleInputChange}
+                className="form-control-sm"
+              >
+                <option value="">Hình thức học</option>
+                <option value="kèm 1 hoặc 2">kèm 1 hoặc 2</option>
+                <option value="ghép nhóm 4-6 người">ghép nhóm 4-6 người</option>
+              </Form.Select>
             </Form.Group>
           </Col>
 

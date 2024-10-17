@@ -69,6 +69,7 @@ const DetailedFilterComponent = ({ setFilteredResults, allCourts }) => {
         ? court.court_name && court.court_name.toLowerCase().includes(updatedFilters.playType.toLowerCase())
         : true;
 
+
       const startTimeFilter = updatedFilters.startTime
         ? court.play_time === updatedFilters.startTime
         : true;
@@ -196,13 +197,16 @@ const DetailedFilterComponent = ({ setFilteredResults, allCourts }) => {
           <Col xs="auto" className="me-1">
             <Form.Group controlId="formPlayType">
               <Form.Control
-                type="text"
-                placeholder="Nhóm giao lưu"
+                as="select"
                 name="playType"
                 value={filters.playType}
-                onChange={handleInputChange} // Kích hoạt tìm kiếm ngay lập tức
+                onChange={handleInputChange}
                 className="form-control-sm"
-              />
+              >
+                <option value="">Chọn loại hình</option>
+                <option value="Xé Vé">Xé Vé</option>
+                <option value="Giao Lưu">Giao Lưu</option>
+              </Form.Control>
             </Form.Group>
           </Col>
 

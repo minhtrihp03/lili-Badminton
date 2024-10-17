@@ -31,6 +31,10 @@ const CoachListComponent = ({ searchFilters = {}, limit = Infinity, enablePagina
         ? coach.name.toLowerCase().includes(searchFilters.trainerName.toLowerCase())
         : true;
 
+      const matchesTypeTrain = searchFilters.typeTrain
+        ? coach.name.toLowerCase().includes(searchFilters.typeTrain.toLowerCase())
+        : true;
+
       const matchesLocation = searchFilters.location && searchFilters.location !== 'Other'
         ? coach.address && coach.address.includes(searchFilters.location)
         : searchFilters.otherLocation
@@ -41,7 +45,7 @@ const CoachListComponent = ({ searchFilters = {}, limit = Infinity, enablePagina
         ? parseFloat(coach.skill_level) === parseFloat(searchFilters.level)
         : true;
 
-      return matchesName && matchesLocation && matchesLevel;
+      return matchesName && matchesLocation && matchesLevel && matchesTypeTrain;
     });
 
     // Cập nhật tổng số trang dựa trên số huấn luyện viên đã lọc
@@ -54,6 +58,10 @@ const CoachListComponent = ({ searchFilters = {}, limit = Infinity, enablePagina
       ? coach.name.toLowerCase().includes(searchFilters.trainerName.toLowerCase())
       : true;
 
+    const matchesTypeTrain = searchFilters.typeTrain
+      ? coach.name.toLowerCase().includes(searchFilters.typeTrain.toLowerCase())
+      : true;
+
     const matchesLocation = searchFilters.location && searchFilters.location !== 'Other'
       ? coach.address && coach.address.includes(searchFilters.location)
       : searchFilters.otherLocation
@@ -64,12 +72,12 @@ const CoachListComponent = ({ searchFilters = {}, limit = Infinity, enablePagina
       ? parseFloat(coach.skill_level) === parseFloat(searchFilters.level)
       : true;
 
-    return matchesName && matchesLocation && matchesLevel;
+    return matchesName && matchesLocation && matchesLevel && matchesTypeTrain;
   });
 
   // Xác định số lượng huấn luyện viên sẽ được hiển thị cho trang hiện tại
-  const displayedCoaches = enablePagination 
-    ? filteredCoaches.slice((page - 1) * itemsPerPage, page * itemsPerPage) 
+  const displayedCoaches = enablePagination
+    ? filteredCoaches.slice((page - 1) * itemsPerPage, page * itemsPerPage)
     : filteredCoaches.slice(0, limit); // Hiển thị theo limit nếu không có phân trang
 
   const handlePageChange = (event, value) => {

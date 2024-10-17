@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import { CiLocationOn, CiMedal } from "react-icons/ci";
-import { FaArrowUpRightDots, FaFacebook } from "react-icons/fa6";
+import { FaArrowUpRightDots, FaFacebook, FaPhone } from "react-icons/fa6";
 import { IoIosInformationCircle } from "react-icons/io";
 import { PiUserSquareLight } from "react-icons/pi";
 import { useLocation } from "react-router-dom";
@@ -26,8 +26,8 @@ const CoachDetailComponent = () => {
     const [showOverlay, setShowOverlay] = useState(false); // Trạng thái cho overlay
     console.log(selectedImage);
 
-     // Sử dụng useEffect để cập nhật selectedImage khi state thay đổi
-     useEffect(() => {
+    // Sử dụng useEffect để cập nhật selectedImage khi state thay đổi
+    useEffect(() => {
         if (images.length > 0) {
             setSelectedImage(images[0]); // Cập nhật ảnh đầu tiên khi dữ liệu huấn luyện viên thay đổi
         }
@@ -150,33 +150,31 @@ const CoachDetailComponent = () => {
                                 Thành tích nổi bật: {description}
                             </Card.Text>
                             <Card.Text>
-                                <div className="icon" style={{ color: "#828282" }} />
-                                Số điện thoại: {contact?.phone}
-                            </Card.Text>
-                            <div className="row contact-buttons w-25">
-                                <div className="col">
-                                    <button
-                                        className="btn btn-outline-primary contact-btn"
-                                        style={{
-                                            color: "#3b5998",
-                                            backgroundColor: "white",
-                                            borderColor: "#3b5998",
-                                        }}
+                                <div className="icon" style={{ color: "#828282" }} />Liên hệ:
+                                &nbsp;&nbsp;
+                                {contact?.phone !== 'Không có số điện thoại' ? (
+                                    <a>
+                                        <FaPhone style={{ color: "#828282", fontSize: "17px", marginRight: "8px" }} />{contact?.phone}
+                                    </a>
+                                ) : (
+                                    'Không có Số điện thoại'
+                                )}
+                                &nbsp;&nbsp;
+                                {contact?.facebook !== 'Không có Facebook' ? ( 
+                                    <a
+                                        href={contact?.facebook}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{ textDecoration: "none", color: "#064D7E" }}
                                     >
-                                        <FaFacebook />{" "}
-                                        {contact?.facebook && (
-                                            <a
-                                                style={{ color: "black", textDecoration: "none" }}
-                                                href={contact.facebook}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                Facebook
-                                            </a>
-                                        )}
-                                    </button>
-                                </div>
-                            </div>
+                                        {/* Icon Facebook */}
+                                        <FaFacebook style={{ color: "#828282", fontSize: "20px", marginRight: "8px" }} />
+                                        Facebook
+                                    </a>
+                                ) : (
+                                    'Không có Facebook'
+                                )}
+                            </Card.Text>
                         </Card.Body>
                     </Col>
                 </Row>

@@ -86,7 +86,6 @@
   font-weight: bold;
   margin: 0px;
   overflow: hidden; /* Ẩn nội dung thừa */
-  white-space: nowrap; /* Ngăn không cho tên xuống dòng */
   text-overflow: ellipsis; /* Hiển thị ... nếu tên quá dài */
 }
 
