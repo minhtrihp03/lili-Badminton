@@ -4,7 +4,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 55vh;
+  height: 65vh;
+
   background-color: #f0f0f0;
   /* background-image: url("../../../public/assets/images/slide.png"); */
   background-size: cover;
@@ -21,7 +22,7 @@
 
 .custom-carousel {
   width: 100%;   /* Chiều rộng 100% */
-  height: 55vh;  /* Chiều cao 55% của viewport height */
+  height: 100%;  /* Chiều cao 55% của viewport height */
   overflow: hidden;
 }
 
