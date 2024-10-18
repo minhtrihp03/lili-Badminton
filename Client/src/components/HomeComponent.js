@@ -2,7 +2,7 @@ import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import '../styles/screens/HomeComponent.css';  // Đảm bảo bạn đã tạo file CSS
-import Banner1 from '../assets/banner.png';
+import Banner1 from '../assets/bannerHLV.png';
 import Banner2 from '../assets/banner1.png';
 
 const HomeComponent = () => {
